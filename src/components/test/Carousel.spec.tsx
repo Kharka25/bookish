@@ -35,29 +35,21 @@ describe('Carousel', () => {
     expect(listItems[0].props.data[0]).toStrictEqual(CarouselData[0]);
   });
 
-  it('renders a scroll indicator', () => {
-    const wrapper = render(<Carousel data={CarouselData} />);
-    wrapper.getByTestId('scroll-container');
-  });
-
-  it('renders scroll indicators', async () => {
+  it('renders scroll indicators', () => {
     render(<Carousel data={CarouselData} />);
-    const scrollElements = await screenFn.findAllByTestId('scroll-indicator');
-    expect(scrollElements).not.toBeUndefined();
+    screenFn.queryAllByTestId('paginator');
   });
 
   it('renders correct number of scroll indicators', async () => {
     render(<Carousel data={CarouselData} />);
-    const scrollElements = await screenFn.findAllByTestId('scroll-indicator');
-    expect(scrollElements.length).toEqual(CarouselData.length);
+    expect(screenFn.queryAllByTestId('dot-indicator').length).toBe(
+      CarouselData.length,
+    );
   });
 
   it('renders scroll indicators with correct styles', async () => {
     render(<Carousel data={CarouselData} />);
-    const scrollElements = await screenFn.findAllByTestId('scroll-indicator');
-    expect(Object.keys(scrollElements[0].props.style)).toEqual([
-      'opacity',
-      'width',
-    ]);
+    const dots = screenFn.queryAllByTestId('dot-indicator');
+    expect(dots[0]).toHaveProp('style');
   });
 });

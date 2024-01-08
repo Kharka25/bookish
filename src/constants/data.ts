@@ -18,6 +18,6 @@ export const CarouselData = [
     img: require('@assets/images/frame3.png'),
     subtitle:
       'Ready to embark on a quest for inspiration and knowledge? Your adventure begins now. Lets go!',
-    title: 'Start Your Adventure',
+    title: 'Start Your Bookish Adventure',
   },
 ];

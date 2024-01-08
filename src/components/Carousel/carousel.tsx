@@ -1,8 +1,5 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-
 import React, {useEffect, useRef, useState} from 'react';
 import {
-  Animated,
   Dimensions,
   FlatList,
   Text,
@@ -10,9 +7,11 @@ import {
   Image,
   ImageSourcePropType,
   ListRenderItem,
+  NativeSyntheticEvent,
+  NativeScrollEvent,
 } from 'react-native';
 
-import {CarouselData} from '@constants/data';
+import {Paginator} from '@components';
 import styles from './styles';
 
 interface CarouseDataI {
@@ -31,88 +30,104 @@ const {width} = Dimensions.get('window');
 const Carousel: React.FC<Props> = ({data}) => {
   const [activeIdx, setActveIdx] = useState<number>(0);
   const carouselRef = useRef<any>();
-  const scrollX = useRef(new Animated.Value(0)).current;
+  // const scrollX = useRef(new Animated.Value(0)).current;
 
   const renderItem: ListRenderItem<CarouseDataI> = ({item}) => {
     return (
-      <View key={item.id} testID="scroll-component">
-        <Image source={item.img} />
-        <Text>{item.title}</Text>
-        <Text>{item.subtitle}</Text>
+      <View
+        key={item.id}
+        style={styles.carouselContainer}
+        testID="scroll-component">
+        <Image source={item.img} style={styles.carouseImg} />
+        <Text style={styles.carouseTitle}>{item.title}</Text>
+        <Text style={styles.carouselSubTitle}>{item.subtitle}</Text>
       </View>
     );
   };
 
-  const getItemLayout = (index: any) => ({
+  // To enhance performance for rendering carousel image
+  const getItemLayout = (_data: any, index: any) => ({
     length: width,
     offset: width * index,
-    index: index,
+    index,
   });
 
+  const handleScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+    const scrollPos = event.nativeEvent.contentOffset.x;
+    const index = scrollPos / width;
+    setActveIdx(index);
+  };
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const renderScrollIndicator = () => {
     return data?.map((dot, index) => {
-      const inputRange = [
-        (index - 1) * width,
-        index * width,
-        (index + 1) * width,
-      ];
-
-      const dotWidth = scrollX.interpolate({
-        inputRange,
-        outputRange: [10, 10, 10],
-        extrapolate: 'clamp',
-      });
-
-      const opacity = scrollX.interpolate({
-        inputRange,
-        outputRange: [0.3, 1, 0.3],
-        extrapolate: 'clamp',
-      });
-
       return (
-        <Animated.View
-          key={index.toString()}
+        <View
           testID="scroll-indicator"
-          style={(styles.dot, [{opacity: opacity, width: dotWidth}])}
+          key={index}
+          style={[
+            styles.carouselScrollItemActive,
+            activeIdx !== index ? styles.carouselScrollItemInactive : {},
+          ]}
         />
       );
     });
   };
 
+  // useEffect(() => {
+  //   let interval = setInterval(() => {
+  //     setActveIdx(prev => prev + 1);
+  //     if (!carouselRef.current) {
+  //       return;
+  //     }
+  //     if (activeIdx < data!.length - 1) {
+  //       carouselRef.current.scrollToIndex({
+  //         index: activeIdx + 1,
+  //         animation: true,
+  //       });
+  //     } else {
+  //       setActveIdx(0);
+  //       carouselRef.current.scrollToIndex({
+  //         index: 0,
+  //         animation: true,
+  //       });
+  //     }
+  //     clearInterval(interval);
+  //   }, 3000);
+  //   return () => clearInterval(interval);
+  // }, [activeIdx]);
   useEffect(() => {
     let interval = setInterval(() => {
-      setActveIdx(prev => prev + 1);
-      if (!carouselRef.current) {
-        return;
-      }
-      if (activeIdx < data!.length - 1) {
-        carouselRef.current.scrollToIndex({
-          index: activeIdx + 1,
-          animation: true,
-        });
-      } else {
-        setActveIdx(0);
+      if (activeIdx === data.length - 1) {
         carouselRef.current.scrollToIndex({
           index: 0,
           animation: true,
         });
+      } else {
+        carouselRef.current.scrollToIndex({
+          index: activeIdx + 1,
+          animation: true,
+        });
       }
-      clearInterval(interval);
     }, 3000);
-    return () => clearInterval(interval);
-  }, [activeIdx]);
 
+    return () => clearInterval(interval);
+  });
   return (
-    <View style={styles.container} testID="carousel">
+    <View testID="carousel">
       <FlatList
+        data={data}
         getItemLayout={getItemLayout}
         horizontal
-        data={CarouselData}
+        keyExtractor={(item: any) => item.id}
+        onScroll={handleScroll}
+        pagingEnabled
+        ref={carouselRef}
         renderItem={renderItem}
         showsHorizontalScrollIndicator={false}
         testID="listItem"
       />
-      <View testID="scroll-container">{renderScrollIndicator()}</View>
+      <Paginator data={data} />
     </View>
   );
 };

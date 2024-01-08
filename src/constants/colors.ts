@@ -10,5 +10,6 @@ export enum Colors {
   GREEN_10 = '#18A057',
   PRIMARY = '#54408C',
   WHITE = '#FFF',
+  WHITE_10 = '#FAF9FD',
   YELLOW_10 = '#F5BE00',
 }

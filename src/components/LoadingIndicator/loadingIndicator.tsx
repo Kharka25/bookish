@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Text, StyleSheet, ViewProps} from 'react-native';
+import {StyleSheet, ViewProps} from 'react-native';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -22,7 +22,7 @@ const LoadingIndicator: React.FC<Props> = props => {
 
   const transformValue = useAnimatedStyle(() => {
     return {
-      transform: [{rotate: `${rotateValue}deg`}],
+      transform: [{rotate: `${rotateValue.value}deg`}],
     };
   });
 
@@ -34,7 +34,6 @@ const LoadingIndicator: React.FC<Props> = props => {
     <Animated.View
       style={[styles.container, transformValue]}
       testID="loadingIndicator">
-      <Text>loadingIndicator</Text>
       <AntDesign color={color} size={size} name="loading1" testID="icon" />
     </Animated.View>
   );
