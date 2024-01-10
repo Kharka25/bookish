@@ -1,5 +1,6 @@
 import React from 'react';
 import {SafeAreaView, StyleSheet, View, Text} from 'react-native';
+// import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import {Button, Carousel} from '@components';
 import {CarouselData} from '@constants/data';
@@ -9,17 +10,29 @@ import {
   verticalScale,
 } from '@utils/responsiveDesign';
 import {Colors} from '@constants/colors';
+import {useAuthNavigation} from '@models/navigation';
 
-interface Props {}
+// type ScreenProp = NativeStackScreenProps<AuthStackParamList, 'Onboarding'>;
 
-const App: React.FC<Props> = () => {
+const Onboarding: React.FC = () => {
+  const navigation = useAuthNavigation();
+  function signUp() {
+    navigation.navigate('SignUp', {});
+  }
+
+  function signIn() {
+    navigation.navigate('SignIn');
+  }
+
   return (
-    <SafeAreaView testID="App-screen">
-      <Text style={styles.skipText}>Skip</Text>
+    <SafeAreaView testID="onboard-screen">
+      <Text style={styles.skipText} testID="skip" onPress={signUp}>
+        Skip
+      </Text>
       <Carousel data={CarouselData} />
       <View style={styles.btnContainer}>
-        <Button label="Get Started" />
-        <Button label="Sign in" light />
+        <Button label="Get Started" onPress={signUp} />
+        <Button label="Sign In" light testID="signin-btn" onPress={signIn} />
       </View>
     </SafeAreaView>
   );
@@ -38,4 +51,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+export default Onboarding;

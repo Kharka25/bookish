@@ -3,8 +3,8 @@ import {defaults as tsjPreset} from 'ts-jest/presets';
 
 const config: Config.InitialOptions = {
   ...tsjPreset,
-  preset: '@testing-library/react-native',
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
+  preset: 'react-native',
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   moduleNameMapper: {
     '^@src/(.*)': '<rootDir>/src/$1',
     '^@assets(.*)$': '<rootDir>/src/assets/$1',
@@ -17,7 +17,8 @@ const config: Config.InitialOptions = {
     '^@ui(.*)$': '<rootDir>/src/ui/$1',
     '^@utils(.*)$': '<rootDir>/src/utils/$1',
   },
-  setupFilesAfterEnv: ['./jest-setup.ts'],
+  setupFiles: ['./node_modules/react-native-gesture-handler/jestSetup.js'],
+  setupFilesAfterEnv: ['<rootDir>/src/setupTest.ts'],
   watchPlugins: [
     'jest-watch-typeahead/filename',
     'jest-watch-typeahead/testname',
@@ -36,6 +37,10 @@ const config: Config.InitialOptions = {
   transformIgnorePatterns: [
     'node_modules/(?!(jest-)?@react-native|react-native|@react-native-community|@react-navigation)',
   ],
+  // transformIgnorePatterns: [
+  //   // 'node_modules/(?!(jest-)?@react-native|react-native|@react-native-community|@react-navigation)',
+  //   'node_modules/(?!(jest-)?@?react-native|@react-native-community|@react-navigation)',
+  // ],
   verbose: true,
 };
 
