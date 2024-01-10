@@ -3,12 +3,13 @@ import {defaults as tsjPreset} from 'ts-jest/presets';
 
 const config: Config.InitialOptions = {
   ...tsjPreset,
-  preset: 'react-native',
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
+  preset: '@testing-library/react-native',
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
   moduleNameMapper: {
     '^@src/(.*)': '<rootDir>/src/$1',
     '^@assets(.*)$': '<rootDir>/src/assets/$1',
     '^@components(.*)$': '<rootDir>/src/components/$1',
+    '^@constants(.*)$': '<rootDir>/src/constants/$1',
     '^@config(.*)$': '<rootDir>/src/config/$1',
     '^@models(.*)$': '<rootDir>/src/models/$1',
     '^@navigation(.*)$': '<rootDir>/src/navigation/$1',
@@ -16,11 +17,12 @@ const config: Config.InitialOptions = {
     '^@ui(.*)$': '<rootDir>/src/ui/$1',
     '^@utils(.*)$': '<rootDir>/src/utils/$1',
   },
-  // setupFilesAfterEnv: ['<rootDir>/src/setupFilesAfterEnv.ts'],
+  setupFilesAfterEnv: ['./jest-setup.ts'],
   watchPlugins: [
     'jest-watch-typeahead/filename',
     'jest-watch-typeahead/testname',
   ],
+  testEnvironment: 'node',
   testRegex: '/test/.*spec\\.(jsx?|tsx?)$',
   transform: {
     '^.+\\.jsx$': 'babel-jest',
@@ -31,6 +33,9 @@ const config: Config.InitialOptions = {
       },
     ],
   },
+  transformIgnorePatterns: [
+    'node_modules/(?!(jest-)?@react-native|react-native|@react-native-community|@react-navigation)',
+  ],
   verbose: true,
 };
 
