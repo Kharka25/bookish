@@ -1,4 +1,4 @@
-import {Dimensions, PixelRatio} from 'react-native';
+import {Dimensions, PixelRatio, Platform, StyleSheet} from 'react-native';
 
 const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} = Dimensions.get('window');
 
@@ -41,4 +41,20 @@ function horizontalScale(size: number) {
   return widthPixel(size);
 }
 
-export {fontScale, heightPixel, horizontalScale, verticalScale, widthPixel};
+const globalStyles = StyleSheet.create({
+  screenContainer: {
+    flex: 1,
+    paddingVertical:
+      Platform.OS === 'ios' ? verticalScale(10) : verticalScale(20),
+    paddingHorizontal: horizontalScale(10),
+  },
+});
+
+export {
+  fontScale,
+  globalStyles,
+  heightPixel,
+  horizontalScale,
+  verticalScale,
+  widthPixel,
+};

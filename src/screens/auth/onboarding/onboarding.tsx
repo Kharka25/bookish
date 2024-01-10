@@ -1,6 +1,7 @@
 import React from 'react';
-import {SafeAreaView, StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, View, Text} from 'react-native';
 // import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 import {Button, Carousel} from '@components';
 import {CarouselData} from '@constants/data';
@@ -17,7 +18,7 @@ import {useAuthNavigation} from '@models/navigation';
 const Onboarding: React.FC = () => {
   const navigation = useAuthNavigation();
   function signUp() {
-    navigation.navigate('SignUp', {});
+    navigation.navigate('SignUp');
   }
 
   function signIn() {
@@ -26,13 +27,15 @@ const Onboarding: React.FC = () => {
 
   return (
     <SafeAreaView testID="onboard-screen">
-      <Text style={styles.skipText} testID="skip" onPress={signUp}>
-        Skip
-      </Text>
-      <Carousel data={CarouselData} />
-      <View style={styles.btnContainer}>
-        <Button label="Get Started" onPress={signUp} />
-        <Button label="Sign In" light testID="signin-btn" onPress={signIn} />
+      <View>
+        <Text style={styles.skipText} testID="skip" onPress={signUp}>
+          Skip
+        </Text>
+        <Carousel data={CarouselData} />
+        <View style={styles.btnContainer}>
+          <Button label="Get Started" onPress={signUp} />
+          <Button label="Sign In" light testID="signin-btn" onPress={signIn} />
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -41,13 +44,14 @@ const Onboarding: React.FC = () => {
 const styles = StyleSheet.create({
   btnContainer: {
     gap: horizontalScale(15),
-    marginTop: verticalScale(100),
-    paddingHorizontal: horizontalScale(22),
+    marginTop: verticalScale(90),
+    paddingHorizontal: horizontalScale(24),
   },
   skipText: {
     color: Colors.PRIMARY,
     fontSize: fontScale(16),
     fontWeight: '500',
+    paddingHorizontal: horizontalScale(24),
   },
 });
 

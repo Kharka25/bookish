@@ -9,7 +9,7 @@ import {useNavigation} from '@react-navigation/native';
 
 export type AuthStackParamList = {
   Onboarding: undefined;
-  SignUp: {userInfo?: {username: string; email: string}};
+  SignUp: undefined;
   SignIn: undefined;
 };
 
