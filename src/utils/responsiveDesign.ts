@@ -1,10 +1,12 @@
-import {Dimensions, PixelRatio} from 'react-native';
+import {Dimensions, PixelRatio, Platform, StyleSheet} from 'react-native';
 
 const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} = Dimensions.get('window');
 
-enum BaseType {
-  HEIGHT = 'height',
-  WIDTH = 'width',
+type BaseT = 'HEIGHT' | 'WIDTH';
+
+enum BaseEnum {
+  HEIGHT = 'HEIGHT',
+  WIDTH = 'WIDTH',
 }
 
 const screenHeight = 896;
@@ -13,18 +15,18 @@ const screenWidth = 424;
 const baseHeightScale = SCREEN_HEIGHT / screenHeight;
 const baseWidthScale = SCREEN_WIDTH / screenWidth;
 
-function scaleValue(size: number, based: BaseType) {
+function scaleValue(size: number, based: BaseT) {
   const newSize =
-    based === 'height' ? size * baseHeightScale : size * baseWidthScale;
+    based === 'HEIGHT' ? size * baseHeightScale : size * baseWidthScale;
   return Math.round(PixelRatio.roundToNearestPixel(newSize));
 }
 
 function heightPixel(size: number) {
-  return scaleValue(size, BaseType.HEIGHT);
+  return scaleValue(size, BaseEnum.HEIGHT);
 }
 
 function widthPixel(size: number) {
-  return scaleValue(size, BaseType.WIDTH);
+  return scaleValue(size, BaseEnum.WIDTH);
 }
 
 function fontScale(size: number) {
@@ -39,8 +41,18 @@ function horizontalScale(size: number) {
   return widthPixel(size);
 }
 
-export default {
+const globalStyles = StyleSheet.create({
+  screenContainer: {
+    flex: 1,
+    paddingVertical:
+      Platform.OS === 'ios' ? verticalScale(10) : verticalScale(20),
+    paddingHorizontal: horizontalScale(10),
+  },
+});
+
+export {
   fontScale,
+  globalStyles,
   heightPixel,
   horizontalScale,
   verticalScale,
