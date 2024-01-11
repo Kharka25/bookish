@@ -46,7 +46,7 @@ const globalStyles = StyleSheet.create({
     flex: 1,
     paddingVertical:
       Platform.OS === 'ios' ? verticalScale(10) : verticalScale(20),
-    paddingHorizontal: horizontalScale(10),
+    paddingHorizontal: horizontalScale(15),
   },
 });
 

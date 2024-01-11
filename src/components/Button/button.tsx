@@ -25,7 +25,7 @@ const Button: React.FC<Props> = props => {
   const {label, labelStyle, light, loading, onPress, style, ...otherProps} =
     props;
   return (
-    <TouchableOpacity testID="btn" onPress={onPress}>
+    <TouchableOpacity activeOpacity={0.5} testID="btn" onPress={onPress}>
       <View
         {...otherProps}
         style={[styles.container, light && styles.btnLight, style]}>
