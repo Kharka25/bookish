@@ -42,6 +42,20 @@ function horizontalScale(size: number) {
 }
 
 const globalStyles = StyleSheet.create({
+  mbMD: {
+    // marginBottom: verticalScale(24),
+    marginBottom: '6%',
+  },
+  mbLg: {
+    // marginBottom: verticalScale(32),
+    marginBottom: '15%',
+  },
+  mtSm: {
+    marginTop: '5%',
+  },
+  mtLg: {
+    marginTop: '40%',
+  },
   screenContainer: {
     flex: 1,
     paddingVertical:

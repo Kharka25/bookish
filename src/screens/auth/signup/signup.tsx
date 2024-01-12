@@ -23,12 +23,13 @@ const SignUp: React.FC = () => {
       <BackIcon />
       <View style={[globalStyles.screenContainer, styles.container]}>
         <Text style={authStyles.heading}>Sign Up</Text>
-        <Text style={[authStyles.subHeading, styles.mbMD]}>
+        <Text style={[authStyles.subHeading, globalStyles.mbMD]}>
           Create an account and start your Bookish adventure!
         </Text>
         <TextInput
           autoCorrect={false}
           autoComplete="off"
+          autoFocus
           containerStyle={styles.inputContainer}
           label="Name"
           placeholder="Your name"
@@ -43,17 +44,17 @@ const SignUp: React.FC = () => {
         <TextInput
           autoCorrect={false}
           autoComplete="off"
-          containerStyle={[styles.inputContainer, styles.mbLg]}
+          containerStyle={[styles.inputContainer, globalStyles.mbLg]}
           label="Password"
           placeholder="Your password"
           secureTextEntry
         />
         <Button label="Register" style={styles.btn} />
-        <Text style={[authStyles.linkContainer, styles.mbMD]}>
+        <Text style={[authStyles.linkContainer, globalStyles.mbMD]}>
           Have an account?
           <Link title="Sign In" onPress={signIn} style={styles.signInTxt} />
         </Text>
-        <Text style={[authStyles.linkContainer, styles.mtLg]}>
+        <Text style={[authStyles.linkContainer, globalStyles.mtLg]}>
           By Clicking Register, you agree to our
         </Text>
         <Link
@@ -79,17 +80,6 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     marginBottom: verticalScale(16),
-  },
-  mbMD: {
-    // marginBottom: verticalScale(24),
-    marginBottom: '6%',
-  },
-  mbLg: {
-    // marginBottom: verticalScale(32),
-    marginBottom: '15%',
-  },
-  mtLg: {
-    marginTop: '40%',
   },
   signInTxt: {
     marginLeft: horizontalScale(5),

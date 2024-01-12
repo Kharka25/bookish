@@ -1,10 +1,18 @@
 import React from 'react';
-import {Pressable, Text, StyleSheet, ViewProps} from 'react-native';
+import {
+  Pressable,
+  Text,
+  StyleSheet,
+  ViewProps,
+  StyleProp,
+  ViewStyle,
+} from 'react-native';
 
 import {Colors} from '@constants/colors';
 
 interface Props extends ViewProps {
   active?: boolean;
+  containerStyle?: StyleProp<ViewStyle>;
   onPress?: () => void;
   testID?: string;
   title: string;
@@ -13,6 +21,7 @@ interface Props extends ViewProps {
 const link: React.FC<Props> = props => {
   const {
     active = true,
+    containerStyle,
     onPress,
     testID = 'link',
     style,
@@ -23,7 +32,7 @@ const link: React.FC<Props> = props => {
     <Pressable
       {...otherProps}
       onPress={active ? onPress : null}
-      style={active ? styles.active : styles.inActive}
+      style={[active ? styles.active : styles.inActive, containerStyle]}
       testID={testID}>
       <Text role="link" style={[styles.title, style]}>
         {title}

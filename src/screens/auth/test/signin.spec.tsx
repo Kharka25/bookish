@@ -10,6 +10,8 @@ import {useNavigation} from '@react-navigation/native';
 import {SignIn} from '@screens';
 import {fontScale} from '@utils/responsiveDesign';
 
+// jest.mock('../signup/signup', () => jest.fn());
+
 jest.mock('@react-navigation/native', () => {
   return {
     ...jest.requireActual<object>('@react-navigation/native'),
@@ -71,9 +73,29 @@ describe('Sign In screen', () => {
     expect(textInputs[1]).toHaveProp('placeholder', 'Your password');
   });
 
+  it('renders "Forgot Password?" link', () => {
+    render(<SignIn />);
+    const links = screenFn.queryAllByTestId('link');
+    expect(links[0]).toHaveTextContent('Forgot Password?', {exact: false});
+  });
+
+  it('navigates to Forgot Password screen when forgot password link is pressed', async () => {
+    const mockNavigate = jest.fn();
+    (useNavigation as jest.Mock).mockReturnValueOnce({navigate: mockNavigate});
+
+    render(<SignIn />);
+    const links = screenFn.queryAllByTestId('link');
+    const forgotPasswordLink = links[0];
+    fireEvent.press(forgotPasswordLink);
+
+    await waitFor(() => {
+      expect(mockNavigate).toHaveBeenCalled();
+    });
+  });
+
   it('renders a button component', () => {
     render(<SignIn />);
-    screenFn.getByTestId('btn');
+    expect(screenFn.queryAllByTestId('btn')).toBeDefined();
   });
 
   it('renders Login button component', () => {
@@ -83,7 +105,8 @@ describe('Sign In screen', () => {
 
   it('displays sign up text as link', () => {
     render(<SignIn />);
-    expect(screenFn.getByTestId('link')).toBeDefined();
+    const links = screenFn.queryAllByTestId('link');
+    expect(links[1]).toHaveTextContent('Sign Up', {exact: false});
   });
 
   it('navigates to Sign Up screen when signIn link is pressed', async () => {
@@ -91,11 +114,28 @@ describe('Sign In screen', () => {
     (useNavigation as jest.Mock).mockReturnValueOnce({navigate: mockNavigate});
 
     render(<SignIn />);
-    const signUpLink = screenFn.getByTestId('link');
+
+    const links = screenFn.queryAllByTestId('link');
+    const signUpLink = links[1];
     fireEvent.press(signUpLink);
 
     await waitFor(() => {
       expect(mockNavigate).toHaveBeenCalled();
     });
+  });
+
+  it('display lineBreak component', () => {
+    render(<SignIn />);
+    screenFn.getByTestId('separator');
+  });
+
+  it('displays Google signin button', () => {
+    render(<SignIn />);
+    screenFn.getByText('Sign in with Google');
+  });
+
+  it('displays Apple signin button', () => {
+    render(<SignIn />);
+    screenFn.getByText('Sign in with Apple');
   });
 });

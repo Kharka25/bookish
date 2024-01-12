@@ -27,6 +27,10 @@ const styles = StyleSheet.create({
   btnLight: {
     backgroundColor: Colors.WHITE_10,
   },
+  labelFlex: {
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
 });
 
 export default styles;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   StyleSheet,
@@ -24,6 +24,7 @@ interface Props extends TextInputProps {
 
 const TextInput: React.FC<Props> = props => {
   const {containerStyle, label, testID = 'text-input'} = props;
+  const [focused, setFocused] = useState(false);
   return (
     <View style={[styles.container, containerStyle]}>
       <Text style={styles.label}>{label}</Text>
@@ -31,8 +32,14 @@ const TextInput: React.FC<Props> = props => {
         {...props}
         role="form"
         cursorColor={Colors.PRIMARY}
+        onEndEditing={() => setFocused(false)}
+        onFocus={() => setFocused(true)}
         placeholderTextColor={Colors.GRAY_40}
-        style={[styles.txtInputContainer, props.style]}
+        style={[
+          styles.txtInputContainer,
+          focused && styles.focused,
+          props.style,
+        ]}
         testID={testID}
       />
     </View>
@@ -41,6 +48,10 @@ const TextInput: React.FC<Props> = props => {
 
 const styles = StyleSheet.create({
   container: {},
+  focused: {
+    borderColor: Colors.PRIMARY,
+    borderWidth: 0.7,
+  },
   label: {
     color: Colors.BLACK,
     fontSize: fontScale(14),
@@ -56,4 +67,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TextInput;
+export default React.memo(TextInput);

@@ -1,6 +1,7 @@
 export {default as BackIcon} from './BackIcon/backicon';
 export {default as Button} from './Button/button';
 export {default as Carousel} from './Carousel/carousel';
+export {default as LineBreak} from './LineBreak/linebreak';
 export {default as Link} from './Link/link';
 export {default as LoadingIndicator} from './LoadingIndicator/loadingIndicator';
 export {default as Paginator} from './Paginator/paginator';
