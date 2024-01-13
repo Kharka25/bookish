@@ -7,9 +7,12 @@ import {useNavigation} from '@react-navigation/native';
 //   }
 // }
 
+export type ResetMode = 'Email' | 'Phone';
+
 export type AuthStackParamList = {
   Onboarding: undefined;
   ForgotPassword: undefined;
+  ResetPassword: {mode: ResetMode};
   SignUp: undefined;
   SignIn: undefined;
 };

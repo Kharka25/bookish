@@ -1,11 +1,12 @@
 import React from 'react';
+import {useNavigation} from '@react-navigation/native';
 import {
-  fireEvent,
+  // fireEvent,
   render,
   screen as screenFn,
+  userEvent,
   waitFor,
 } from '@testing-library/react-native';
-import {useNavigation} from '@react-navigation/native';
 
 import {SignIn} from '@screens';
 import {fontScale} from '@utils/responsiveDesign';
@@ -86,7 +87,7 @@ describe('Sign In screen', () => {
     render(<SignIn />);
     const links = screenFn.queryAllByTestId('link');
     const forgotPasswordLink = links[0];
-    fireEvent.press(forgotPasswordLink);
+    userEvent.press(forgotPasswordLink);
 
     await waitFor(() => {
       expect(mockNavigate).toHaveBeenCalled();
@@ -117,7 +118,7 @@ describe('Sign In screen', () => {
 
     const links = screenFn.queryAllByTestId('link');
     const signUpLink = links[1];
-    fireEvent.press(signUpLink);
+    userEvent.press(signUpLink);
 
     await waitFor(() => {
       expect(mockNavigate).toHaveBeenCalled();

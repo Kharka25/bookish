@@ -1,9 +1,10 @@
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {
-  fireEvent,
+  // fireEvent,
   render,
   screen as screenFn,
+  userEvent,
   waitFor,
 } from '@testing-library/react-native';
 
@@ -101,7 +102,8 @@ describe('SignUp screen', () => {
 
     render(<SignUp />);
     const signInLink = screenFn.getByTestId('link');
-    fireEvent.press(signInLink);
+    // fireEvent.press(signInLink);
+    userEvent.press(signInLink);
 
     await waitFor(() => {
       expect(mockNavigate).toHaveBeenCalled();

@@ -2,7 +2,13 @@ import React from 'react';
 import {DefaultTheme, NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import {ForgotPassword, Onboarding, SignIn, SignUp} from '@screens';
+import {
+  ForgotPassword,
+  Onboarding,
+  ResetPassword,
+  SignIn,
+  SignUp,
+} from '@screens';
 import {AuthStackParamList} from '@models/navigation';
 import {Colors} from '@constants/colors';
 
@@ -25,6 +31,7 @@ const AuthNavigator = () => {
         <Screen name="SignUp" component={SignUp} />
         <Screen name="SignIn" component={SignIn} />
         <Screen name="ForgotPassword" component={ForgotPassword} />
+        <Screen name="ResetPassword" component={ResetPassword} />
       </Navigator>
     </NavigationContainer>
   );
