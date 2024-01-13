@@ -3,13 +3,7 @@ import {Text, StyleSheet, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
 import {BackIcon, Button, ContactModeSelector} from '@components';
-import {
-  fontScale,
-  globalStyles,
-  horizontalScale,
-  verticalScale,
-} from '@utils/responsiveDesign';
-import {Colors} from '@constants/colors';
+import {globalStyles, horizontalScale} from '@utils/responsiveDesign';
 import {ContactModeData} from '@constants/data';
 import {ResetMode, useAuthNavigation} from '@models/navigation';
 
@@ -21,7 +15,10 @@ const ForgotPassword = () => {
 
   function resetPassword() {
     setSelectedMode(selectedMode);
-    navigation.navigate('ResetPassword', {mode: selectedMode});
+    navigation.navigate(
+      selectedMode === 'Phone' ? 'ResetPassword' : 'Verification',
+      {mode: selectedMode},
+    );
   }
 
   return (
@@ -52,40 +49,6 @@ const styles = StyleSheet.create({
   },
   btn: {
     borderRadius: horizontalScale(50),
-  },
-  btnIcon: {
-    height: verticalScale(18),
-    marginRight: horizontalScale(10),
-    resizeMode: 'contain',
-    width: horizontalScale(18),
-  },
-  externalBtn: {
-    backgroundColor: 'transparent',
-    borderColor: Colors.GRAY_20,
-    borderWidth: 1,
-  },
-  externalBtnLabel: {
-    color: Colors.BLACK,
-    fontSize: fontScale(14),
-    fontWeight: '400',
-  },
-  footerLink: {
-    alignSelf: 'center',
-    marginTop: verticalScale(4),
-  },
-  headingContainer: {
-    alignItems: 'center',
-    flexDirection: 'row',
-  },
-  icon: {
-    bottom: verticalScale(1),
-    fontSize: fontScale(24),
-  },
-  inputContainer: {
-    marginBottom: verticalScale(16),
-  },
-  signInTxt: {
-    marginLeft: horizontalScale(5),
   },
 });
 

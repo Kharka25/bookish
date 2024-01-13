@@ -8,6 +8,7 @@ import {
   ResetPassword,
   SignIn,
   SignUp,
+  Verification,
 } from '@screens';
 import {AuthStackParamList} from '@models/navigation';
 import {Colors} from '@constants/colors';
@@ -32,6 +33,7 @@ const AuthNavigator = () => {
         <Screen name="SignIn" component={SignIn} />
         <Screen name="ForgotPassword" component={ForgotPassword} />
         <Screen name="ResetPassword" component={ResetPassword} />
+        <Screen name="Verification" component={Verification} />
       </Navigator>
     </NavigationContainer>
   );

@@ -14,6 +14,9 @@ const styles = StyleSheet.create({
     borderRadius: horizontalScale(12),
     paddingVertical: verticalScale(22),
   },
+  btnDisabled: {
+    backgroundColor: Colors.GRAY_90,
+  },
   btnLabel: {
     color: Colors.WHITE,
     fontSize: fontScale(16),

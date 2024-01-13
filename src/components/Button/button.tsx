@@ -17,6 +17,7 @@ import {Colors} from '@constants/colors';
 import styles from './styles';
 
 interface Props extends ViewProps {
+  disable?: boolean;
   icon?: ImageSourcePropType;
   iconStyle?: StyleProp<ImageStyle>;
   label: string;
@@ -28,6 +29,7 @@ interface Props extends ViewProps {
 
 const Button: React.FC<Props> = props => {
   const {
+    disable = false,
     icon,
     iconStyle,
     label,
@@ -42,7 +44,12 @@ const Button: React.FC<Props> = props => {
     <TouchableOpacity activeOpacity={0.5} testID="btn" onPress={onPress}>
       <View
         {...otherProps}
-        style={[styles.container, light && styles.btnLight, style]}>
+        style={[
+          styles.container,
+          light && styles.btnLight,
+          disable && styles.btnDisabled,
+          style,
+        ]}>
         {loading ? (
           <LoadingIndicator color={Colors.WHITE} size={15} testID="loadings" />
         ) : (

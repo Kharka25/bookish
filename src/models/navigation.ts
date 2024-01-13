@@ -15,6 +15,7 @@ export type AuthStackParamList = {
   ResetPassword: {mode: ResetMode};
   SignUp: undefined;
   SignIn: undefined;
+  Verification: {mode: ResetMode};
 };
 
 export function useAuthNavigation() {

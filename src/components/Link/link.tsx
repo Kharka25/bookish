@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     opacity: 1,
   },
   inActive: {
-    opacity: 0.4,
+    opacity: 0.6,
   },
   title: {
     color: Colors.PRIMARY,
