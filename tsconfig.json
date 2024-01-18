@@ -3,7 +3,7 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "commonJS",
-    "types": ["react-native", "jest"],
+    "types": ["react-native", "@testing-library/jest-native", "jest"],
     "lib": [
       "es2019"
     ],
@@ -22,13 +22,15 @@
     "paths": {
       "@assets/*": ["src/assets/*"],
       "@components": ["src/components"],
+      "@constants/*": ["src/constants/*"],
       "@config/*": ["src/config/*"],
       "@models/*": ["src/models/*"],
       "@navigation": ["src/navigation"],
-      "@views": ["src/views"],
+      "@screens": ["src/screens"],
       "@utils/*": ["src/utils/*"],
       "@ui": ["src/ui"],
     },
     "rootDir": ".",
-  }
+  },
+  // "include": ["./jest-setup.ts"]
 }
