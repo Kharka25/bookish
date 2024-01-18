@@ -1,7 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {SafeAreaView, Text, StyleSheet, View} from 'react-native';
 
-import {BackIcon, Button, LineBreak, Link, TextInput} from '@components';
+import {
+  AuthInput,
+  BackIcon,
+  Button,
+  LineBreak,
+  Link,
+  PasswordVisibilityIcon,
+} from '@components';
 import {
   fontScale,
   globalStyles,
@@ -14,7 +21,12 @@ import authStyles from '../authStyles';
 import {Colors} from '@constants/colors';
 
 const SignIn: React.FC = () => {
+  const [secureTextEntry, setSecureTextEntry] = useState(true);
   const navigation = useAuthNavigation();
+
+  function togglePasswordVisbility() {
+    setSecureTextEntry(!secureTextEntry);
+  }
 
   function signUp() {
     navigation.navigate('SignUp');
@@ -34,21 +46,23 @@ const SignIn: React.FC = () => {
         <Text style={[authStyles.subHeading, globalStyles.mbMD]}>
           Sign in to your account
         </Text>
-        <TextInput
+        <AuthInput
           autoCorrect={false}
           autoComplete="off"
-          autoFocus
+          autoFocus={true}
           containerStyle={styles.inputContainer}
           label="Email"
           placeholder="Your email"
         />
-        <TextInput
+        <AuthInput
           autoCorrect={false}
           autoComplete="off"
           containerStyle={styles.inputContainer}
           label="Password"
+          onRightIconPress={togglePasswordVisbility}
           placeholder="Your password"
-          secureTextEntry
+          rightIcon={<PasswordVisibilityIcon privateIcon={secureTextEntry} />}
+          secureTextEntry={secureTextEntry}
         />
         <Link
           containerStyle={globalStyles.mbMD}
@@ -125,4 +139,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SignIn;
+export default React.memo(SignIn);

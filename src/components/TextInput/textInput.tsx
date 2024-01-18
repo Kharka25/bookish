@@ -27,7 +27,7 @@ const TextInput: React.FC<Props> = props => {
   const [focused, setFocused] = useState(false);
   return (
     <View style={[styles.container, containerStyle]}>
-      <Text style={styles.label}>{label}</Text>
+      {label && <Text style={styles.label}>{label}</Text>}
       <TxtInput
         {...props}
         role="form"

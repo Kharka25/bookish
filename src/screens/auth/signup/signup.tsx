@@ -1,7 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {SafeAreaView, Text, StyleSheet, View} from 'react-native';
 
-import {BackIcon, Button, Link, TextInput} from '@components';
+import {
+  AuthInput,
+  BackIcon,
+  Button,
+  Link,
+  PasswordVisibilityIcon,
+} from '@components';
 import {
   globalStyles,
   horizontalScale,
@@ -12,7 +18,16 @@ import {useAuthNavigation} from '@models/navigation';
 import authStyles from '../authStyles';
 
 const SignUp: React.FC = () => {
+  const [secureTextEntry, setSecureTextEntry] = useState(true);
   const navigation = useAuthNavigation();
+
+  function togglePasswordVisbility() {
+    setSecureTextEntry(!secureTextEntry);
+  }
+
+  function handleSignUp() {
+    navigation.navigate('Verification', {mode: 'Email', prevScreen: 'SignUp'});
+  }
 
   function signIn() {
     navigation.navigate('SignIn');
@@ -26,30 +41,32 @@ const SignUp: React.FC = () => {
         <Text style={[authStyles.subHeading, globalStyles.mbMD]}>
           Create an account and start your Bookish adventure!
         </Text>
-        <TextInput
+        <AuthInput
           autoCorrect={false}
           autoComplete="off"
-          autoFocus
+          autoFocus={true}
           containerStyle={styles.inputContainer}
           label="Name"
           placeholder="Your name"
         />
-        <TextInput
+        <AuthInput
           autoCorrect={false}
           autoComplete="off"
           containerStyle={styles.inputContainer}
           label="Email"
           placeholder="Your email"
         />
-        <TextInput
+        <AuthInput
           autoCorrect={false}
           autoComplete="off"
           containerStyle={[styles.inputContainer, globalStyles.mbLg]}
           label="Password"
+          onRightIconPress={togglePasswordVisbility}
           placeholder="Your password"
-          secureTextEntry
+          rightIcon={<PasswordVisibilityIcon privateIcon={secureTextEntry} />}
+          secureTextEntry={secureTextEntry}
         />
-        <Button label="Register" style={styles.btn} />
+        <Button onPress={handleSignUp} label="Register" style={styles.btn} />
         <Text style={[authStyles.linkContainer, globalStyles.mbMD]}>
           Have an account?
           <Link title="Sign In" onPress={signIn} style={styles.signInTxt} />
@@ -86,4 +103,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SignUp;
+export default React.memo(SignUp);

@@ -18,7 +18,7 @@ const ResetPassword: React.FC<ScreenProps> = ({route}) => {
   const navigation = useAuthNavigation();
 
   function verify() {
-    navigation.navigate('Verification', {mode});
+    navigation.navigate('Verification', {mode, prevScreen: 'ResetPassword'});
   }
   return (
     <SafeAreaView style={styles.container} testID="reset-password">

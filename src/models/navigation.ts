@@ -9,13 +9,22 @@ import {useNavigation} from '@react-navigation/native';
 
 export type ResetMode = 'Email' | 'Phone';
 
+type AuthScreenList =
+  | 'ForgotPassword'
+  | 'SignUp'
+  | 'ResetPassword'
+  | 'Verification'
+  | 'SignIn';
+
 export type AuthStackParamList = {
   Onboarding: undefined;
   ForgotPassword: undefined;
-  ResetPassword: {mode: ResetMode};
+  NewPassword: undefined;
+  ResetPassword: {mode: ResetMode; prevScreen: AuthScreenList};
   SignUp: undefined;
   SignIn: undefined;
-  Verification: {mode: ResetMode};
+  Status: undefined;
+  Verification: {mode: ResetMode; prevScreen: AuthScreenList};
 };
 
 export function useAuthNavigation() {

@@ -4,7 +4,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import {BackIcon, Button, Link, OtpField} from '@components';
-import {AuthStackParamList} from '@models/navigation';
+import {AuthStackParamList, useAuthNavigation} from '@models/navigation';
 import {
   fontScale,
   globalStyles,
@@ -14,22 +14,33 @@ import {
 import {Colors} from '@constants/colors';
 import authStyles from '../authStyles';
 
-type ScreenProps = NativeStackScreenProps<AuthStackParamList, 'ResetPassword'>;
+type ScreenProps = NativeStackScreenProps<AuthStackParamList, 'Verification'>;
 
 const otpFields = new Array(4).fill('');
 
 const Verification: React.FC<ScreenProps> = ({route}) => {
-  const {mode} = route.params;
+  const {mode, prevScreen} = route.params;
   const [otp, setOtp] = useState([...otpFields]);
   const [activeOtpIdx, setActiveOtpIdx] = useState(0);
   const [requestNewOtp, setRequestNewOtp] = useState(false);
   const otpRef = useRef<TextInput>(null);
+
+  const navigation = useAuthNavigation();
 
   const modeText = mode === 'Email' ? 'dummy@mail.com' : '(+965) 123 435 7565';
 
   const isValidOtp = otp.every(value => {
     return value.trim();
   });
+
+  function handleVerification() {
+    if (prevScreen === 'ResetPassword') {
+      navigation.navigate('NewPassword');
+      return;
+    }
+
+    navigation.navigate('Status');
+  }
 
   function handleKeyPress(key: string, idx: number) {
     const newOtp = [...otp];
@@ -93,7 +104,7 @@ const Verification: React.FC<ScreenProps> = ({route}) => {
         </Text>
         <Button
           disable={!isValidOtp}
-          // onPress={handleVerification}
+          onPress={handleVerification}
           label="Continue"
           style={[styles.btn, globalStyles.mtSm]}
         />
@@ -107,7 +118,7 @@ const styles = StyleSheet.create({
     flex: 0,
   },
   btn: {
-    borderRadius: horizontalScale(50),
+    // borderRadius: horizontalScale(50),
   },
   modeText: {
     color: Colors.BLACK,

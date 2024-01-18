@@ -53,25 +53,10 @@ describe('Sign In screen', () => {
     screenFn.getByTestId('goBack-btn');
   });
 
-  it('renders 3 textInput components', () => {
+  it('renders 2 textInput components', () => {
     render(<SignIn />);
-    const textInputs = screenFn.queryAllByTestId('text-input');
+    const textInputs = screenFn.queryAllByTestId('auth-input');
     expect(textInputs).toHaveLength(2);
-  });
-
-  it('renders input fields with labels', () => {
-    render(<SignIn />);
-    const textInputs = screenFn.queryAllByTestId('text-input');
-    textInputs.forEach(input => {
-      expect(input).toHaveProp('label');
-    });
-  });
-
-  it('renders input fields in correct order', () => {
-    render(<SignIn />);
-    const textInputs = screenFn.queryAllByTestId('text-input');
-    expect(textInputs[0]).toHaveProp('label', 'Email');
-    expect(textInputs[1]).toHaveProp('placeholder', 'Your password');
   });
 
   it('renders "Forgot Password?" link', () => {

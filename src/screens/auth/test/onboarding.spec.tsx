@@ -1,9 +1,10 @@
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {
-  fireEvent,
+  // fireEvent,
   render,
   screen as screenFn,
+  userEvent,
   waitFor,
 } from '@testing-library/react-native';
 
@@ -33,7 +34,7 @@ describe('Onboarding Screen', () => {
 
     render(<Onboarding />);
     const skipBtn = screenFn.getByTestId('skip');
-    fireEvent.press(skipBtn);
+    userEvent.press(skipBtn);
 
     await waitFor(() => {
       expect(mockNavigate).toHaveBeenCalled();
@@ -68,7 +69,7 @@ describe('Onboarding Screen', () => {
 
     render(<Onboarding />);
     const getStartedBtn = screenFn.getByText('Get Started');
-    fireEvent.press(getStartedBtn);
+    userEvent.press(getStartedBtn);
 
     await waitFor(() => {
       expect(mockNavigate).toHaveBeenCalled();
@@ -86,7 +87,7 @@ describe('Onboarding Screen', () => {
 
     render(<Onboarding />);
     const signInBtn = screenFn.getByText('Sign In');
-    fireEvent.press(signInBtn);
+    userEvent.press(signInBtn);
 
     await waitFor(() => {
       expect(mockNavigate).toHaveBeenCalled();

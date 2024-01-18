@@ -4,10 +4,12 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 import {
   ForgotPassword,
+  NewPassword,
   Onboarding,
   ResetPassword,
   SignIn,
   SignUp,
+  Status,
   Verification,
 } from '@screens';
 import {AuthStackParamList} from '@models/navigation';
@@ -33,6 +35,8 @@ const AuthNavigator = () => {
         <Screen name="SignIn" component={SignIn} />
         <Screen name="ForgotPassword" component={ForgotPassword} />
         <Screen name="ResetPassword" component={ResetPassword} />
+        <Screen name="NewPassword" component={NewPassword} />
+        <Screen name="Status" component={Status} />
         <Screen name="Verification" component={Verification} />
       </Navigator>
     </NavigationContainer>
