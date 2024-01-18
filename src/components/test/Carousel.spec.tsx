@@ -3,7 +3,6 @@ import {render, screen as screenFn} from '@testing-library/react-native';
 
 import {Carousel} from '@components';
 import {CarouselData} from '@constants/data';
-// import {Colors} from '@constants/colors';
 
 describe('Carousel', () => {
   it('renders correctly', () => {

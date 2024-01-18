@@ -21,3 +21,20 @@ export const CarouselData = [
     title: 'Start Your Bookish Adventure',
   },
 ];
+
+export const ContactModeData = [
+  {
+    iconActive: require('@assets/icons/email.png'),
+    iconInactive: require('@assets/icons/email2.png'),
+    subText: 'Send to your email',
+    // type: 'email',
+    title: 'Email',
+  },
+  {
+    iconActive: require('@assets/icons/call.png'),
+    iconInactive: require('@assets/icons/call2.png'),
+    subText: 'Send to your phone',
+    // type: 'phone',
+    title: 'Phone',
+  },
+];

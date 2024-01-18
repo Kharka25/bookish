@@ -26,11 +26,7 @@ const Paginator: React.FC<Props> = props => {
   }, [activeIdx]);
 
   return (
-    <View
-      accessible
-      style={styles.container}
-      role="radiogroup"
-      testID="paginator">
+    <View accessible style={styles.container} testID="paginator">
       {data?.map((_, idx) => {
         return (
           <Animated.View
@@ -49,6 +45,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     bottom: verticalScale(-30),
     flexDirection: 'row',
+    gap: horizontalScale(5),
     justifyContent: 'center',
     position: 'absolute',
     width: '100%',
@@ -57,13 +54,12 @@ const styles = StyleSheet.create({
     borderRadius: horizontalScale(30),
     backgroundColor: Colors.PRIMARY,
     height: verticalScale(10),
-    marginHorizontal: horizontalScale(5),
-    width: horizontalScale(9),
+    width: horizontalScale(11),
   },
   dotInactive: {
     backgroundColor: Colors.GRAY_20,
     height: verticalScale(8),
-    width: horizontalScale(7),
+    width: horizontalScale(9),
   },
 });
 

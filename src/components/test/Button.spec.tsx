@@ -14,7 +14,7 @@ describe('Button', () => {
     wrapper.getByText('label');
   });
 
-  it('should call given onPress function when clicked', () => {
+  it('should call given onPress function when pressed', () => {
     const mockOnpress = jest.fn();
     const wrapper = render(<Button label="" onPress={mockOnpress} />);
     const button = wrapper.getByTestId('btn');
