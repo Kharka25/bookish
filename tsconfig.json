@@ -32,5 +32,4 @@
     },
     "rootDir": ".",
   },
-  // "include": ["./jest-setup.ts"]
 }
