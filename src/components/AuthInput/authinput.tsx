@@ -84,4 +84,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AuthInput;
+export default React.memo(AuthInput);

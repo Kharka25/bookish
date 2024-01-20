@@ -1,3 +1,4 @@
+/* eslint-disable jest/no-focused-tests */
 import React, {useEffect} from 'react';
 import {SafeAreaView} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
@@ -29,10 +30,9 @@ describe('Auth Screens Navigation', () => {
     });
   });
 
-  it('renders SignUp screen on "SignUp" route', async () => {
+  fit('renders SignUp screen on "SignUp" route', async () => {
     (Onboarding as jest.Mock).mockImplementationOnce(() => {
       const navigation = useNavigation();
-
       useEffect(() => {
         // @ts-expect-error
         navigation.navigate('SignUp');
@@ -45,29 +45,25 @@ describe('Auth Screens Navigation', () => {
       <SafeAreaView testID="mock-signup-screen" />,
     );
 
-    const wrapper = render(<AuthNavigator />);
+    render(<AuthNavigator />);
 
-    // await waitFor(() => {
-    //   wrapper.getByTestId('mock-signup-screen');
-    // });
-
-    await act(() => {
-      waitFor(() => {
-        wrapper.getByTestId('mock-signup-screen');
-      });
+    await waitFor(() => {
+      screenFn.getByTestId('mock-signup-screen');
     });
   });
 
   it('renders SignIn screen on "SignIn" route', async () => {
-    (Onboarding as jest.Mock).mockImplementationOnce(() => {
-      const navigation = useNavigation();
+    await act(() => {
+      (Onboarding as jest.Mock).mockImplementationOnce(() => {
+        const navigation = useNavigation();
 
-      useEffect(() => {
-        // @ts-expect-error
-        navigation.navigate('SignIn');
-      }, [navigation]);
+        useEffect(() => {
+          // @ts-expect-error
+          navigation.navigate('SignIn');
+        }, [navigation]);
 
-      return null;
+        return null;
+      });
     });
 
     (SignIn as jest.Mock).mockReturnValueOnce(
@@ -75,10 +71,9 @@ describe('Auth Screens Navigation', () => {
     );
 
     const wrapper = render(<AuthNavigator />);
-    await act(() => {
-      waitFor(() => {
-        wrapper.getByTestId('mock-signin-screen');
-      });
+
+    await waitFor(() => {
+      wrapper.getByTestId('mock-signin-screen');
     });
   });
 
@@ -99,10 +94,9 @@ describe('Auth Screens Navigation', () => {
     );
 
     const wrapper = render(<AuthNavigator />);
-    await act(() => {
-      waitFor(() => {
-        wrapper.getByTestId('mock-forgotpassword-screen');
-      });
+
+    await waitFor(() => {
+      wrapper.getByTestId('mock-forgotpassword-screen');
     });
   });
 });

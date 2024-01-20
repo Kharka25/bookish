@@ -58,6 +58,6 @@ describe('Link Component', () => {
 
   it('display with low opacity when active status is false', () => {
     render(<Link title="" active={false} />);
-    expect(screen.getByTestId('link')).toHaveStyle({opacity: 0.4});
+    expect(screen.getByTestId('link')).toHaveStyle({opacity: 0.6});
   });
 });

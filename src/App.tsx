@@ -13,8 +13,6 @@ const App: React.FC = () => {
     }
   })();
 
-  // checkPreviousSession();
-
   return <AuthNavigator />;
 };
 export default App;

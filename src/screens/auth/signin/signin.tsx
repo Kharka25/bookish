@@ -139,4 +139,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default React.memo(SignIn);
+export default SignIn;

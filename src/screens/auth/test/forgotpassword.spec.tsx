@@ -1,7 +1,6 @@
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {
-  act,
   render,
   screen,
   userEvent,
@@ -20,10 +19,6 @@ jest.mock('@react-navigation/native', () => {
   };
 });
 jest.mock('../PasswordReset/resetpassword', () => jest.fn());
-
-type modeT = 'Email' | 'Phone';
-
-let modeType: modeT;
 
 describe('Forgot Password', () => {
   it('renders correctly', () => {
@@ -87,11 +82,10 @@ describe('Forgot Password', () => {
     const btn = screen.getByTestId('btn');
     userEvent.press(btn);
 
-    await act(() => {
-      waitFor(() => {
-        expect(mockNavigate).toHaveBeenCalledWith('ResetPassword', {
-          mode: modeType,
-        });
+    await waitFor(() => {
+      expect(mockNavigate).toHaveBeenCalledWith('Verification', {
+        mode: 'Email',
+        prevScreen: 'ForgotPassword',
       });
     });
   });
