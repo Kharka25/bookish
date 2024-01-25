@@ -13,13 +13,13 @@ import {
   horizontalScale,
   verticalScale,
 } from '@utils/responsiveDesign';
-import {useAuthNavigation} from '@models/navigation';
+import {useAppNavigation} from '@models/navigation';
 
 import authStyles from '../authStyles';
 
 const SignUp: React.FC = () => {
   const [secureTextEntry, setSecureTextEntry] = useState(true);
-  const navigation = useAuthNavigation();
+  const navigation = useAppNavigation();
 
   function togglePasswordVisbility() {
     setSecureTextEntry(!secureTextEntry);

@@ -4,7 +4,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import {BackIcon, Button, TextInput} from '@components';
-import {AuthStackParamList, useAuthNavigation} from '@models/navigation';
+import {AuthStackParamList, useAppNavigation} from '@models/navigation';
 import {globalStyles} from '@utils/responsiveDesign';
 
 import authStyles from '../authStyles';
@@ -15,7 +15,7 @@ const ResetPassword: React.FC<ScreenProps> = ({route}) => {
   const {mode} = route.params;
   const [phoneNumber, setPhoneNumber] = useState<string>();
 
-  const navigation = useAuthNavigation();
+  const navigation = useAppNavigation();
 
   function verify() {
     navigation.navigate('Verification', {mode, prevScreen: 'ResetPassword'});

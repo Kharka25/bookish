@@ -11,12 +11,12 @@ import {
   verticalScale,
 } from '@utils/responsiveDesign';
 import {Colors} from '@constants/colors';
-import {useAuthNavigation} from '@models/navigation';
+import {useAppNavigation} from '@models/navigation';
 
 // type ScreenProp = NativeStackScreenProps<AuthStackParamList, 'Onboarding'>;
 
 const Onboarding: React.FC = () => {
-  const navigation = useAuthNavigation();
+  const navigation = useAppNavigation();
   function signUp() {
     navigation.navigate('SignUp');
   }

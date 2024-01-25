@@ -4,7 +4,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import {BackIcon, Button, Link, OtpField} from '@components';
-import {AuthStackParamList, useAuthNavigation} from '@models/navigation';
+import {AuthStackParamList, useAppNavigation} from '@models/navigation';
 import {
   fontScale,
   globalStyles,
@@ -23,9 +23,10 @@ const Verification: React.FC<ScreenProps> = ({route}) => {
   const [otp, setOtp] = useState([...otpFields]);
   const [activeOtpIdx, setActiveOtpIdx] = useState(0);
   const [requestNewOtp, setRequestNewOtp] = useState(false);
+
   const otpRef = useRef<TextInput>(null);
 
-  const navigation = useAuthNavigation();
+  const navigation = useAppNavigation();
 
   const modeText = mode === 'Email' ? 'dummy@mail.com' : '(+965) 123 435 7565';
 
@@ -39,7 +40,15 @@ const Verification: React.FC<ScreenProps> = ({route}) => {
       return;
     }
 
-    navigation.navigate('Status');
+    navigation.navigate('Status', {
+      statusProps: {
+        btnText: 'Get Started',
+        message:
+          'Your account is complete, please enjoy the best menu from us.',
+        route: 'SignIn',
+        title: 'Congratulations!',
+      },
+    });
   }
 
   function handleKeyPress(key: string, idx: number) {

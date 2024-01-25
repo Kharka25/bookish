@@ -37,7 +37,7 @@ const config: Config.InitialOptions = {
   transformIgnorePatterns: [
     'node_modules/(?!(jest-)?@react-native|react-native|@react-native-community|@react-navigation)',
   ],
-  verbose: false,
+  verbose: true,
 };
 
 export default config;

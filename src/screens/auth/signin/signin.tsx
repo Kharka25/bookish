@@ -15,14 +15,14 @@ import {
   horizontalScale,
   verticalScale,
 } from '@utils/responsiveDesign';
-import {useAuthNavigation} from '@models/navigation';
+import {useAppNavigation} from '@models/navigation';
 
 import authStyles from '../authStyles';
 import {Colors} from '@constants/colors';
 
 const SignIn: React.FC = () => {
   const [secureTextEntry, setSecureTextEntry] = useState(true);
-  const navigation = useAuthNavigation();
+  const navigation = useAppNavigation();
 
   function togglePasswordVisbility() {
     setSecureTextEntry(!secureTextEntry);
@@ -36,7 +36,7 @@ const SignIn: React.FC = () => {
     navigation.navigate('ForgotPassword');
   }
   return (
-    <SafeAreaView style={styles.container} testID="signin-screen">
+    <SafeAreaView testID="signin-screen">
       <BackIcon />
       <View style={[globalStyles.screenContainer, styles.container]}>
         <View style={styles.headingContainer}>

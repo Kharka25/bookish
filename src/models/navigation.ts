@@ -1,12 +1,6 @@
 import type {NavigationProp} from '@react-navigation/native';
 import {useNavigation} from '@react-navigation/native';
 
-// declare global {
-//   namespace ReactNavigation {
-//     interface RootParamList extends
-//   }
-// }
-
 export type ResetMode = 'Email' | 'Phone';
 
 type AuthScreenList =
@@ -16,6 +10,8 @@ type AuthScreenList =
   | 'Verification'
   | 'SignIn';
 
+type AppScreenList = 'Home';
+
 export type AuthStackParamList = {
   Onboarding: undefined;
   ForgotPassword: undefined;
@@ -23,11 +19,22 @@ export type AuthStackParamList = {
   ResetPassword: {mode: ResetMode; prevScreen: AuthScreenList};
   SignUp: undefined;
   SignIn: undefined;
-  Status: undefined;
   Verification: {mode: ResetMode; prevScreen: AuthScreenList};
 };
 
-export function useAuthNavigation() {
-  const authNav = useNavigation<NavigationProp<AuthStackParamList>>();
+export type AppStackParamList = {
+  Status: {statusProps: StatusI};
+};
+
+interface StatusI {
+  btnText: string;
+  message: string;
+  route: AuthScreenList | AppScreenList;
+  title: string;
+}
+
+export function useAppNavigation() {
+  const authNav =
+    useNavigation<NavigationProp<AuthStackParamList & AppStackParamList>>();
   return authNav;
 }

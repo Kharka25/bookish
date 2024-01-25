@@ -5,13 +5,13 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {BackIcon, Button, ContactModeSelector} from '@components';
 import {globalStyles, horizontalScale} from '@utils/responsiveDesign';
 import {ContactModeData} from '@constants/data';
-import {ResetMode, useAuthNavigation} from '@models/navigation';
+import {ResetMode, useAppNavigation} from '@models/navigation';
 
 import authStyles from '../authStyles';
 
 const ForgotPassword = () => {
   const [selectedMode, setSelectedMode] = useState<ResetMode>('Email');
-  const navigation = useAuthNavigation();
+  const navigation = useAppNavigation();
 
   function resetPassword() {
     setSelectedMode(selectedMode);
