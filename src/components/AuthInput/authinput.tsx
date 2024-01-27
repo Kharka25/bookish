@@ -22,6 +22,7 @@ interface Props extends TextInputProps {
   label?: string;
   onRightIconPress?: () => void;
   placeholder?: string;
+  leftIcon?: ReactNode;
   rightIcon?: ReactNode;
   secureTextEntry?: TextInputProps['secureTextEntry'];
 }
@@ -36,6 +37,7 @@ const AuthInput: React.FC<Props> = props => {
     label,
     onRightIconPress,
     placeholder,
+    leftIcon,
     rightIcon,
     secureTextEntry,
   } = props;
@@ -43,6 +45,7 @@ const AuthInput: React.FC<Props> = props => {
     <View style={[styles.container, containerStyle]} testID="auth-input">
       <Text style={styles.label}>{label}</Text>
       <View>
+        {leftIcon && <View style={styles.leftIcon}>{leftIcon}</View>}
         <TextInput
           autoCapitalize={autoCapitalize}
           autoCorrect={autoCorrect}
@@ -73,13 +76,23 @@ const styles = StyleSheet.create({
     lineHeight: fontScale(19),
     marginBottom: verticalScale(6),
   },
+  leftIcon: {
+    alignItems: 'center',
+    height: 45,
+    justifyContent: 'center',
+    position: 'absolute',
+    left: 0,
+    top: 2,
+    width: 45,
+    zIndex: 100,
+  },
   rightIcon: {
     alignItems: 'center',
     height: 45,
     justifyContent: 'center',
     position: 'absolute',
     right: 0,
-    top: 0,
+    top: 2,
     width: 45,
   },
 });

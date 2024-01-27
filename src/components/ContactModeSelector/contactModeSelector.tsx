@@ -78,7 +78,7 @@ const ContactModeSelector = <T extends any>({data, onSelect}: Props<T>) => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    gap: horizontalScale(50),
+    gap: horizontalScale(40),
   },
   card: {
     backgroundColor: Colors.BACKGROUND_GRAY,

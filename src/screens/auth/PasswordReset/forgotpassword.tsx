@@ -15,13 +15,10 @@ const ForgotPassword = () => {
 
   function resetPassword() {
     setSelectedMode(selectedMode);
-    navigation.navigate(
-      selectedMode === 'Phone' ? 'ResetPassword' : 'Verification',
-      {
-        mode: selectedMode,
-        prevScreen: 'ForgotPassword',
-      },
-    );
+    navigation.navigate('ResetPassword', {
+      mode: selectedMode,
+      prevScreen: 'ForgotPassword',
+    });
   }
 
   return (
