@@ -13,12 +13,12 @@ const invalidData = {
   password: 'pass',
 };
 
-const testValidData = [
+export const testValidData = [
   {value: 'Minimum 8 characters', condition: validData?.password.length >= 8},
   {value: 'At least 1 number (1-9)', condition: hasNumber(validData.password)},
   {
     value: 'At least 1 special character (!@#&*_%?)',
-    condition: hasNumber(validData.password),
+    condition: hasSpecialCharacter(validData.password),
   },
   {
     value: 'At least 1 uppercase character',

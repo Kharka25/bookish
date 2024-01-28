@@ -8,6 +8,7 @@ export {default as Link} from './Link/link';
 export {default as LoadingIndicator} from './LoadingIndicator/loadingIndicator';
 export {default as OtpField} from './OtpField/otpfield';
 export {default as Paginator} from './Paginator/paginator';
+export {default as PasswordConditionCheck} from './PasswordConditionCheck/passwordconditioncheck';
 export {default as PasswordVisibilityIcon} from './PasswordVisibilityIcon/passwordvisibilityicon';
 export {default as Status} from './Status/status';
 export {default as TextInput} from './TextInput/textInput';

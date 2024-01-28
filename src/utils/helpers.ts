@@ -17,9 +17,8 @@ function hasNumber(value: string): boolean {
 }
 
 function hasSpecialCharacter(value: string) {
-  return /^(?=.*[a-zA-z])(?=.*\d)(?=.*[!a#\$%\^&\*])[a-zA-z\d!@#\$%\^&\*]+$/.test(
-    value,
-  );
+  const regX = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,<>\/?~]/;
+  return regX.test(value);
 }
 
 export {allAretrue, hasUppercase, hasNumber, hasSpecialCharacter};

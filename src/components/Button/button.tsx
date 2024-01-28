@@ -41,7 +41,11 @@ const Button: React.FC<Props> = props => {
     ...otherProps
   } = props;
   return (
-    <TouchableOpacity activeOpacity={0.5} testID="btn" onPress={onPress}>
+    <TouchableOpacity
+      disabled={disable}
+      activeOpacity={0.5}
+      testID="btn"
+      onPress={onPress}>
       <View
         {...otherProps}
         style={[

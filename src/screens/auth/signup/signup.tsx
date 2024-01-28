@@ -6,6 +6,7 @@ import {
   BackIcon,
   Button,
   Link,
+  PasswordConditionCheck,
   PasswordVisibilityIcon,
 } from '@components';
 import {
@@ -13,13 +14,64 @@ import {
   horizontalScale,
   verticalScale,
 } from '@utils/responsiveDesign';
+import {
+  allAretrue,
+  hasNumber,
+  hasSpecialCharacter,
+  hasUppercase,
+} from '@utils/helpers';
 import {useAppNavigation} from '@models/navigation';
 
 import authStyles from '../authStyles';
 
+interface SignupDataI {
+  username: string;
+  email: string;
+  password: string;
+}
+
 const SignUp: React.FC = () => {
   const [secureTextEntry, setSecureTextEntry] = useState(true);
+  const [signupData, setSignupData] = useState<SignupDataI>({
+    email: '',
+    username: '',
+    password: '',
+  });
+
   const navigation = useAppNavigation();
+
+  function btnDisabled() {
+    return (
+      !allAretrue(passwordCondition) ||
+      signupData.email?.trim() === '' ||
+      signupData.username?.trim() === ''
+    );
+  }
+
+  function signUpDataHandler(inputIdentifier: string, enteredValue: string) {
+    setSignupData(currentInput => {
+      return {...currentInput, [inputIdentifier]: enteredValue};
+    });
+  }
+
+  const passwordCondition = [
+    {
+      value: 'Minimum 8 characters',
+      condition: signupData?.password.length >= 8,
+    },
+    {
+      value: 'At least 1 number (1-9)',
+      condition: hasNumber(signupData.password),
+    },
+    {
+      value: 'At least 1 special character (!@#&*_%?)',
+      condition: hasSpecialCharacter(signupData.password),
+    },
+    {
+      value: 'At least 1 uppercase character',
+      condition: hasUppercase(signupData.password),
+    },
+  ];
 
   function togglePasswordVisbility() {
     setSecureTextEntry(!secureTextEntry);
@@ -47,26 +99,42 @@ const SignUp: React.FC = () => {
           autoFocus={true}
           containerStyle={styles.inputContainer}
           label="Name"
+          onChangeText={value => signUpDataHandler('username', value)}
           placeholder="Your name"
+          value={signupData.username}
         />
         <AuthInput
           autoCorrect={false}
           autoComplete="off"
           containerStyle={styles.inputContainer}
           label="Email"
+          onChangeText={value => signUpDataHandler('email', value)}
           placeholder="Your email"
+          value={signupData.email}
         />
         <AuthInput
           autoCorrect={false}
           autoComplete="off"
-          containerStyle={[styles.inputContainer, globalStyles.mbLg]}
+          containerStyle={[styles.inputContainer]}
           label="Password"
+          onChangeText={value => signUpDataHandler('password', value)}
           onRightIconPress={togglePasswordVisbility}
           placeholder="Your password"
           rightIcon={<PasswordVisibilityIcon privateIcon={secureTextEntry} />}
           secureTextEntry={secureTextEntry}
+          value={signupData.password}
         />
-        <Button onPress={handleSignUp} label="Register" style={styles.btn} />
+        <View style={[globalStyles.mbLg]}>
+          {signupData.password?.trim() !== '' && (
+            <PasswordConditionCheck conditions={passwordCondition} />
+          )}
+        </View>
+        <Button
+          disable={btnDisabled()}
+          onPress={handleSignUp}
+          label="Register"
+          style={styles.btn}
+        />
         <Text style={[authStyles.linkContainer, globalStyles.mbMD]}>
           Have an account?
           <Link title="Sign In" onPress={signIn} style={styles.signInTxt} />

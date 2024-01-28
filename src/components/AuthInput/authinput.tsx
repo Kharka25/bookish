@@ -20,6 +20,7 @@ interface Props extends TextInputProps {
   containerStyle?: StyleProp<ViewStyle>;
   keyboardType?: TextInputProps['keyboardType'];
   label?: string;
+  onChangeText?: TextInputProps['onChangeText'];
   onRightIconPress?: () => void;
   placeholder?: string;
   leftIcon?: ReactNode;
@@ -35,6 +36,7 @@ const AuthInput: React.FC<Props> = props => {
     containerStyle,
     keyboardType,
     label,
+    onChangeText,
     onRightIconPress,
     placeholder,
     leftIcon,
@@ -47,10 +49,12 @@ const AuthInput: React.FC<Props> = props => {
       <View>
         {leftIcon && <View style={styles.leftIcon}>{leftIcon}</View>}
         <TextInput
+          // {...props}
           autoCapitalize={autoCapitalize}
           autoCorrect={autoCorrect}
           autoFocus={autoFocus}
           keyboardType={keyboardType}
+          onChangeText={onChangeText}
           placeholder={placeholder}
           secureTextEntry={secureTextEntry}
         />
