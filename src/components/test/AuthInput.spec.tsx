@@ -33,6 +33,6 @@ describe('Auth Input', () => {
   it('displays rightIcon with correct styles', () => {
     render(<AuthInput rightIcon />);
     const rightIcon = screen.getByRole('button');
-    expect(rightIcon).toHaveStyle({right: 0, top: 0});
+    expect(rightIcon).toHaveStyle({right: 0, top: 2});
   });
 });

@@ -83,7 +83,7 @@ describe('Forgot Password', () => {
     userEvent.press(btn);
 
     await waitFor(() => {
-      expect(mockNavigate).toHaveBeenCalledWith('Verification', {
+      expect(mockNavigate).toHaveBeenCalledWith('ResetPassword', {
         mode: 'Email',
         prevScreen: 'ForgotPassword',
       });

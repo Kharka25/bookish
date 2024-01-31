@@ -3,6 +3,7 @@ import {
   hasNumber,
   hasSpecialCharacter,
   hasUppercase,
+  isValidEmail,
 } from '@utils/helpers';
 
 const validData = {
@@ -68,6 +69,21 @@ describe('Utils test suite', () => {
 
   it('returns true if string values contains no uppercase character', () => {
     const result = hasUppercase(invalidData.password);
+    expect(result).toBeFalsy();
+  });
+
+  it('returns false when email is invalid', () => {
+    const result = isValidEmail('mail.com');
+    expect(result).toBeFalsy();
+  });
+
+  it('returns true when email is valid', () => {
+    const result = isValidEmail('user1@mail.com');
+    expect(result).toBeTruthy();
+  });
+
+  it('returns null when email is empty', () => {
+    const result = isValidEmail('');
     expect(result).toBeFalsy();
   });
 });

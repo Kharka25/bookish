@@ -1,4 +1,3 @@
-/* eslint-disable jest/no-focused-tests */
 import React, {useEffect} from 'react';
 import {SafeAreaView} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
@@ -30,7 +29,7 @@ describe('Auth Screens Navigation', () => {
     });
   });
 
-  fit('renders SignUp screen on "SignUp" route', async () => {
+  it('renders SignUp screen on "SignUp" route', async () => {
     (Onboarding as jest.Mock).mockImplementationOnce(() => {
       const navigation = useNavigation();
       useEffect(() => {

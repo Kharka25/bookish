@@ -9,7 +9,6 @@ import {
   ResetPassword,
   SignIn,
   SignUp,
-  Status,
   Verification,
 } from '@screens';
 import {AuthStackParamList} from '@models/navigation';
@@ -36,7 +35,7 @@ const AuthNavigator = () => {
         <Screen name="ForgotPassword" component={ForgotPassword} />
         <Screen name="ResetPassword" component={ResetPassword} />
         <Screen name="NewPassword" component={NewPassword} />
-        <Screen name="Status" component={Status} />
+        {/* <Screen name="Status" component={Status} /> */}
         <Screen name="Verification" component={Verification} />
       </Navigator>
     </NavigationContainer>

@@ -21,5 +21,14 @@ function hasSpecialCharacter(value: string) {
   return regX.test(value);
 }
 
-export {allAretrue, hasUppercase, hasNumber, hasSpecialCharacter};
+function isValidEmail(email: string) {
+  const emailFormat = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+  if (email !== '' && email.match(emailFormat)) {
+    return true;
+  }
+
+  return false;
+}
+
+export {allAretrue, hasUppercase, hasNumber, hasSpecialCharacter, isValidEmail};
 export type {passwordCondition};

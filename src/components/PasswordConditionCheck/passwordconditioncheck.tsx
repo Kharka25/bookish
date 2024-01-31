@@ -17,17 +17,21 @@ interface Props extends ViewProps {
 const PasswordConditionCheck: React.FC<Props> = props => {
   const {conditions} = props;
 
-  return conditions?.map((condition, index) => (
-    <View key={index} style={styles.container} testID="password-checker">
-      <Icon
-        color={condition?.condition ? Colors.PRIMARY_LIGHT : Colors.RED}
-        name={condition?.condition ? 'check' : 'times'}
-        size={16}
-        style={styles.icon}
-      />
-      <Text style={styles.valueText}>{condition?.value}</Text>
-    </View>
-  ));
+  const conditionsElements = conditions?.map((condition, index) => {
+    return (
+      <View key={index} style={styles.container}>
+        <Icon
+          color={condition?.condition ? Colors.PRIMARY_LIGHT : Colors.RED}
+          name={condition?.condition ? 'check' : 'times'}
+          size={16}
+          style={styles.icon}
+        />
+        <Text style={styles.valueText}>{condition?.value}</Text>
+      </View>
+    );
+  });
+
+  return <View testID="password-checker">{conditionsElements}</View>;
 };
 
 const styles = StyleSheet.create({
