@@ -23,6 +23,7 @@ export type AuthStackParamList = {
 };
 
 export type AppStackParamList = {
+  Home: undefined;
   Status: {statusProps: StatusI};
 };
 

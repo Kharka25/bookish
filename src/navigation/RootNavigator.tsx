@@ -1,12 +1,23 @@
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
+import {DefaultTheme, NavigationContainer} from '@react-navigation/native';
 
-import {AuthNavigator} from '@navigation';
+import {AppNavigator, AuthNavigator} from '@navigation';
+import {Colors} from '@constants/colors';
 
-const RootNavigator: React.FC = () => {
+const AppTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: Colors.WHITE,
+    primary: Colors.PRIMARY,
+  },
+};
+
+const RootNavigator = () => {
+  const isLoading = false;
   return (
-    <NavigationContainer>
-      <AuthNavigator />
+    <NavigationContainer theme={AppTheme}>
+      {isLoading ? <AuthNavigator /> : <AppNavigator />}
     </NavigationContainer>
   );
 };

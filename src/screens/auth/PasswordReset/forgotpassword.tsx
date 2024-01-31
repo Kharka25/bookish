@@ -9,7 +9,7 @@ import {ResetMode, useAppNavigation} from '@models/navigation';
 
 import authStyles from '../authStyles';
 
-const ForgotPassword = () => {
+const ForgotPassword: React.FC = () => {
   const [selectedMode, setSelectedMode] = useState<ResetMode>('Email');
   const navigation = useAppNavigation();
 

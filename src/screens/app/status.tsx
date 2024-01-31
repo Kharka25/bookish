@@ -36,4 +36,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Status;
+export default React.memo(Status);

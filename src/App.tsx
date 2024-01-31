@@ -2,7 +2,7 @@ import React from 'react';
 import {Alert} from 'react-native';
 import {hasCrashedInLastSession} from 'appcenter-crashes';
 
-import {AuthNavigator} from '@navigation';
+import {RootNavigator} from '@navigation';
 
 const App: React.FC = () => {
   (async function checkPreviousSession() {
@@ -13,6 +13,6 @@ const App: React.FC = () => {
     }
   })();
 
-  return <AuthNavigator />;
+  return <RootNavigator />;
 };
 export default App;

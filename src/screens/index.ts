@@ -1,4 +1,5 @@
 export {default as ForgotPassword} from './auth/PasswordReset/forgotpassword';
+export {default as Home} from './app/Home/home';
 export {default as NewPassword} from './auth/PasswordReset/newpassword';
 export {default as Onboarding} from './auth/onboarding/onboarding';
 export {default as ResetPassword} from './auth/PasswordReset/resetpassword';

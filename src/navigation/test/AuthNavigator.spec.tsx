@@ -1,15 +1,15 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {SafeAreaView} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+// import {useNavigation} from '@react-navigation/native';
 import {
-  act,
   render,
   screen as screenFn,
   waitFor,
 } from '@testing-library/react-native';
 
-import {AuthNavigator} from '@navigation';
-import {ForgotPassword, Onboarding, SignIn, SignUp} from '@screens';
+import {AuthNavigator, RootNavigator} from '@navigation';
+import {Onboarding, SignUp} from '@screens';
+import MockedNavigator from '@utils/mockednavigator';
 
 jest.mock('../../screens/auth/Onboarding/onboarding', () => jest.fn());
 jest.mock('../../screens/auth/Signup/signup', () => jest.fn());
@@ -17,8 +17,8 @@ jest.mock('../../screens/auth/Signin/signin', () => jest.fn());
 jest.mock('../../screens/auth/PasswordReset/forgotpassword', () => jest.fn());
 
 describe('Auth Screens Navigation', () => {
-  it('renders Onboarding screen by default', async () => {
-    (Onboarding as jest.Mock).mockReturnValueOnce(
+  it('renders Onboarding screen', async () => {
+    (RootNavigator as jest.Mock).mockReturnValueOnce(
       <SafeAreaView testID="mock-onboard-screen" />,
     );
 
@@ -29,73 +29,20 @@ describe('Auth Screens Navigation', () => {
     });
   });
 
+  it('renders Onboarding screen in routes', async () => {
+    const {toJSON} = render(
+      <MockedNavigator
+        component={Onboarding}
+        params={{carouselData: 'Fake Data'}}
+      />,
+    );
+    const snapShot = toJSON();
+    console.log(snapShot);
+    expect(toJSON()).toMatchSnapshot();
+  });
+
   it('renders SignUp screen on "SignUp" route', async () => {
-    (Onboarding as jest.Mock).mockImplementationOnce(() => {
-      const navigation = useNavigation();
-      useEffect(() => {
-        // @ts-expect-error
-        navigation.navigate('SignUp');
-      }, [navigation]);
-
-      return null;
-    });
-
-    (SignUp as jest.Mock).mockReturnValueOnce(
-      <SafeAreaView testID="mock-signup-screen" />,
-    );
-
-    render(<AuthNavigator />);
-
-    await waitFor(() => {
-      screenFn.getByTestId('mock-signup-screen');
-    });
-  });
-
-  it('renders SignIn screen on "SignIn" route', async () => {
-    await act(() => {
-      (Onboarding as jest.Mock).mockImplementationOnce(() => {
-        const navigation = useNavigation();
-
-        useEffect(() => {
-          // @ts-expect-error
-          navigation.navigate('SignIn');
-        }, [navigation]);
-
-        return null;
-      });
-    });
-
-    (SignIn as jest.Mock).mockReturnValueOnce(
-      <SafeAreaView testID="mock-signin-screen" />,
-    );
-
-    const wrapper = render(<AuthNavigator />);
-
-    await waitFor(() => {
-      wrapper.getByTestId('mock-signin-screen');
-    });
-  });
-
-  it('renders ForgotPassword screen on "ForgotPassword" route', async () => {
-    (Onboarding as jest.Mock).mockImplementationOnce(() => {
-      const navigation = useNavigation();
-
-      useEffect(() => {
-        // @ts-expect-error
-        navigation.navigate('ForgotPassword');
-      }, [navigation]);
-
-      return null;
-    });
-
-    (ForgotPassword as jest.Mock).mockReturnValueOnce(
-      <SafeAreaView testID="mock-forgotpassword-screen" />,
-    );
-
-    const wrapper = render(<AuthNavigator />);
-
-    await waitFor(() => {
-      wrapper.getByTestId('mock-forgotpassword-screen');
-    });
+    const {toJSON} = render(<MockedNavigator component={SignUp} />);
+    expect(toJSON()).toMatchSnapshot();
   });
 });

@@ -2,6 +2,7 @@ import React from 'react';
 import {render, screen} from '@testing-library/react-native';
 
 import {Status} from '@screens';
+import {useAppNavigation} from '@models/navigation';
 
 jest.mock('@react-navigation/native', () => {
   return {
@@ -12,7 +13,8 @@ jest.mock('@react-navigation/native', () => {
 
 describe('Status Screen', () => {
   it('render correctly', () => {
-    render(<Status btnText="mock-text" />);
+    const {navigate} = useAppNavigation();
+    render(<Status btnText="mock-text" navigation={navigate} />);
     screen.getByTestId('status-screen');
   });
 
