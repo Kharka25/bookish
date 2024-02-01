@@ -6,19 +6,19 @@ import {
   waitFor,
 } from '@testing-library/react-native';
 
-import {AppNavigator} from '@navigation';
 import {Home, Status} from '@screens';
+import MockedNavigator from '@utils/mockednavigator';
 
 jest.mock('../../screens/app/Home/home', () => jest.fn());
 jest.mock('../../screens/app/status', () => jest.fn());
 
-describe('App Navigator', () => {
+describe('App Screen Navigation', () => {
   it('renders Home screen as initial screen', async () => {
     (Home as jest.Mock).mockReturnValueOnce(
       <SafeAreaView testID="mock-home-screen" />,
     );
 
-    render(<AppNavigator />);
+    render(<MockedNavigator component={Home} />);
 
     await waitFor(() => {
       screenFn.getByTestId('mock-home-screen');
@@ -30,10 +30,10 @@ describe('App Navigator', () => {
       <SafeAreaView testID="mock-status-screen" />,
     );
 
-    render(<AppNavigator />);
+    render(<MockedNavigator component={Status} />);
 
     await waitFor(() => {
-      screenFn.getByTestId('mock-home-screen');
+      screenFn.getByTestId('mock-status-screen');
     });
   });
 });

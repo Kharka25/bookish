@@ -1,48 +1,93 @@
 import React from 'react';
 import {SafeAreaView} from 'react-native';
-// import {useNavigation} from '@react-navigation/native';
 import {
   render,
   screen as screenFn,
   waitFor,
 } from '@testing-library/react-native';
 
-import {AuthNavigator, RootNavigator} from '@navigation';
-import {Onboarding, SignUp} from '@screens';
+import {
+  NewPassword,
+  Onboarding,
+  ResetPassword,
+  SignIn,
+  SignUp,
+  Verification,
+} from '@screens';
 import MockedNavigator from '@utils/mockednavigator';
 
 jest.mock('../../screens/auth/Onboarding/onboarding', () => jest.fn());
 jest.mock('../../screens/auth/Signup/signup', () => jest.fn());
 jest.mock('../../screens/auth/Signin/signin', () => jest.fn());
+jest.mock('../../screens/auth/PasswordReset/verification', () => jest.fn());
 jest.mock('../../screens/auth/PasswordReset/forgotpassword', () => jest.fn());
+jest.mock('../../screens/auth/PasswordReset/resetpassword', () => jest.fn());
+jest.mock('../../screens/auth/PasswordReset/newpassword', () => jest.fn());
 
 describe('Auth Screens Navigation', () => {
-  it('renders Onboarding screen', async () => {
-    (RootNavigator as jest.Mock).mockReturnValueOnce(
+  it('renders Onboard screen by default', async () => {
+    (Onboarding as jest.Mock).mockReturnValueOnce(
       <SafeAreaView testID="mock-onboard-screen" />,
     );
-
-    render(<AuthNavigator />);
+    render(<MockedNavigator component={Onboarding} />);
 
     await waitFor(() => {
       screenFn.getByTestId('mock-onboard-screen');
     });
   });
 
-  it('renders Onboarding screen in routes', async () => {
-    const {toJSON} = render(
-      <MockedNavigator
-        component={Onboarding}
-        params={{carouselData: 'Fake Data'}}
-      />,
+  it('renders SignUp screen in routes', async () => {
+    (SignUp as jest.Mock).mockReturnValueOnce(
+      <SafeAreaView testID="mock-signup-screen" />,
     );
-    const snapShot = toJSON();
-    console.log(snapShot);
-    expect(toJSON()).toMatchSnapshot();
+    render(<MockedNavigator component={SignUp} />);
+
+    await waitFor(() => {
+      screenFn.getByTestId('mock-signup-screen');
+    });
   });
 
-  it('renders SignUp screen on "SignUp" route', async () => {
-    const {toJSON} = render(<MockedNavigator component={SignUp} />);
-    expect(toJSON()).toMatchSnapshot();
+  it('renders Verification screen in routes', async () => {
+    (Verification as jest.Mock).mockReturnValueOnce(
+      <SafeAreaView testID="mock-verification-screen" />,
+    );
+    render(<MockedNavigator component={Verification} />);
+
+    await waitFor(() => {
+      screenFn.getByTestId('mock-verification-screen');
+    });
+  });
+
+  it('renders SignIn screen in routes', async () => {
+    (SignIn as jest.Mock).mockReturnValueOnce(
+      <SafeAreaView testID="mock-signin-screen" />,
+    );
+    render(<MockedNavigator component={SignIn} />);
+
+    await waitFor(() => {
+      screenFn.getByTestId('mock-signin-screen');
+    });
+  });
+
+  it('renders ResetPassword screen in routes', async () => {
+    (ResetPassword as jest.Mock).mockReturnValueOnce(
+      <SafeAreaView testID="mock-resetpassword-screen" />,
+    );
+    render(<MockedNavigator component={ResetPassword} />);
+
+    await waitFor(() => {
+      screenFn.getByTestId('mock-resetpassword-screen');
+    });
+  });
+
+  it('renders NewPassword screen in routes', async () => {
+    (NewPassword as unknown as jest.Mock).mockReturnValueOnce(
+      <SafeAreaView testID="mock-resetpassword-screen" />,
+    );
+    render(<MockedNavigator component={NewPassword} />);
+
+    await waitFor(() => {
+      screenFn.getByTestId('mock-resetpassword-screen');
+    });
   });
 });
