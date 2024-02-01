@@ -30,5 +30,38 @@ function isValidEmail(email: string) {
   return false;
 }
 
-export {allAretrue, hasUppercase, hasNumber, hasSpecialCharacter, isValidEmail};
+function debounce(callback: Function, delay = 500) {
+  let timeoutId: NodeJS.Timeout;
+
+  return (...args: any) => {
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+    timeoutId = setTimeout(callback.apply(null, args), delay);
+  };
+}
+
+function throttle(callback: Function, delay = 500) {
+  let throttling = false;
+
+  return (...args: any) => {
+    if (!throttling) {
+      throttling = true;
+      callback.apply(null, args);
+      setTimeout(() => {
+        throttling = false;
+      }, delay);
+    }
+  };
+}
+
+export {
+  allAretrue,
+  debounce,
+  hasUppercase,
+  hasNumber,
+  hasSpecialCharacter,
+  isValidEmail,
+  throttle,
+};
 export type {passwordCondition};
