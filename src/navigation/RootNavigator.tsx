@@ -14,7 +14,7 @@ const AppTheme = {
 };
 
 const RootNavigator = () => {
-  const isLoading = false;
+  const isLoading = true;
   return (
     <NavigationContainer theme={AppTheme}>
       {isLoading ? <AuthNavigator /> : <AppNavigator />}
