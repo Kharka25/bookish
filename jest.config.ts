@@ -14,6 +14,7 @@ const config: Config.InitialOptions = {
     '^@models(.*)$': '<rootDir>/src/models/$1',
     '^@navigation(.*)$': '<rootDir>/src/navigation/$1',
     '^@screens(.*)$': '<rootDir>/src/screens/$1',
+    '^@services(.*)$': '<rootDir>/src/services/$1',
     '^@store(.*)$': '<rootDir>/src/store/$1',
     '^@ui(.*)$': '<rootDir>/src/ui/$1',
     '^@utils(.*)$': '<rootDir>/src/utils/$1',
