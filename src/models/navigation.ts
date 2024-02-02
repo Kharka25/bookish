@@ -20,7 +20,7 @@ export type AuthStackParamList = {
   SignUp: undefined;
   SignIn: undefined;
   Verification: {mode: ResetMode; prevScreen: AuthScreenList};
-};
+} & Pick<AppStackParamList, 'Status'>;
 
 export type AppStackParamList = {
   Home: undefined;

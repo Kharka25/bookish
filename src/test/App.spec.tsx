@@ -2,7 +2,6 @@
 import React from 'react';
 import {View} from 'react-native';
 import {render, screen} from '@testing-library/react-native';
-
 import {Provider} from 'react-redux';
 
 import App from '..';

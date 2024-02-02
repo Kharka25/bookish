@@ -1,6 +1,7 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {createSelector, createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 import {AuthStateI, UserProfileI} from '@models/auth';
+import {RootState} from '../store';
 
 const initialState: AuthStateI = {
   isLoading: false,
@@ -15,8 +16,18 @@ const authSlice = createSlice({
     updateProfile(authState, {payload}: PayloadAction<UserProfileI | null>) {
       authState.profile = payload;
     },
+    setIsLoggedIn(authState, {payload}: PayloadAction<boolean>) {
+      authState.loggedIn = payload;
+      authState.isLoading = payload;
+    },
   },
 });
 
-export const {updateProfile} = authSlice.actions;
+export const {setIsLoggedIn, updateProfile} = authSlice.actions;
+
+export const useAuth = createSelector(
+  (state: RootState) => state,
+  ({auth}) => auth,
+);
+
 export default authSlice.reducer;

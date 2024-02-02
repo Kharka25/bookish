@@ -19,10 +19,13 @@ import {useAppNavigation} from '@models/navigation';
 
 import authStyles from '../authStyles';
 import {Colors} from '@constants/colors';
+import {useAppDispatch} from '@store/hooks';
+import {setIsLoggedIn} from '@store/auth/auth';
 
 const SignIn: React.FC = () => {
   const [secureTextEntry, setSecureTextEntry] = useState(true);
   const navigation = useAppNavigation();
+  const dispatch = useAppDispatch();
 
   function togglePasswordVisbility() {
     setSecureTextEntry(!secureTextEntry);
@@ -35,6 +38,11 @@ const SignIn: React.FC = () => {
   function forgotPassword() {
     navigation.navigate('ForgotPassword');
   }
+
+  function handleSignIn() {
+    dispatch(setIsLoggedIn(true));
+  }
+
   return (
     <SafeAreaView testID="signin-screen">
       <BackIcon />
@@ -69,7 +77,11 @@ const SignIn: React.FC = () => {
           onPress={forgotPassword}
           title="Forgot Password?"
         />
-        <Button label="Login" style={[styles.btn, globalStyles.mtSm]} />
+        <Button
+          label="Login"
+          onPress={handleSignIn}
+          style={[styles.btn, globalStyles.mtSm]}
+        />
         <Text style={[authStyles.linkContainer, globalStyles.mbMD]}>
           Don't have an account?
           <Link title="Sign Up" onPress={signUp} style={styles.signInTxt} />
