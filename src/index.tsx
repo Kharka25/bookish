@@ -1,12 +1,17 @@
 import React from 'react';
-// import {Alert} from 'react-native';
-
-// import {checkPreviousSession} from '@services/appcenter';
+import {Provider} from 'react-redux';
 
 import {RootNavigator} from '@navigation';
+import {setupStore} from './store/store';
+
+const store = setupStore();
 
 const App: React.FC = () => {
-  return <RootNavigator />;
+  return (
+    <Provider store={store}>
+      <RootNavigator />
+    </Provider>
+  );
 };
 
 export default App;

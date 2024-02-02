@@ -10,7 +10,7 @@ type AuthScreenList =
   | 'Verification'
   | 'SignIn';
 
-type AppScreenList = 'Home';
+type AppScreenList = 'Home' | 'Status';
 
 export type AuthStackParamList = {
   Onboarding: undefined;
