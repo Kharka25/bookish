@@ -10,7 +10,7 @@ type AuthScreenList =
   | 'Verification'
   | 'SignIn';
 
-type AppScreenList = 'Home' | 'Status';
+type AppScreenList = 'Home' | 'Status' | 'Cart' | 'Category' | 'Profile';
 
 export type AuthStackParamList = {
   Onboarding: undefined;
@@ -19,13 +19,16 @@ export type AuthStackParamList = {
   ResetPassword: {mode: ResetMode; prevScreen: AuthScreenList};
   SignUp: undefined;
   SignIn: undefined;
+  Status: {statusProps: StatusI};
   Verification: {mode: ResetMode; prevScreen: AuthScreenList};
-} & Pick<AppStackParamList, 'Status'>;
+};
 
 export type AppStackParamList = {
+  Cart: undefined;
+  Category: undefined;
   Home: undefined;
-  Status: {statusProps: StatusI};
-};
+  Profile: undefined;
+} & Pick<AuthStackParamList, 'Status'>;
 
 interface StatusI {
   btnText: string;
