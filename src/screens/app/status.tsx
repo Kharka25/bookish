@@ -4,10 +4,10 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import {Button, Status as StatusComp} from '@components';
-import {AppStackParamList, useAppNavigation} from '@models/navigation';
+import {AppTabParamList, useAppNavigation} from '@models/navigation';
 import {globalStyles} from '@utils/responsiveDesign';
 
-type ScreenProps = NativeStackScreenProps<AppStackParamList, 'Status'>;
+type ScreenProps = NativeStackScreenProps<AppTabParamList, 'Status'>;
 
 const Status: React.FC<ScreenProps> = ({route}) => {
   const {statusProps} = route?.params;

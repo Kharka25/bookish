@@ -22,7 +22,7 @@ import {
 } from '@utils/helpers';
 import {useAppNavigation} from '@models/navigation';
 
-import authStyles from '../authStyles';
+import authStyles from './authStyles';
 
 interface SignupDataI {
   username: string;

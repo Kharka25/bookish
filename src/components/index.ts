@@ -1,3 +1,4 @@
+export {default as AppContainer} from './AppContainer/appcontainer';
 export {default as AuthInput} from './AuthInput/authinput';
 export {default as BackIcon} from './BackIcon/backicon';
 export {default as Button} from './Button/button';

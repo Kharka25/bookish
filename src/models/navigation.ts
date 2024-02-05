@@ -24,11 +24,26 @@ export type AuthStackParamList = {
 };
 
 export type AppStackParamList = {
+  Address: undefined;
+  Authors: undefined;
+  Favorites: undefined;
+  HelpCenter: undefined;
+  Location: undefined;
+  Location2: undefined;
+  MyAccount: undefined;
+  Notification: undefined;
+  OrderHistory: undefined;
+  Search: undefined;
+  Vendors: undefined;
+  TabNavigator: undefined;
+} & Pick<AuthStackParamList, 'Status'>;
+
+export type AppTabParamList = {
   Cart: undefined;
   Category: undefined;
   Home: undefined;
   Profile: undefined;
-} & Pick<AuthStackParamList, 'Status'>;
+};
 
 interface StatusI {
   btnText: string;
@@ -39,6 +54,6 @@ interface StatusI {
 
 export function useAppNavigation() {
   const authNav =
-    useNavigation<NavigationProp<AuthStackParamList & AppStackParamList>>();
+    useNavigation<NavigationProp<AuthStackParamList & AppTabParamList>>();
   return authNav;
 }

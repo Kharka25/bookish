@@ -3,9 +3,9 @@ import {Text} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
-import {AppStackParamList} from '@models/navigation';
+import {AppTabParamList} from '@models/navigation';
 
-type ScreenProps = NativeStackScreenProps<AppStackParamList, 'Home'>;
+type ScreenProps = NativeStackScreenProps<AppTabParamList, 'Home'>;
 
 const Home: React.FC<ScreenProps> = () => {
   return (

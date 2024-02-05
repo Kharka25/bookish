@@ -17,7 +17,7 @@ import {
 } from '@utils/responsiveDesign';
 import {useAppNavigation} from '@models/navigation';
 
-import authStyles from '../authStyles';
+import authStyles from './authStyles';
 import {Colors} from '@constants/colors';
 import {useAppDispatch} from '@store/hooks';
 import {setIsLoggedIn} from '@store/auth/auth';
