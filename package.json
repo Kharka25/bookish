@@ -11,6 +11,7 @@
     "test:coverage": "jest --coverage"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.21.0",
     "@react-native-community/masked-view": "^0.1.11",
     "@react-navigation/bottom-tabs": "^6.5.11",
     "@react-navigation/native": "^6.1.9",
@@ -19,6 +20,7 @@
     "appcenter": "5.0.0",
     "appcenter-analytics": "5.0.0",
     "appcenter-crashes": "5.0.0",
+    "axios": "^1.6.7",
     "babel-plugin-module-resolver": "^5.0.0",
     "jest-watch-typeahead": "^2.2.2",
     "pm2": "^5.3.0",
