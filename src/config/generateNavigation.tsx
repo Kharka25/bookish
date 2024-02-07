@@ -50,7 +50,6 @@ const GenerateNavigator: React.FC<GenerateNavigatorI> = props => {
         headerShown: false,
         tabBarStyle: {
           backgroundColor: Colors.WHITE_10,
-          height: verticalScale(80),
           paddingVertical: verticalScale(12),
         },
       }}
