@@ -417,6 +417,8 @@
 			baseConfigurationReference = 5B7EB9410499542E8C5724F5 /* Pods-bookish-bookishTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				DEVELOPMENT_TEAM = 3ZU66VPK84;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -444,7 +446,9 @@
 			baseConfigurationReference = 89C6BE57DB24E9ADA2F236DE /* Pods-bookish-bookishTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = 3ZU66VPK84;
 				INFOPLIST_FILE = bookishTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -470,7 +474,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = TB9M6FMCMP;
+				DEVELOPMENT_TEAM = 3ZU66VPK84;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = bookish/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -498,7 +502,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = TB9M6FMCMP;
+				DEVELOPMENT_TEAM = 3ZU66VPK84;
 				INFOPLIST_FILE = bookish/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

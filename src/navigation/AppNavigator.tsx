@@ -7,6 +7,7 @@ import ProfileIcon from 'react-native-vector-icons/FontAwesome6';
 import {Cart, Category, Home, Profile} from '@screens';
 import GenerateNavigator, {ScreenType} from '@config/generateNavigation';
 import {Colors} from '@constants/colors';
+import {fontScale} from '@utils/responsiveDesign';
 
 const tabs: ScreenType[] = [
   {
@@ -14,7 +15,7 @@ const tabs: ScreenType[] = [
     component: Home,
     options: {
       tabBarIcon: props => {
-        return <HomeIcon name="home" size={props.size} color={props.color} />;
+        return <HomeIcon name="home" size={20} color={props.color} />;
       },
     },
   },
@@ -23,13 +24,7 @@ const tabs: ScreenType[] = [
     component: Category,
     options: {
       tabBarIcon: props => {
-        return (
-          <CategoryIcon
-            name="file-lines"
-            size={props.size}
-            color={props.color}
-          />
-        );
+        return <CategoryIcon name="file-lines" size={20} color={props.color} />;
       },
     },
   },
@@ -38,11 +33,13 @@ const tabs: ScreenType[] = [
     component: Cart,
     options: {
       tabBarIcon: props => {
-        return <CartIcon name="cart-outline" size={28} color={props.color} />;
+        return <CartIcon name="cart-outline" size={22} color={props.color} />;
       },
       tabBarBadge: 3,
       tabBarBadgeStyle: {
         backgroundColor: Colors.PRIMARY,
+        fontSize: fontScale(12),
+        fontWeight: '300',
       },
     },
   },
@@ -51,9 +48,7 @@ const tabs: ScreenType[] = [
     component: Profile,
     options: {
       tabBarIcon: props => {
-        return (
-          <ProfileIcon name="user" size={props.size} color={props.color} />
-        );
+        return <ProfileIcon name="user" size={20} color={props.color} />;
       },
     },
   },
