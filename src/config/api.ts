@@ -1,32 +1,30 @@
-import Axios from 'axios';
+import Axios, {CreateAxiosDefaults} from 'axios';
 
 import {RequestMethod, RequestMethodEnum} from '@customTypes/request.types';
 import {getFromAsyncStorage} from '@utils/cache';
 import {Keys} from '@customTypes/keys.types';
 
+type headers = CreateAxiosDefaults<any>['headers'];
+
 const BASE_URL = '';
 
-const ApiIntegration = Axios.create({
-  baseURL: BASE_URL,
-  timeout: 30000,
-});
-
-ApiIntegration.interceptors.request.use(async (config: any) => {
+const requestClient = async (headers?: headers) => {
   const token = await getFromAsyncStorage(Keys.AUTH_TOKEN);
-  const newConfig = {
-    ...config,
-    headers: {
-      ...config.headers,
-      Accept: 'application/json, text/plain, */*',
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-    },
+
+  if (!token) {
+    return Axios.create({baseURL: BASE_URL});
+  }
+
+  const defaultHeaders = {
+    Authorization: `Bearer ${token}`,
+    ...headers,
   };
 
-  return newConfig;
-});
+  return Axios.create({baseURL: BASE_URL, headers: defaultHeaders});
+};
 
 export async function request<T>(requestData: RequestMethod<T>) {
+  const ApiIntegration = await requestClient();
   try {
     let res;
     switch (requestData.methodType) {
