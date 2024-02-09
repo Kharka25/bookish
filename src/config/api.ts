@@ -3,16 +3,15 @@ import Axios, {CreateAxiosDefaults} from 'axios';
 import {RequestConfig, RequestMethodEnum} from '@customTypes/request.types';
 import {getFromAsyncStorage} from '@utils/cache';
 import {Keys} from '@customTypes/keys.types';
+import {BASE_LOCAL_URL} from '@env';
 
 type headers = CreateAxiosDefaults<any>['headers'];
-
-const BASE_URL = '';
 
 const requestClient = async (headers?: headers) => {
   const token = await getFromAsyncStorage(Keys.AUTH_TOKEN);
 
   if (!token) {
-    return Axios.create({baseURL: BASE_URL});
+    return Axios.create({baseURL: BASE_LOCAL_URL});
   }
 
   const defaultHeaders = {
@@ -20,7 +19,7 @@ const requestClient = async (headers?: headers) => {
     ...headers,
   };
 
-  return Axios.create({baseURL: BASE_URL, headers: defaultHeaders});
+  return Axios.create({baseURL: BASE_LOCAL_URL, headers: defaultHeaders});
 };
 
 export async function request<T>(requestData: RequestConfig<T>) {
