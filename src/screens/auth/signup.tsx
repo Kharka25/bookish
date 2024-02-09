@@ -21,6 +21,8 @@ import {
   hasUppercase,
 } from '@utils/helpers';
 import {useAppNavigation} from '@models/navigation';
+import {request} from '@config/api';
+import {RequestMethodEnum} from '@customTypes/request.types';
 
 import authStyles from './authStyles';
 
@@ -37,6 +39,7 @@ const SignUp: React.FC = () => {
     username: '',
     password: '',
   });
+  const [loading, setLoading] = useState(false);
 
   const navigation = useAppNavigation();
 
@@ -77,12 +80,27 @@ const SignUp: React.FC = () => {
     setSecureTextEntry(!secureTextEntry);
   }
 
-  function handleSignUp() {
-    navigation.navigate('Verification', {mode: 'Email', prevScreen: 'SignUp'});
-  }
-
   function signIn() {
     navigation.navigate('SignIn');
+  }
+
+  async function handleSignUp() {
+    setLoading(true);
+    try {
+      const {user} = await request({
+        endPoint: 'users/auth/signup',
+        methodType: RequestMethodEnum.POST,
+        data: {...signupData},
+      });
+      navigation.navigate('Verification', {
+        mode: 'Email',
+        prevScreen: 'SignUp',
+        userInfo: user,
+      });
+    } catch (error) {
+      console.log('Sign up error: ', error);
+    }
+    setLoading(false);
   }
 
   return (
@@ -134,6 +152,7 @@ const SignUp: React.FC = () => {
           onPress={handleSignUp}
           label="Register"
           style={styles.btn}
+          loading={loading}
         />
         <Text style={[authStyles.linkContainer, globalStyles.mbMD]}>
           Have an account?

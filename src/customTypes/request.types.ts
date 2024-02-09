@@ -5,8 +5,13 @@ export enum RequestMethodEnum {
   DELETE = 'delete',
 }
 
-export type RequestMethod<T> = {
+export type RequestConfig<T> = {
   data?: T;
   endPoint: string;
   methodType: RequestMethodEnum;
 };
+
+export interface SigninDataI {
+  username: string;
+  email: string;
+}

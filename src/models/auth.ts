@@ -6,6 +6,7 @@ export interface UserProfileI {
 }
 
 export interface AuthStateI {
+  isAuth: boolean;
   isLoading: boolean;
   loggedIn: boolean;
   profile: UserProfileI | null;

@@ -1,32 +1,32 @@
 import Axios from 'axios';
 
-import {RequestMethod, RequestMethodEnum} from '@customTypes/request.types';
-import {getFromAsyncStorage} from '@utils/cache';
-import {Keys} from '@customTypes/keys.types';
+import {RequestConfig, RequestMethodEnum} from '@customTypes/request.types';
+// import {getFromAsyncStorage} from '@utils/cache';
+// import {Keys} from '@customTypes/keys.types';
 
-const BASE_URL = '';
+const BASE_URL = 'http://192.168.1.243:8989/api/v1/';
 
 const ApiIntegration = Axios.create({
   baseURL: BASE_URL,
   timeout: 30000,
 });
 
-ApiIntegration.interceptors.request.use(async (config: any) => {
-  const token = await getFromAsyncStorage(Keys.AUTH_TOKEN);
-  const newConfig = {
-    ...config,
-    headers: {
-      ...config.headers,
-      Accept: 'application/json, text/plain, */*',
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-    },
-  };
+// ApiIntegration.interceptors.request.use(async (config: any) => {
+//   const token = await getFromAsyncStorage(Keys.AUTH_TOKEN);
+//   const newConfig = {
+//     ...config,
+//     headers: {
+//       ...config.headers,
+//       Accept: 'application/json, text/plain, */*',
+//       'Content-Type': 'application/json',
+//       Authorization: `Bearer ${token}`,
+//     },
+//   };
 
-  return newConfig;
-});
+//   return newConfig;
+// });
 
-export async function request<T>(requestData: RequestMethod<T>) {
+export async function request<T>(requestData: RequestConfig<T>) {
   try {
     let res;
     switch (requestData.methodType) {

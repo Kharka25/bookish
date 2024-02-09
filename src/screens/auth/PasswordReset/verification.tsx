@@ -1,3 +1,4 @@
+/* eslint-disable curly */
 import React, {useEffect, useState, useRef} from 'react';
 import {Keyboard, Text, TextInput, View, StyleSheet} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -5,6 +6,9 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import {BackIcon, Button, Link, OtpField} from '@components';
 import {AuthStackParamList, useAppNavigation} from '@models/navigation';
+import {request} from '@config/api';
+import {RequestMethodEnum} from '@customTypes/request.types';
+
 import {
   fontScale,
   globalStyles,
@@ -19,37 +23,22 @@ type ScreenProps = NativeStackScreenProps<AuthStackParamList, 'Verification'>;
 const otpFields = new Array(4).fill('');
 
 const Verification: React.FC<ScreenProps> = ({route}) => {
-  const {mode, prevScreen} = route.params;
+  const {mode, prevScreen, userInfo} = route.params;
   const [otp, setOtp] = useState([...otpFields]);
   const [activeOtpIdx, setActiveOtpIdx] = useState(0);
   const [requestNewOtp, setRequestNewOtp] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const otpRef = useRef<TextInput>(null);
 
   const navigation = useAppNavigation();
 
-  const modeText = mode === 'Email' ? 'dummy@mail.com' : '(+965) 123 435 7565';
+  const modeText =
+    mode === 'Email' ? `${userInfo?.email}` : '(+965) 123 435 7565';
 
   const isValidOtp = otp.every(value => {
     return value.trim();
   });
-
-  function handleVerification() {
-    if (prevScreen === 'ResetPassword') {
-      navigation.navigate('NewPassword');
-      return;
-    }
-
-    navigation.navigate('Status', {
-      statusProps: {
-        btnText: 'Get Started',
-        message:
-          'Your account is complete, please enjoy the best menu from us.',
-        route: 'SignIn',
-        title: 'Congratulations!',
-      },
-    });
-  }
 
   function handleKeyPress(key: string, idx: number) {
     const newOtp = [...otp];
@@ -71,6 +60,37 @@ const Verification: React.FC<ScreenProps> = ({route}) => {
       const newOtpFields = value.split('');
       setOtp([...newOtpFields]);
     }
+  }
+
+  async function handleVerification() {
+    if (prevScreen === 'ResetPassword') {
+      navigation.navigate('NewPassword');
+      return;
+    }
+
+    if (!isValidOtp) return;
+
+    setLoading(true);
+    try {
+      await request({
+        endPoint: 'users/auth/verify-email',
+        methodType: RequestMethodEnum.POST,
+        data: {token: otp.join(''), userId: userInfo?.id},
+      });
+
+      navigation.navigate('Status', {
+        statusProps: {
+          btnText: 'Get Started',
+          message:
+            'Your account is complete, please enjoy the best menu from us.',
+          route: 'SignIn',
+          title: 'Congratulations!',
+        },
+      });
+    } catch (error) {
+      console.log('Email verification error: ', error);
+    }
+    setLoading(false);
   }
 
   useEffect(() => {
@@ -116,6 +136,7 @@ const Verification: React.FC<ScreenProps> = ({route}) => {
           onPress={handleVerification}
           label="Continue"
           style={[styles.btn, globalStyles.mtSm]}
+          loading={loading}
         />
       </View>
     </SafeAreaView>

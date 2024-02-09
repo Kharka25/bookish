@@ -17,15 +17,32 @@ import {
 } from '@utils/responsiveDesign';
 import {useAppNavigation} from '@models/navigation';
 
+import useAuth from '@store/auth/hooks';
+import {request} from '@config/api';
+import {RequestMethodEnum, SigninDataI} from '@customTypes/request.types';
+import {saveToAsyncStorage} from '@utils/cache';
+import {Keys} from '@customTypes/keys.types';
+
 import authStyles from './authStyles';
 import {Colors} from '@constants/colors';
-import {useAppDispatch} from '@store/hooks';
-import {setIsLoggedIn} from '@store/auth/auth';
 
 const SignIn: React.FC = () => {
   const [secureTextEntry, setSecureTextEntry] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [signinData, setSigninData] = useState<SigninDataI>({
+    email: '',
+    username: '',
+  });
+
+  const {updateIsLoggedIn, updateUserProfile} = useAuth();
+
   const navigation = useAppNavigation();
-  const dispatch = useAppDispatch();
+
+  function signInDataHandler(inputIdentifier: string, enteredValue: string) {
+    setSigninData(currentInput => {
+      return {...currentInput, [inputIdentifier]: enteredValue};
+    });
+  }
 
   function togglePasswordVisbility() {
     setSecureTextEntry(!secureTextEntry);
@@ -39,8 +56,23 @@ const SignIn: React.FC = () => {
     navigation.navigate('ForgotPassword');
   }
 
-  function handleSignIn() {
-    dispatch(setIsLoggedIn(true));
+  async function handleSignIn() {
+    setLoading(true);
+
+    try {
+      const {profile, token} = await request({
+        endPoint: 'users/auth/signin',
+        methodType: RequestMethodEnum.POST,
+        data: {...signinData},
+      });
+      saveToAsyncStorage(Keys.AUTH_TOKEN, token);
+      updateIsLoggedIn(true);
+      updateUserProfile(profile);
+    } catch (error) {
+      console.log('Authentication error: ', error);
+    }
+
+    setLoading(false);
   }
 
   return (
@@ -60,6 +92,7 @@ const SignIn: React.FC = () => {
           autoFocus={true}
           containerStyle={styles.inputContainer}
           label="Email"
+          onChangeText={value => signInDataHandler('email', value)}
           placeholder="Your email"
         />
         <AuthInput
@@ -67,6 +100,7 @@ const SignIn: React.FC = () => {
           autoComplete="off"
           containerStyle={styles.inputContainer}
           label="Password"
+          onChangeText={value => signInDataHandler('password', value)}
           onRightIconPress={togglePasswordVisbility}
           placeholder="Your password"
           rightIcon={<PasswordVisibilityIcon privateIcon={secureTextEntry} />}
@@ -101,6 +135,7 @@ const SignIn: React.FC = () => {
           iconStyle={styles.btnIcon}
           label="Sign in with Apple"
           labelStyle={styles.externalBtnLabel}
+          loading={loading}
           style={[styles.btn, globalStyles.mtSm, styles.externalBtn]}
         />
       </View>

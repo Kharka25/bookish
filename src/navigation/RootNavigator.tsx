@@ -3,8 +3,7 @@ import {DefaultTheme, NavigationContainer} from '@react-navigation/native';
 
 import {AppNavigator, AuthNavigator} from '@navigation';
 import {Colors} from '@constants/colors';
-import {useAppSelector} from '@store/hooks';
-import {useAuth} from '@store/auth/auth';
+import useAuth from '@store/auth/hooks';
 
 const AppTheme = {
   ...DefaultTheme,
@@ -16,10 +15,10 @@ const AppTheme = {
 };
 
 const RootNavigator = () => {
-  const {isLoading} = useAppSelector(useAuth);
+  const {authState} = useAuth();
   return (
     <NavigationContainer theme={AppTheme}>
-      {isLoading ? <AuthNavigator /> : <AppNavigator />}
+      {authState.isAuth ? <AuthNavigator /> : <AppNavigator />}
     </NavigationContainer>
   );
 };

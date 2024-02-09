@@ -4,7 +4,8 @@ import {AuthStateI, UserProfileI} from '@models/auth';
 import {RootState} from '../store';
 
 const initialState: AuthStateI = {
-  isLoading: false,
+  isAuth: false,
+  isLoading: true,
   loggedIn: false,
   profile: null,
 };
@@ -20,12 +21,15 @@ const authSlice = createSlice({
       authState.loggedIn = payload;
       authState.isLoading = payload;
     },
+    logout(authState) {
+      authState.isAuth = false;
+    },
   },
 });
 
-export const {setIsLoggedIn, updateProfile} = authSlice.actions;
+export const {logout, setIsLoggedIn, updateProfile} = authSlice.actions;
 
-export const useAuth = createSelector(
+export const getAuthState = createSelector(
   (state: RootState) => state,
   ({auth}) => auth,
 );

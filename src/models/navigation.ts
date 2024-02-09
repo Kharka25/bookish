@@ -1,6 +1,8 @@
 import type {NavigationProp} from '@react-navigation/native';
 import {useNavigation} from '@react-navigation/native';
 
+import {NewUserResponseI} from '@customTypes/response.types';
+
 export type ResetMode = 'Email' | 'Phone';
 
 type AuthScreenList =
@@ -20,7 +22,11 @@ export type AuthStackParamList = {
   SignUp: undefined;
   SignIn: undefined;
   Status: {statusProps: StatusI};
-  Verification: {mode: ResetMode; prevScreen: AuthScreenList};
+  Verification: {
+    mode: ResetMode;
+    prevScreen: AuthScreenList;
+    userInfo?: NewUserResponseI;
+  };
 };
 
 export type AppStackParamList = {
