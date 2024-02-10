@@ -21,16 +21,10 @@ import {
   hasUppercase,
 } from '@utils/helpers';
 import {useAppNavigation} from '@models/navigation';
-import {request} from '@config/api';
-import {RequestMethodEnum} from '@customTypes/request.types';
+import {SignupDataI} from '@customTypes/request.types';
+import {signUp} from '@services/auth';
 
 import authStyles from './authStyles';
-
-interface SignupDataI {
-  username: string;
-  email: string;
-  password: string;
-}
 
 const SignUp: React.FC = () => {
   const [secureTextEntry, setSecureTextEntry] = useState(true);
@@ -87,11 +81,7 @@ const SignUp: React.FC = () => {
   async function handleSignUp() {
     setLoading(true);
     try {
-      const {user} = await request({
-        endPoint: 'users/auth/signup',
-        methodType: RequestMethodEnum.POST,
-        data: {...signupData},
-      });
+      const {user} = await signUp({...signupData});
       navigation.navigate('Verification', {
         mode: 'Email',
         prevScreen: 'SignUp',

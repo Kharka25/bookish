@@ -18,10 +18,10 @@ import {
 import {useAppNavigation} from '@models/navigation';
 
 import useAuth from '@store/auth/hooks';
-import {request} from '@config/api';
-import {RequestMethodEnum, SigninDataI} from '@customTypes/request.types';
+import {SigninDataI} from '@customTypes/request.types';
 import {saveToAsyncStorage} from '@utils/cache';
 import {Keys} from '@customTypes/keys.types';
+import {signIn} from '@services/auth';
 
 import authStyles from './authStyles';
 import {Colors} from '@constants/colors';
@@ -59,11 +59,7 @@ const SignIn: React.FC = () => {
   async function handleSignIn() {
     setLoading(true);
     try {
-      const {profile, token} = await request({
-        endPoint: 'users/auth/signin',
-        methodType: RequestMethodEnum.POST,
-        data: {...signinData},
-      });
+      const {profile, token} = await signIn({...signinData});
       saveToAsyncStorage(Keys.AUTH_TOKEN, token);
       updateIsLoggedIn(true);
       updateCredentials(token);

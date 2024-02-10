@@ -6,8 +6,8 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import {BackIcon, Button, Link, OtpField} from '@components';
 import {AuthStackParamList, useAppNavigation} from '@models/navigation';
-import {request} from '@config/api';
-import {RequestMethodEnum} from '@customTypes/request.types';
+import useAuth from '@store/auth/hooks';
+import {verifyEmail} from '@services/auth';
 
 import {
   fontScale,
@@ -17,7 +17,6 @@ import {
 } from '@utils/responsiveDesign';
 import {Colors} from '@constants/colors';
 import authStyles from '../authStyles';
-import useAuth from '@store/auth/hooks';
 
 type ScreenProps = NativeStackScreenProps<AuthStackParamList, 'Verification'>;
 
@@ -77,11 +76,7 @@ const Verification: React.FC<ScreenProps> = ({route}) => {
 
     setLoading(true);
     try {
-      await request({
-        endPoint: 'users/auth/verify-email',
-        methodType: RequestMethodEnum.POST,
-        data: {token: otp.join(''), userId: userInfo?.id},
-      });
+      await verifyEmail({token: otp.join(''), userId: userInfo!.id});
 
       navigation.navigate('Status', {
         statusProps: {

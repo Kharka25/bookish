@@ -5,16 +5,11 @@ import {
 } from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import {
-  AppStackParamList,
-  // AppTabParamList,
-  // AuthStackParamList,
-} from '@models/navigation';
+import {AppStackParamList} from '@models/navigation';
 import {Colors} from '@constants/colors';
 import {verticalScale} from '@utils/responsiveDesign';
 
 const Stack = createStackNavigator<AppStackParamList>();
-// const Tab = createBottomTabNavigator<AppTabParamList & AppStackParamList>();
 const Tab = createBottomTabNavigator<AppStackParamList>();
 
 export type ScreenType = {

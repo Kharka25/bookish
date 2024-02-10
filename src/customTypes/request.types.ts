@@ -11,7 +11,18 @@ export type RequestConfig<T> = {
   methodType: RequestMethodEnum;
 };
 
+export interface SignupDataI {
+  username: string;
+  email: string;
+  password: string;
+}
+
 export interface SigninDataI {
   username: string;
   email: string;
+}
+
+export interface VerifyEmailDataI {
+  token: string;
+  userId: string;
 }
