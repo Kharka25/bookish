@@ -20,8 +20,8 @@ import {useAppNavigation} from '@models/navigation';
 import useAuth from '@store/auth/hooks';
 import {request} from '@config/api';
 import {RequestMethodEnum, SigninDataI} from '@customTypes/request.types';
-// import {saveToAsyncStorage} from '@utils/cache';
-// import {Keys} from '@customTypes/keys.types';
+import {saveToAsyncStorage} from '@utils/cache';
+import {Keys} from '@customTypes/keys.types';
 
 import authStyles from './authStyles';
 import {Colors} from '@constants/colors';
@@ -64,7 +64,7 @@ const SignIn: React.FC = () => {
         methodType: RequestMethodEnum.POST,
         data: {...signinData},
       });
-      // saveToAsyncStorage(Keys.AUTH_TOKEN, token);
+      saveToAsyncStorage(Keys.AUTH_TOKEN, token);
       updateIsLoggedIn(true);
       updateCredentials(token);
       updateUserProfile(profile);

@@ -18,14 +18,17 @@ const AppTheme = {
 };
 
 const RootNavigator = () => {
-  const {authState, updateUserProfile} = useAuth();
+  const {authState, updateIsAuth, updateUserProfile} = useAuth();
+  console.log(authState.access_token);
 
   async function getAuthInfo() {
     try {
       const data = await fetchAuthInfo();
       console.log(data);
       updateUserProfile(data?.profile);
-      // updateIsAuth(true);
+      if (data?.profile.id) {
+        updateIsAuth(true);
+      }
     } catch (error) {
       throw error;
     }
@@ -37,7 +40,12 @@ const RootNavigator = () => {
 
   return (
     <NavigationContainer theme={AppTheme}>
-      {!authState.isAuth ? <AuthNavigator /> : <AppNavigator />}
+      {authState.access_token?.length! > 0 &&
+      authState.access_token?.trim() !== '' ? (
+        <AppNavigator />
+      ) : (
+        <AuthNavigator />
+      )}
     </NavigationContainer>
   );
 };

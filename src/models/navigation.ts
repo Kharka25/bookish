@@ -62,6 +62,5 @@ export type AppStackParamList = {
   AppTabParamList;
 
 export function useAppNavigation() {
-  const authNav = useNavigation<NavigationProp<AppStackParamList>>();
-  return authNav;
+  return useNavigation<NavigationProp<AppStackParamList>>();
 }

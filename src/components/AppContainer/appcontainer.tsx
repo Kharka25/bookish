@@ -17,4 +17,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AppContainer;
+export default React.memo(AppContainer);
