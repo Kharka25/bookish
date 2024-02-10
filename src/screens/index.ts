@@ -1,3 +1,5 @@
+export {default as Address} from './address';
+export {default as Author} from './author';
 export {default as Cart} from './app/Home/cart';
 export {default as Category} from './app/Home/category';
 export {default as ForgotPassword} from './auth/PasswordReset/forgotpassword';

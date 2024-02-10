@@ -1,6 +1,6 @@
 import React from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
+import GenerateNavigator, {ScreenType} from '@config/generateNavigation';
 import {
   ForgotPassword,
   NewPassword,
@@ -11,22 +11,54 @@ import {
   Status,
   Verification,
 } from '@screens';
-import {AuthStackParamList} from '@models/navigation';
+import AppNavigator from './AppNavigator';
 
-const {Navigator, Screen} = createNativeStackNavigator<AuthStackParamList>();
+const stacks: ScreenType[] = [
+  {
+    name: 'Onboarding',
+    component: Onboarding,
+  },
+  {
+    name: 'SignUp',
+    component: SignUp,
+  },
+  {
+    name: 'SignIn',
+    component: SignIn,
+  },
+  {
+    name: 'Verification',
+    component: Verification,
+  },
+  {
+    name: 'ForgotPassword',
+    component: ForgotPassword,
+  },
+  {
+    name: 'ResetPassword',
+    component: ResetPassword,
+  },
+  {
+    name: 'NewPassword',
+    component: NewPassword,
+  },
+  {
+    name: 'Status',
+    component: Status,
+  },
+  {
+    name: 'AppNavigator',
+    component: AppNavigator,
+  },
+];
 
 const AuthNavigator = () => {
   return (
-    <Navigator screenOptions={{headerShown: false}}>
-      <Screen name="Onboarding" component={Onboarding} />
-      <Screen name="SignUp" component={SignUp} />
-      <Screen name="SignIn" component={SignIn} />
-      <Screen name="ForgotPassword" component={ForgotPassword} />
-      <Screen name="ResetPassword" component={ResetPassword} />
-      <Screen name="NewPassword" component={NewPassword} />
-      <Screen name="Status" component={Status} />
-      <Screen name="Verification" component={Verification} />
-    </Navigator>
+    <GenerateNavigator
+      navType="stack"
+      paths={stacks}
+      initialRouteName="Onboarding"
+    />
   );
 };
 

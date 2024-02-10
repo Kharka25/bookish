@@ -98,7 +98,7 @@ const SignUp: React.FC = () => {
         userInfo: user,
       });
     } catch (error) {
-      console.log('Sign up error: ', error);
+      throw error;
     }
     setLoading(false);
   }

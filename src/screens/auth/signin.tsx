@@ -20,8 +20,8 @@ import {useAppNavigation} from '@models/navigation';
 import useAuth from '@store/auth/hooks';
 import {request} from '@config/api';
 import {RequestMethodEnum, SigninDataI} from '@customTypes/request.types';
-import {saveToAsyncStorage} from '@utils/cache';
-import {Keys} from '@customTypes/keys.types';
+// import {saveToAsyncStorage} from '@utils/cache';
+// import {Keys} from '@customTypes/keys.types';
 
 import authStyles from './authStyles';
 import {Colors} from '@constants/colors';
@@ -34,7 +34,7 @@ const SignIn: React.FC = () => {
     username: '',
   });
 
-  const {updateIsLoggedIn, updateUserProfile} = useAuth();
+  const {updateCredentials, updateIsLoggedIn, updateUserProfile} = useAuth();
 
   const navigation = useAppNavigation();
 
@@ -58,20 +58,20 @@ const SignIn: React.FC = () => {
 
   async function handleSignIn() {
     setLoading(true);
-
     try {
       const {profile, token} = await request({
         endPoint: 'users/auth/signin',
         methodType: RequestMethodEnum.POST,
         data: {...signinData},
       });
-      saveToAsyncStorage(Keys.AUTH_TOKEN, token);
+      // saveToAsyncStorage(Keys.AUTH_TOKEN, token);
       updateIsLoggedIn(true);
+      updateCredentials(token);
       updateUserProfile(profile);
+      navigation.navigate('AppNavigator');
     } catch (error) {
-      console.log('Authentication error: ', error);
+      console.log('Sign in error: ', error);
     }
-
     setLoading(false);
   }
 

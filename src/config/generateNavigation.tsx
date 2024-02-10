@@ -3,23 +3,28 @@ import {
   createBottomTabNavigator,
   BottomTabNavigationOptions,
 } from '@react-navigation/bottom-tabs';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createStackNavigator} from '@react-navigation/stack';
 
-import {AppStackParamList, AppTabParamList} from '@models/navigation';
+import {
+  AppStackParamList,
+  // AppTabParamList,
+  // AuthStackParamList,
+} from '@models/navigation';
 import {Colors} from '@constants/colors';
 import {verticalScale} from '@utils/responsiveDesign';
 
-const Stack = createNativeStackNavigator<AppStackParamList & AppTabParamList>();
-const Tab = createBottomTabNavigator<AppTabParamList & AppStackParamList>();
+const Stack = createStackNavigator<AppStackParamList>();
+// const Tab = createBottomTabNavigator<AppTabParamList & AppStackParamList>();
+const Tab = createBottomTabNavigator<AppStackParamList>();
 
 export type ScreenType = {
-  name: keyof AppTabParamList | keyof AppStackParamList;
+  name: keyof AppStackParamList;
   component: React.FC<any>;
   options?: BottomTabNavigationOptions;
 };
 
 interface GenerateNavigatorI {
-  initialRouteName: keyof AppStackParamList | keyof AppTabParamList;
+  initialRouteName: keyof AppStackParamList;
   paths: ScreenType[];
   navType: 'stack' | 'tab';
 }
@@ -29,9 +34,7 @@ const GenerateNavigator: React.FC<GenerateNavigatorI> = props => {
 
   if (navType === 'stack') {
     return (
-      <Stack.Navigator
-        initialRouteName={initialRouteName}
-        screenOptions={{headerShown: false}}>
+      <Stack.Navigator initialRouteName={initialRouteName}>
         {paths.map((data, i) => (
           <Stack.Screen
             key={i}
@@ -47,7 +50,6 @@ const GenerateNavigator: React.FC<GenerateNavigatorI> = props => {
   return (
     <Tab.Navigator
       screenOptions={{
-        headerShown: false,
         tabBarStyle: {
           backgroundColor: Colors.WHITE_10,
           paddingVertical: verticalScale(12),

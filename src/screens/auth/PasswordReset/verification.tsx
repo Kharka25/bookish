@@ -17,6 +17,7 @@ import {
 } from '@utils/responsiveDesign';
 import {Colors} from '@constants/colors';
 import authStyles from '../authStyles';
+import useAuth from '@store/auth/hooks';
 
 type ScreenProps = NativeStackScreenProps<AuthStackParamList, 'Verification'>;
 
@@ -30,11 +31,15 @@ const Verification: React.FC<ScreenProps> = ({route}) => {
   const [loading, setLoading] = useState(false);
 
   const otpRef = useRef<TextInput>(null);
-
   const navigation = useAppNavigation();
 
+  const {authState} = useAuth();
+  const {profile} = authState;
+
   const modeText =
-    mode === 'Email' ? `${userInfo?.email}` : '(+965) 123 435 7565';
+    mode === 'Email'
+      ? `${userInfo?.email || profile?.email} `
+      : '(+965) 123 435 7565';
 
   const isValidOtp = otp.every(value => {
     return value.trim();

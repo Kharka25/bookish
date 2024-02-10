@@ -4,7 +4,7 @@ import CategoryIcon from 'react-native-vector-icons/FontAwesome6';
 import HomeIcon from 'react-native-vector-icons/Octicons';
 import ProfileIcon from 'react-native-vector-icons/FontAwesome6';
 
-import {Cart, Category, Home, Profile} from '@screens';
+import {Address, Author, Cart, Category, Home, Profile, Status} from '@screens';
 import GenerateNavigator, {ScreenType} from '@config/generateNavigation';
 import {Colors} from '@constants/colors';
 import {fontScale} from '@utils/responsiveDesign';
@@ -54,7 +54,7 @@ const tabs: ScreenType[] = [
   },
 ];
 
-const TabNavigator: React.FC = () => {
+export const TabNavigator: React.FC = () => {
   return (
     <GenerateNavigator navType="tab" paths={tabs} initialRouteName="Home" />
   );
@@ -64,6 +64,18 @@ const stacks: ScreenType[] = [
   {
     name: 'TabNavigator',
     component: TabNavigator,
+  },
+  {
+    name: 'Address',
+    component: Address,
+  },
+  {
+    name: 'Authors',
+    component: Author,
+  },
+  {
+    name: 'Status',
+    component: Status,
   },
 ];
 

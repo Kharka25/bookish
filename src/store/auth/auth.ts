@@ -1,6 +1,7 @@
 import {createSelector, createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 import {AuthStateI, UserProfileI} from '@models/auth';
+import {clearAsyncStorage} from '@utils/cache';
 import {RootState} from '../store';
 
 const initialState: AuthStateI = {
@@ -14,20 +15,35 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    updateProfile(authState, {payload}: PayloadAction<UserProfileI | null>) {
-      authState.profile = payload;
+    logout(authState) {
+      authState.isAuth = false;
+      authState.profile = null;
+      authState.loggedIn = false;
+      clearAsyncStorage();
+    },
+    setCredentials(authState, {payload}: PayloadAction<string>) {
+      authState.access_token = payload;
     },
     setIsLoggedIn(authState, {payload}: PayloadAction<boolean>) {
       authState.loggedIn = payload;
       authState.isLoading = payload;
     },
-    logout(authState) {
-      authState.isAuth = false;
+    setAuthState(authState, {payload}: PayloadAction<boolean>) {
+      authState.isAuth = payload;
+    },
+    setUserProfile(authState, {payload}: PayloadAction<UserProfileI | null>) {
+      authState.profile = payload;
     },
   },
 });
 
-export const {logout, setIsLoggedIn, updateProfile} = authSlice.actions;
+export const {
+  logout,
+  setCredentials,
+  setIsLoggedIn,
+  setAuthState,
+  setUserProfile,
+} = authSlice.actions;
 
 export const getAuthState = createSelector(
   (state: RootState) => state,
