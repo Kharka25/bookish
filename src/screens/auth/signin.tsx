@@ -109,6 +109,7 @@ const SignIn: React.FC = () => {
         />
         <Button
           label="Login"
+          loading={loading}
           onPress={handleSignIn}
           style={[styles.btn, globalStyles.mtSm]}
         />
@@ -131,7 +132,6 @@ const SignIn: React.FC = () => {
           iconStyle={styles.btnIcon}
           label="Sign in with Apple"
           labelStyle={styles.externalBtnLabel}
-          loading={loading}
           style={[styles.btn, globalStyles.mtSm, styles.externalBtn]}
         />
       </View>

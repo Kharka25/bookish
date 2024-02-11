@@ -1,7 +1,6 @@
 import {createSelector, createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 import {AuthStateI, UserProfileI} from '@models/auth';
-import {clearAsyncStorage} from '@utils/cache';
 import {RootState} from '../store';
 
 const initialState: AuthStateI = {
@@ -19,7 +18,7 @@ const authSlice = createSlice({
       authState.isAuth = false;
       authState.profile = null;
       authState.loggedIn = false;
-      clearAsyncStorage();
+      authState.access_token = null;
     },
     setCredentials(authState, {payload}: PayloadAction<string>) {
       authState.access_token = payload;
