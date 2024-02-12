@@ -3,6 +3,7 @@ import {RequestMethodEnum} from '@customTypes/request.types';
 import {END_POINTS} from '@config/endpoints';
 
 import {
+  PasswordUpdateDataI,
   SignupDataI,
   SigninDataI,
   VerifyEmailDataI,
@@ -58,6 +59,45 @@ async function logOut() {
   }
 }
 
+async function resetPassword(email: string) {
+  try {
+    const data = await request({
+      endPoint: END_POINTS.RESET_PASSWORD,
+      methodType: RequestMethodEnum.POST,
+      data: email,
+    });
+    return data;
+  } catch (error) {
+    console.log('Email verification error: ', error);
+  }
+}
+
+async function updatePassword(passwordUpdateData: PasswordUpdateDataI) {
+  try {
+    const data = await request({
+      endPoint: END_POINTS.UPDATE_PASSWORD,
+      methodType: RequestMethodEnum.POST,
+      data: passwordUpdateData,
+    });
+    return data;
+  } catch (error) {
+    console.log('Email verification error: ', error);
+  }
+}
+
+async function verifyPasswordReset(requestData: VerifyEmailDataI) {
+  try {
+    const data = await request({
+      endPoint: END_POINTS.VERIFY_EMAIL,
+      methodType: RequestMethodEnum.POST,
+      data: requestData,
+    });
+    return data;
+  } catch (error) {
+    console.log('Email verification error: ', error);
+  }
+}
+
 async function verifyEmail(requestData: VerifyEmailDataI) {
   try {
     const data = await request({
@@ -71,4 +111,13 @@ async function verifyEmail(requestData: VerifyEmailDataI) {
   }
 }
 
-export {fetchAuthInfo, logOut, signIn, signUp, verifyEmail};
+export {
+  fetchAuthInfo,
+  logOut,
+  signIn,
+  signUp,
+  resetPassword,
+  updatePassword,
+  verifyEmail,
+  verifyPasswordReset,
+};

@@ -1,5 +1,5 @@
 import React from 'react';
-import {SafeAreaView} from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import {
   render,
   screen as screenFn,
@@ -16,9 +16,9 @@ import {
 } from '@screens';
 import MockedNavigator from '@utils/mockednavigator';
 
-jest.mock('../../screens/auth/Onboarding/onboarding', () => jest.fn());
-jest.mock('../../screens/auth/Signup/signup', () => jest.fn());
-jest.mock('../../screens/auth/Signin/signin', () => jest.fn());
+jest.mock('../../screens/auth/onboarding', () => jest.fn());
+jest.mock('../../screens/auth/signup', () => jest.fn());
+jest.mock('../../screens/auth/signin', () => jest.fn());
 jest.mock('../../screens/auth/PasswordReset/verification', () => jest.fn());
 jest.mock('../../screens/auth/PasswordReset/forgotpassword', () => jest.fn());
 jest.mock('../../screens/auth/PasswordReset/resetpassword', () => jest.fn());

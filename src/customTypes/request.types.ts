@@ -26,3 +26,8 @@ export interface VerifyEmailDataI {
   token: string;
   userId: string;
 }
+
+export interface PasswordUpdateDataI {
+  password: string;
+  userId: string;
+}
