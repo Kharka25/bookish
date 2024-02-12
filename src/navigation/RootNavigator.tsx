@@ -23,7 +23,6 @@ const RootNavigator = () => {
   async function getAuthInfo() {
     try {
       const {profile} = await fetchAuthInfo();
-      console.log(profile);
       updateUserProfile(profile);
       if (profile.id) {
         updateIsAuth(true);

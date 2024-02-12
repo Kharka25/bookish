@@ -8,8 +8,17 @@ async function getFromAsyncStorage(key: string) {
   return await AsyncStorage.getItem(key);
 }
 
+async function removeFromAsyncStorage(key: string) {
+  await AsyncStorage.removeItem(key);
+}
+
 async function clearAsyncStorage() {
   await AsyncStorage.clear();
 }
 
-export {clearAsyncStorage, getFromAsyncStorage, saveToAsyncStorage};
+export {
+  clearAsyncStorage,
+  getFromAsyncStorage,
+  removeFromAsyncStorage,
+  saveToAsyncStorage,
+};
