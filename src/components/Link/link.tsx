@@ -6,6 +6,7 @@ import {
   ViewProps,
   StyleProp,
   ViewStyle,
+  TextStyle,
 } from 'react-native';
 
 import {Colors} from '@constants/colors';
@@ -16,6 +17,7 @@ interface Props extends ViewProps {
   onPress?: () => void;
   testID?: string;
   title: string;
+  titleStyle?: StyleProp<TextStyle>;
 }
 
 const link: React.FC<Props> = props => {
@@ -24,8 +26,8 @@ const link: React.FC<Props> = props => {
     containerStyle,
     onPress,
     testID = 'link',
-    style,
     title,
+    titleStyle,
     ...otherProps
   } = props;
   return (
@@ -34,7 +36,7 @@ const link: React.FC<Props> = props => {
       onPress={active ? onPress : null}
       style={[active ? styles.active : styles.inActive, containerStyle]}
       testID={testID}>
-      <Text role="link" style={[styles.title, style]}>
+      <Text role="link" style={[styles.title, titleStyle]}>
         {title}
       </Text>
     </Pressable>

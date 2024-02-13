@@ -1,6 +1,7 @@
 import {Dimensions, PixelRatio, Platform, StyleSheet} from 'react-native';
 
-const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} = Dimensions.get('window');
+export const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} =
+  Dimensions.get('window');
 
 type BaseT = 'HEIGHT' | 'WIDTH';
 
@@ -42,12 +43,16 @@ function horizontalScale(size: number) {
 }
 
 const globalStyles = StyleSheet.create({
+  headerStyle: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
+  },
   mbMD: {
-    // marginBottom: verticalScale(24),
     marginBottom: '6%',
   },
   mbLg: {
-    // marginBottom: verticalScale(32),
     marginBottom: '15%',
   },
   mtSm: {
@@ -56,11 +61,29 @@ const globalStyles = StyleSheet.create({
   mtLg: {
     marginTop: '40%',
   },
+  phSm: {
+    paddingHorizontal: '4%',
+  },
+  phMd: {
+    paddingHorizontal: '15%',
+  },
+  phLg: {
+    paddingHorizontal: '25%',
+  },
+  pvSm: {
+    paddingVertical: '5%',
+  },
+  pvMd: {
+    paddingVertical: '15%',
+  },
+  pvLg: {
+    paddingVertical: '25%',
+  },
   screenContainer: {
     flex: 1,
     paddingVertical:
       Platform.OS === 'ios' ? verticalScale(10) : verticalScale(20),
-    paddingHorizontal: horizontalScale(15),
+    paddingHorizontal: horizontalScale(16),
   },
 });
 

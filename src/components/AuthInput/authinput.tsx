@@ -18,14 +18,17 @@ interface Props extends TextInputProps {
   autoCorrect?: boolean;
   autoFocus?: boolean;
   containerStyle?: StyleProp<ViewStyle>;
+  defaultValue?: TextInputProps['defaultValue'];
   keyboardType?: TextInputProps['keyboardType'];
   label?: string;
   onChangeText?: TextInputProps['onChangeText'];
   onRightIconPress?: () => void;
   placeholder?: string;
+  placeholderTextColor?: TextInputProps['placeholderTextColor'];
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
   secureTextEntry?: TextInputProps['secureTextEntry'];
+  value?: TextInputProps['value'];
 }
 
 const AuthInput: React.FC<Props> = props => {
@@ -34,14 +37,17 @@ const AuthInput: React.FC<Props> = props => {
     autoCorrect,
     autoFocus,
     containerStyle,
+    defaultValue,
     keyboardType,
     label,
     onChangeText,
     onRightIconPress,
     placeholder,
+    placeholderTextColor,
     leftIcon,
     rightIcon,
     secureTextEntry,
+    value,
   } = props;
   return (
     <View style={[styles.container, containerStyle]} testID="auth-input">
@@ -53,10 +59,13 @@ const AuthInput: React.FC<Props> = props => {
           autoCapitalize={autoCapitalize}
           autoCorrect={autoCorrect}
           autoFocus={autoFocus}
+          defaultValue={defaultValue}
           keyboardType={keyboardType}
           onChangeText={onChangeText}
           placeholder={placeholder}
+          placeholderTextColor={placeholderTextColor}
           secureTextEntry={secureTextEntry}
+          value={value}
         />
         {rightIcon ? (
           <Pressable

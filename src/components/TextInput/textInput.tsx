@@ -18,12 +18,22 @@ import {
 
 interface Props extends TextInputProps {
   containerStyle?: StyleProp<ViewStyle>;
+  defaultValue?: TextInputProps['defaultValue'];
   label?: string;
+  placeholderTextColor?: TextInputProps['placeholderTextColor'];
   testID?: string;
+  value?: TextInputProps['value'];
 }
 
 const TextInput: React.FC<Props> = props => {
-  const {containerStyle, label, testID = 'text-input'} = props;
+  const {
+    containerStyle,
+    defaultValue,
+    label,
+    placeholderTextColor,
+    testID = 'text-input',
+    value,
+  } = props;
   const [focused, setFocused] = useState(false);
   return (
     <View style={[styles.container, containerStyle]}>
@@ -32,15 +42,19 @@ const TextInput: React.FC<Props> = props => {
         {...props}
         role="form"
         cursorColor={Colors.PRIMARY}
+        defaultValue={defaultValue}
         onEndEditing={() => setFocused(false)}
         onFocus={() => setFocused(true)}
-        placeholderTextColor={Colors.GRAY_40}
+        placeholderTextColor={
+          placeholderTextColor ? placeholderTextColor : Colors.GRAY_40
+        }
         style={[
           styles.txtInputContainer,
           focused && styles.focused,
           props.style,
         ]}
         testID={testID}
+        value={value}
       />
     </View>
   );

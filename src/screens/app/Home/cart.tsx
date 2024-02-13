@@ -1,23 +1,30 @@
 import React from 'react';
-import {Text, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
-import {useAppNavigation} from '@models/navigation';
+import {Header} from '@components';
+// import {useAppNavigation} from '@models/navigation';
 
 interface Props {}
 
 const Cart: React.FC<Props> = props => {
   const {} = props;
-  const navigation = useAppNavigation();
+  // const navigation = useAppNavigation();
   return (
     <SafeAreaView style={styles.container}>
-      <Text onPress={() => navigation.navigate('Authors')}>Cart Screen</Text>
+      <Header containerStyle={styles.headerStyle} title="Cart" />
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {},
+  headerStyle: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
+  },
 });
 
 export default Cart;

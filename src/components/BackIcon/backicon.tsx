@@ -1,10 +1,9 @@
 import React from 'react';
 import {TouchableOpacity, StyleSheet, ViewProps} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
 import Icons from 'react-native-vector-icons/Ionicons';
 
 import {Colors} from '@constants/colors';
-import {horizontalScale, verticalScale} from '@utils/responsiveDesign';
+import {useAppNavigation} from '@models/navigation';
 
 interface Props extends ViewProps {
   color?: string;
@@ -13,7 +12,7 @@ interface Props extends ViewProps {
 }
 
 const BackIcon: React.FC<Props> = props => {
-  const nav = useNavigation();
+  const nav = useAppNavigation();
 
   function goBack() {
     return nav.goBack();
@@ -44,10 +43,7 @@ const BackIcon: React.FC<Props> = props => {
 
 const styles = StyleSheet.create({
   container: {
-    height: verticalScale(40),
     justifyContent: 'center',
-    marginHorizontal: horizontalScale(15),
-    width: horizontalScale(40),
   },
 });
 

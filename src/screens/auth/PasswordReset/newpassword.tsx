@@ -36,7 +36,9 @@ const NewPassword: React.FC<Props> = props => {
 
   return (
     <SafeAreaView style={styles.container} testID="new-password">
-      <BackIcon />
+      <View style={globalStyles.phSm}>
+        <BackIcon />
+      </View>
       <View style={[globalStyles.screenContainer, styles.container]}>
         <Text style={authStyles.heading}>New Password</Text>
         <Text style={[authStyles.subHeading, globalStyles.mbMD]}>

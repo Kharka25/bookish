@@ -1,3 +1,4 @@
+export {default as Account} from './app/Profile/account';
 export {default as Address} from './address';
 export {default as Author} from './author';
 export {default as Cart} from './app/Home/cart';

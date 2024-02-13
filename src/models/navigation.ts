@@ -46,6 +46,7 @@ export type AppTabParamList = {
 
 export type AppStackParamList = {
   AppNavigator: undefined;
+  Account: undefined;
   Address: undefined;
   Authors: undefined;
   Favorites: undefined;

@@ -4,6 +4,7 @@ export {default as BackIcon} from './BackIcon/backicon';
 export {default as Button} from './Button/button';
 export {default as ContactModeSelector} from './ContactModeSelector/contactModeSelector';
 export {default as Carousel} from './Carousel/carousel';
+export {default as Header} from './Header/header';
 export {default as LineBreak} from './LineBreak/linebreak';
 export {default as Link} from './Link/link';
 export {default as LoadingIndicator} from './LoadingIndicator/loadingIndicator';
@@ -13,3 +14,4 @@ export {default as PasswordConditionCheck} from './PasswordConditionCheck/passwo
 export {default as PasswordVisibilityIcon} from './PasswordVisibilityIcon/passwordvisibilityicon';
 export {default as Status} from './Status/status';
 export {default as TextInput} from './TextInput/textInput';
+export {default as UserProfile} from './UserProfile/userprofile';

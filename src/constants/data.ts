@@ -38,3 +38,42 @@ export const ContactModeData = [
     title: 'Phone',
   },
 ];
+
+export const ProfileScreensOptionsData = [
+  {
+    id: 1,
+    icon: 'user',
+    screen: 'Account',
+    title: 'My Account',
+  },
+  {
+    id: 2,
+    icon: 'location-dot',
+    screen: 'Location',
+    title: 'Address',
+  },
+  {
+    id: 3,
+    icon: 'fire',
+    screen: 'Offers',
+    title: 'Offers & Promos',
+  },
+  {
+    id: 4,
+    icon: 'heart',
+    screen: 'Favorites',
+    title: 'Your Favorites',
+  },
+  {
+    id: 5,
+    icon: 'file-lines',
+    screen: 'History',
+    title: 'Order History',
+  },
+  {
+    id: 6,
+    icon: 'comment-dots',
+    screen: 'Support',
+    title: 'Help Center',
+  },
+];

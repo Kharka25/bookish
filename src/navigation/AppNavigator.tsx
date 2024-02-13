@@ -4,7 +4,17 @@ import CategoryIcon from 'react-native-vector-icons/FontAwesome6';
 import HomeIcon from 'react-native-vector-icons/Octicons';
 import ProfileIcon from 'react-native-vector-icons/FontAwesome6';
 
-import {Address, Author, Cart, Category, Home, Profile, Status} from '@screens';
+import {
+  Account,
+  Address,
+  Author,
+  Cart,
+  Category,
+  Home,
+  NewPassword,
+  Profile,
+  Status,
+} from '@screens';
 import GenerateNavigator, {ScreenType} from '@config/generateNavigation';
 import {Colors} from '@constants/colors';
 import {fontScale} from '@utils/responsiveDesign';
@@ -70,8 +80,16 @@ const stacks: ScreenType[] = [
     component: Address,
   },
   {
+    name: 'Account',
+    component: Account,
+  },
+  {
     name: 'Authors',
     component: Author,
+  },
+  {
+    name: 'NewPassword',
+    component: NewPassword,
   },
   {
     name: 'Status',
