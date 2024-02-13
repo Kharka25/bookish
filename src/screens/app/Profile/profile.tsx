@@ -1,7 +1,7 @@
 import React from 'react';
 import {Pressable, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import ScreenIcon from 'react-native-vector-icons/FontAwesome6';
+import Icon from 'react-native-vector-icons/FontAwesome6';
 import {useNavigation} from '@react-navigation/native';
 
 import {Header, UserProfile} from '@components';
@@ -50,7 +50,7 @@ const Profile: React.FC = () => {
               style={[styles.innerContainer, globalStyles.mbMD]}>
               <View style={styles.innerContainer}>
                 <View style={styles.iconContainer}>
-                  <ScreenIcon
+                  <Icon
                     name={item.icon}
                     size={16}
                     color={Colors.PRIMARY}
@@ -61,7 +61,7 @@ const Profile: React.FC = () => {
               </View>
               <Pressable
                 onPress={() => navigation.navigate(item.screen as never)}>
-                <ScreenIcon
+                <Icon
                   name="chevron-right"
                   color={Colors.GRAY_40}
                   light

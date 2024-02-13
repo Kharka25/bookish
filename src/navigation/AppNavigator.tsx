@@ -10,8 +10,13 @@ import {
   Author,
   Cart,
   Category,
+  Favorites,
+  HelpCenter,
   Home,
+  Location,
   NewPassword,
+  Offers,
+  OrderHistory,
   Profile,
   Status,
 } from '@screens';
@@ -88,12 +93,32 @@ const stacks: ScreenType[] = [
     component: Author,
   },
   {
+    name: 'Favorites',
+    component: Favorites,
+  },
+  {
+    name: 'Location',
+    component: Location,
+  },
+  {
     name: 'NewPassword',
     component: NewPassword,
   },
   {
+    name: 'Offers',
+    component: Offers,
+  },
+  {
+    name: 'OrderHistory',
+    component: OrderHistory,
+  },
+  {
     name: 'Status',
     component: Status,
+  },
+  {
+    name: 'Support',
+    component: HelpCenter,
   },
 ];
 

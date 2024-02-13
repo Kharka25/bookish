@@ -49,8 +49,11 @@ const globalStyles = StyleSheet.create({
     justifyContent: 'space-between',
     width: '100%',
   },
+  mbSm: {
+    marginBottom: '3%',
+  },
   mbMD: {
-    marginBottom: '6%',
+    marginBottom: '7%',
   },
   mbLg: {
     marginBottom: '15%',

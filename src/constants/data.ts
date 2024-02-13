@@ -67,7 +67,7 @@ export const ProfileScreensOptionsData = [
   {
     id: 5,
     icon: 'file-lines',
-    screen: 'History',
+    screen: 'OrderHistory',
     title: 'Order History',
   },
   {
@@ -75,5 +75,47 @@ export const ProfileScreensOptionsData = [
     icon: 'comment-dots',
     screen: 'Support',
     title: 'Help Center',
+  },
+];
+
+export const MockFavoritesData = [
+  {
+    id: 1,
+    img: require('@assets/images/book1.png'),
+    price: '£19.99',
+    title: 'The Da Vinci Code',
+  },
+  {
+    id: 2,
+    img: require('@assets/images/book2.png'),
+    price: '£27.92',
+    title: 'Carrie Fisher',
+  },
+  {
+    id: 3,
+    img: require('@assets/images/book3.png'),
+    price: '£13.52',
+    title: 'The Waiting',
+  },
+];
+
+export const MockOrderHistoryData = [
+  {
+    id: 1,
+    deliveryStatus: 'Delivered',
+    title: 'The Da Vinci Code',
+    quantity: '1',
+  },
+  {
+    id: 2,
+    deliveryStatus: 'Delivered',
+    title: 'Carrie Fisher',
+    quantity: '5',
+  },
+  {
+    id: 3,
+    deliveryStatus: 'Cancelled',
+    title: 'The Waiting',
+    quantity: '2',
   },
 ];

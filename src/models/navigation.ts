@@ -50,13 +50,14 @@ export type AppStackParamList = {
   Address: undefined;
   Authors: undefined;
   Favorites: undefined;
-  HelpCenter: undefined;
   Location: undefined;
   Location2: undefined;
   MyAccount: undefined;
   Notification: undefined;
+  Offers: undefined;
   OrderHistory: undefined;
   Search: undefined;
+  Support: undefined;
   Vendors: undefined;
   TabNavigator: undefined;
 } & AuthStackParamList &
