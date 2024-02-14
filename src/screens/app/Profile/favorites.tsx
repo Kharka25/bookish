@@ -19,7 +19,7 @@ import {
   horizontalScale,
   verticalScale,
 } from '@utils/responsiveDesign';
-import {FavoritesBooksI} from '@models/favorites';
+import {FavoritesBooksI} from '@models/books';
 import {Colors} from '@constants/colors';
 
 const Favorites: React.FC = () => {
@@ -35,6 +35,7 @@ const Favorites: React.FC = () => {
     return (
       <View>
         <View
+          key={item.id}
           style={[
             globalStyles.phSm,
             globalStyles.mbSm,
@@ -76,7 +77,7 @@ const Favorites: React.FC = () => {
   );
 };
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   container: {
     height: '100%',
   },

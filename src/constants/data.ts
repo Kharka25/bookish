@@ -103,18 +103,21 @@ export const MockOrderHistoryData = [
   {
     id: 1,
     deliveryStatus: 'Delivered',
+    img: require('@assets/images/book1.png'),
     title: 'The Da Vinci Code',
     quantity: '1',
   },
   {
     id: 2,
     deliveryStatus: 'Delivered',
+    img: require('@assets/images/book2.png'),
     title: 'Carrie Fisher',
     quantity: '5',
   },
   {
     id: 3,
     deliveryStatus: 'Cancelled',
+    img: require('@assets/images/book3.png'),
     title: 'The Waiting',
     quantity: '2',
   },
