@@ -15,9 +15,11 @@ import {
   Home,
   Location,
   NewPassword,
+  Notification,
   Offers,
   OrderHistory,
   Profile,
+  Search,
   Status,
 } from '@screens';
 import GenerateNavigator, {ScreenType} from '@config/generateNavigation';
@@ -105,12 +107,20 @@ const stacks: ScreenType[] = [
     component: NewPassword,
   },
   {
+    name: 'Notification',
+    component: Notification,
+  },
+  {
     name: 'Offers',
     component: Offers,
   },
   {
     name: 'OrderHistory',
     component: OrderHistory,
+  },
+  {
+    name: 'Search',
+    component: Search,
   },
   {
     name: 'Status',

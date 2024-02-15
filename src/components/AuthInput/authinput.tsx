@@ -51,7 +51,7 @@ const AuthInput: React.FC<Props> = props => {
   } = props;
   return (
     <View style={[styles.container, containerStyle]} testID="auth-input">
-      <Text style={styles.label}>{label}</Text>
+      {label && <Text style={styles.label}>{label}</Text>}
       <View>
         {leftIcon && <View style={styles.leftIcon}>{leftIcon}</View>}
         <TextInput

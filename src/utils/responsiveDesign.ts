@@ -59,7 +59,7 @@ const globalStyles = StyleSheet.create({
     marginBottom: '15%',
   },
   mtSm: {
-    marginTop: '5%',
+    marginTop: '3%',
   },
   mtLg: {
     marginTop: '40%',

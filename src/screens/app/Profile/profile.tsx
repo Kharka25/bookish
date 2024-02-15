@@ -57,7 +57,10 @@ const Profile: React.FC = () => {
                     solid
                   />
                 </View>
-                <Text style={styles.screenTitleText}>{item.title}</Text>
+                <Pressable
+                  onPress={() => navigation.navigate(item.screen as never)}>
+                  <Text style={styles.screenTitleText}>{item.title}</Text>
+                </Pressable>
               </View>
               <Pressable
                 onPress={() => navigation.navigate(item.screen as never)}>

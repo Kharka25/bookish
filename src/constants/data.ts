@@ -83,19 +83,19 @@ export const MockFavoritesData = [
     id: 1,
     img: require('@assets/images/book1.png'),
     price: '£19.99',
-    title: 'The Da Vinci Code',
+    title: 'Carrie Fisher',
   },
   {
     id: 2,
     img: require('@assets/images/book2.png'),
     price: '£27.92',
-    title: 'Carrie Fisher',
+    title: 'The Waiting',
   },
   {
     id: 3,
     img: require('@assets/images/book3.png'),
     price: '£13.52',
-    title: 'The Waiting',
+    title: 'Bright Young Women',
   },
 ];
 
@@ -104,21 +104,91 @@ export const MockOrderHistoryData = [
     id: 1,
     deliveryStatus: 'Delivered',
     img: require('@assets/images/book1.png'),
-    title: 'The Da Vinci Code',
+    title: 'Carrie Fisher',
     quantity: '1',
   },
   {
     id: 2,
     deliveryStatus: 'Delivered',
     img: require('@assets/images/book2.png'),
-    title: 'Carrie Fisher',
+    title: 'The Waiting',
     quantity: '5',
   },
   {
     id: 3,
     deliveryStatus: 'Cancelled',
     img: require('@assets/images/book3.png'),
-    title: 'The Waiting',
+    title: 'Bright Young Women',
     quantity: '2',
+  },
+];
+
+export const CategoryListData = [
+  {
+    id: 1,
+    title: 'All',
+  },
+  {
+    id: 2,
+    title: 'Art',
+  },
+  {
+    id: 3,
+    title: 'Novels',
+  },
+  {
+    id: 4,
+    title: 'Self Love',
+  },
+  {
+    id: 5,
+    title: 'Science',
+  },
+  {
+    id: 6,
+    title: 'Romantic',
+  },
+  {
+    id: 7,
+    title: 'Religion',
+  },
+];
+
+export const MockBooksListData = [
+  {
+    id: 1,
+    img: require('@assets/images/book5.png'),
+    price: '£19.99',
+    title: 'The Da Vinci Code',
+  },
+  {
+    id: 2,
+    img: require('@assets/images/carrie.png'),
+    price: '£27.92',
+    title: 'Carrie Fisher',
+  },
+  {
+    id: 3,
+    img: require('@assets/images/book4.png'),
+    price: '£17.60',
+    title: 'The Good Sister',
+  },
+  {
+    id: 4,
+    img: require('@assets/images/waiting.png'),
+    price: '£22.00',
+    title: 'The Waiting',
+  },
+  {
+    id: 5,
+    img: require('@assets/images/book6.png'),
+    price: '£15.50',
+    title: 'Where are you',
+  },
+  {
+    id: 6,
+    img: require('@assets/images/bright.png'),
+    price: '£13.52',
+    title: 'Bright Young Women',
   },
 ];
