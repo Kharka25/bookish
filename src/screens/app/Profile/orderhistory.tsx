@@ -66,6 +66,7 @@ const OrderHistory: React.FC = () => {
         title="Order History"
       />
       <FlatList
+        keyExtractor={(item, index) => String(item.id) + index}
         contentContainerStyle={[globalStyles.phSm, styles.container]}
         // @ts-ignore
         data={MockOrderHistoryData}

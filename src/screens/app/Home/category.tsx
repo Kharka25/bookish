@@ -52,6 +52,7 @@ const Category: React.FC = () => {
           {selectedCategory}
         </Text>
         <FlatList
+          keyExtractor={(item, index) => String(item.id) + index}
           contentContainerStyle={{
             gap: horizontalScale(20),
             marginTop: verticalScale(15),

@@ -119,7 +119,7 @@ const Carousel: React.FC<Props> = ({data}) => {
         data={data}
         getItemLayout={getItemLayout}
         horizontal
-        keyExtractor={(item: any) => item.id}
+        keyExtractor={(item, index) => String(item.id) + index}
         onScroll={handleScroll}
         pagingEnabled
         ref={carouselRef}

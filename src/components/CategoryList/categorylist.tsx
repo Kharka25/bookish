@@ -60,6 +60,7 @@ const CategoryList: React.FC<Props> = props => {
 
   return (
     <FlatList
+      keyExtractor={(item, index) => String(item?.id) + index}
       contentContainerStyle={{gap: horizontalScale(15)}}
       horizontal
       data={categories}

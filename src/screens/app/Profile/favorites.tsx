@@ -67,6 +67,7 @@ const Favorites: React.FC = () => {
         title="Your Favorites"
       />
       <FlatList
+        keyExtractor={(item, index) => String(item.id) + index}
         contentContainerStyle={styles.container}
         data={MockFavoritesData}
         ListEmptyComponent={renderEmptyList}
