@@ -17,5 +17,6 @@ export {default as PasswordConditionCheck} from './PasswordConditionCheck/passwo
 export {default as PasswordVisibilityIcon} from './PasswordVisibilityIcon/passwordvisibilityicon';
 export {default as SearchIcon} from './SearchIcon/searchicon';
 export {default as Status} from './Status/status';
+export {default as Text} from './Text/text';
 export {default as TextInput} from './TextInput/textinput';
 export {default as UserProfile} from './UserProfile/userprofile';
