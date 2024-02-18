@@ -46,7 +46,6 @@ const styles = StyleSheet.create({
   carouselSubTitle: {
     alignSelf: 'center',
     color: Colors.GRAY_50,
-    fontFamily: 'Poppins',
     fontSize: fontScale(16),
     fontWeight: '400',
     letterSpacing: 0.2,
@@ -58,7 +57,6 @@ const styles = StyleSheet.create({
   carouseTitle: {
     alignSelf: 'center',
     color: Colors.GRAY_100,
-    fontFamily: 'Poppins',
     fontSize: fontScale(26),
     fontWeight: '700',
     maxWidth: horizontalScale(310),

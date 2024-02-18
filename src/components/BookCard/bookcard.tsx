@@ -4,11 +4,11 @@ import {
   ImageSourcePropType,
   Pressable,
   StyleSheet,
-  Text,
   View,
   ViewProps,
 } from 'react-native';
 
+import {Text} from '@components';
 import {Colors} from '@constants/colors';
 import {
   fontScale,
@@ -31,8 +31,8 @@ const BookCard: React.FC<BookItemI> = props => {
         <Image source={img} style={styles.bookCover} />
       </View>
       <View style={styles.infoContainer}>
-        <Text style={styles.titleText}>{title}</Text>
-        <Text style={styles.priceText}>{price}</Text>
+        <Text content={title} style={styles.titleText} />
+        <Text content={price} style={styles.priceText} />
       </View>
     </Pressable>
   );
@@ -61,7 +61,6 @@ const styles = StyleSheet.create({
   },
   priceText: {
     color: Colors.PRIMARY,
-    fontSize: fontScale(14),
     fontWeight: '500',
   },
   titleText: {

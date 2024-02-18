@@ -1,25 +1,26 @@
 import React, {ReactNode} from 'react';
 import {
   Pressable,
-  Text,
-  View,
   StyleSheet,
   StyleProp,
+  View,
   ViewStyle,
+  ViewProps,
 } from 'react-native';
 
+import {Text} from '@components';
 import {fontScale} from '@utils/responsiveDesign';
 
-interface Props {
+type HeaderProps = {
   containerStyle?: StyleProp<ViewStyle>;
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
   onLeftIconPress?: () => void;
   onRightIconPress?: () => void;
   title: string;
-}
+} & ViewProps;
 
-const Header: React.FC<Props> = props => {
+const Header: React.FC<HeaderProps> = props => {
   const {
     containerStyle,
     onLeftIconPress,
@@ -40,7 +41,7 @@ const Header: React.FC<Props> = props => {
       ) : (
         <View style={styles.iconStyle} />
       )}
-      <Text style={styles.title}>{title}</Text>
+      <Text content={title} style={styles.title} />
       {rightIcon ? (
         <Pressable
           role="button"

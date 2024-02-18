@@ -4,11 +4,11 @@ import {
   ListRenderItem,
   Pressable,
   StyleSheet,
-  Text,
   View,
   ViewProps,
 } from 'react-native';
 
+import {Text} from '@components';
 import {Colors} from '@constants/colors';
 import {
   fontScale,
@@ -47,12 +47,12 @@ const CategoryList: React.FC<Props> = props => {
             selectedCategory === index ? styles.selectedCategoryContainer : {},
           ]}>
           <Text
+            content={item.title}
             style={[
               styles.categoryText,
               selectedCategory === index ? styles.selectedCategoryText : {},
-            ]}>
-            {item.title}
-          </Text>
+            ]}
+          />
         </Pressable>
       </View>
     );
@@ -75,7 +75,6 @@ const styles = StyleSheet.create({
   categoryText: {
     color: Colors.GRAY_40,
     fontSize: fontScale(16),
-    fontWeight: '400',
     lineHeight: fontScale(25),
   },
   selectedCategoryText: {

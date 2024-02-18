@@ -1,5 +1,7 @@
 import React from 'react';
-import {Image, ImageSourcePropType, StyleSheet, Text, View} from 'react-native';
+import {Image, ImageSourcePropType, StyleSheet, View} from 'react-native';
+
+import {Text} from '@components';
 
 import {
   fontScale,
@@ -24,8 +26,8 @@ const UserProfile: React.FC<Props> = props => {
         )}
       </View>
       <View>
-        <Text style={styles.usernameText}>{username}</Text>
-        <Text style={styles.emailText}>{email}</Text>
+        <Text content={username} style={styles.usernameText} />
+        <Text content={email} style={styles.emailText} />
       </View>
     </View>
   );
@@ -38,7 +40,6 @@ const styles = StyleSheet.create({
   },
   emailText: {
     color: Colors.GRAY_50,
-    fontSize: fontScale(14),
     fontWeight: '300',
   },
   profileImage: {

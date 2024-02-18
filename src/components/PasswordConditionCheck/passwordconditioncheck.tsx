@@ -1,13 +1,11 @@
 import React from 'react';
-import {Text, View, StyleSheet, ViewProps} from 'react-native';
+import {View, StyleSheet, ViewProps} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
+import {Text} from '@components';
+
 import {passwordCondition} from '@utils/helpers';
-import {
-  fontScale,
-  horizontalScale,
-  verticalScale,
-} from '@utils/responsiveDesign';
+import {horizontalScale, verticalScale} from '@utils/responsiveDesign';
 import {Colors} from '@constants/colors';
 
 interface Props extends ViewProps {
@@ -26,7 +24,7 @@ const PasswordConditionCheck: React.FC<Props> = props => {
           size={16}
           style={styles.icon}
         />
-        <Text style={styles.valueText}>{condition?.value}</Text>
+        <Text content={condition?.value} style={styles.valueText} />
       </View>
     );
   });
@@ -45,8 +43,6 @@ const styles = StyleSheet.create({
   },
   valueText: {
     color: Colors.GRAY_50,
-    fontSize: fontScale(14),
-    fontWeight: '400',
   },
 });
 

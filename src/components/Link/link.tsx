@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   Pressable,
-  Text,
   StyleSheet,
   ViewProps,
   StyleProp,
@@ -9,16 +8,18 @@ import {
   TextStyle,
 } from 'react-native';
 
+import {Text} from '@components';
+
 import {Colors} from '@constants/colors';
 
-interface Props extends ViewProps {
+type Props = {
   active?: boolean;
   containerStyle?: StyleProp<ViewStyle>;
   onPress?: () => void;
   testID?: string;
   title: string;
   titleStyle?: StyleProp<TextStyle>;
-}
+} & ViewProps;
 
 const link: React.FC<Props> = props => {
   const {
@@ -36,9 +37,7 @@ const link: React.FC<Props> = props => {
       onPress={active ? onPress : null}
       style={[active ? styles.active : styles.inActive, containerStyle]}
       testID={testID}>
-      <Text role="link" style={[styles.title, titleStyle]}>
-        {title}
-      </Text>
+      <Text content={title} role="link" style={[styles.title, titleStyle]} />
     </Pressable>
   );
 };

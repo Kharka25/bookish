@@ -1,6 +1,6 @@
 import React, {ReactNode} from 'react';
 import {
-  Text,
+  // Text,
   TextInputProps,
   View,
   ViewStyle,
@@ -9,9 +9,8 @@ import {
   StyleProp,
 } from 'react-native';
 
-import {TextInput} from '@components';
+import {Text, TextInput} from '@components';
 import {fontScale, verticalScale} from '@utils/responsiveDesign';
-import {Colors} from '@constants/colors';
 
 interface Props extends TextInputProps {
   autoCapitalize?: TextInputProps['autoCapitalize'];
@@ -51,7 +50,7 @@ const AuthInput: React.FC<Props> = props => {
   } = props;
   return (
     <View style={[styles.container, containerStyle]} testID="auth-input">
-      {label && <Text style={styles.label}>{label}</Text>}
+      {label && <Text content={label} style={styles.label} />}
       <View>
         {leftIcon && <View style={styles.leftIcon}>{leftIcon}</View>}
         <TextInput
@@ -83,7 +82,6 @@ const AuthInput: React.FC<Props> = props => {
 const styles = StyleSheet.create({
   container: {},
   label: {
-    color: Colors.BLACK,
     fontSize: fontScale(14),
     fontWeight: '500',
     lineHeight: fontScale(19),

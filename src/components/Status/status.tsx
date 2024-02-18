@@ -1,5 +1,7 @@
 import React from 'react';
-import {Image, Text, View, StyleSheet, ViewProps} from 'react-native';
+import {Image, View, StyleSheet, ViewProps} from 'react-native';
+
+import {Text} from '@components';
 
 import {
   fontScale,
@@ -24,8 +26,8 @@ const Status: React.FC<Props> = props => {
           testID="img"
         />
       </View>
-      <Text style={styles.statusTitle}>{title}</Text>
-      <Text style={styles.statusMessage}>{message}</Text>
+      <Text content={title} style={styles.statusTitle} />
+      <Text content={message} style={styles.statusMessage} />
     </View>
   );
 };
@@ -44,7 +46,6 @@ const styles = StyleSheet.create({
   statusMessage: {
     color: Colors.GRAY_50,
     fontSize: fontScale(16),
-    fontWeight: '400',
     textAlign: 'center',
   },
   statusTitle: {

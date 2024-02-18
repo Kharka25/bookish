@@ -4,10 +4,11 @@ import {
   StyleSheet,
   TextInput as TxtInput,
   TextInputProps,
-  Text,
   StyleProp,
   ViewStyle,
 } from 'react-native';
+
+import {Text} from '@components';
 
 import {Colors} from '@constants/colors';
 import {
@@ -38,7 +39,7 @@ const TextInput: React.FC<Props> = props => {
   const [focused, setFocused] = useState(false);
   return (
     <View style={styles.container}>
-      {label && <Text style={styles.label}>{label}</Text>}
+      {label && <Text content={label} style={styles.label} />}
       <View style={[styles.inputContainer, focused && styles.focused]}>
         {leftIcon && <View style={styles.leftIcon}>{leftIcon}</View>}
         <TxtInput
@@ -69,8 +70,6 @@ const styles = StyleSheet.create({
     borderWidth: 0.7,
   },
   label: {
-    color: Colors.BLACK,
-    fontSize: fontScale(14),
     fontWeight: '500',
     lineHeight: fontScale(19),
     marginBottom: verticalScale(6),

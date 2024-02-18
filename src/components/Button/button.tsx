@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Text,
+  // Text,
   TextStyle,
   TouchableOpacity,
   View,
@@ -11,7 +11,7 @@ import {
   ImageStyle,
 } from 'react-native';
 
-import {LoadingIndicator} from '@components';
+import {LoadingIndicator, Text} from '@components';
 import {Colors} from '@constants/colors';
 
 import styles from './styles';
@@ -60,13 +60,13 @@ const Button: React.FC<Props> = props => {
           <View style={icon ? styles.labelFlex : {}}>
             {icon && <Image source={icon} style={iconStyle} />}
             <Text
+              content={label}
               style={[
                 styles.btnLabel,
                 light && styles.btnLabelLight,
                 labelStyle,
-              ]}>
-              {label}
-            </Text>
+              ]}
+            />
           </View>
         )}
       </View>

@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import {
   Dimensions,
   FlatList,
-  Text,
+  // Text,
   View,
   Image,
   ImageSourcePropType,
@@ -11,7 +11,7 @@ import {
   NativeScrollEvent,
 } from 'react-native';
 
-import {Paginator} from '@components';
+import {Paginator, Text} from '@components';
 import styles from './styles';
 
 interface CarouseDataI {
@@ -39,8 +39,8 @@ const Carousel: React.FC<Props> = ({data}) => {
         style={styles.carouselContainer}
         testID="scroll-component">
         <Image source={item.img} style={styles.carouseImg} />
-        <Text style={styles.carouseTitle}>{item.title}</Text>
-        <Text style={styles.carouselSubTitle}>{item.subtitle}</Text>
+        <Text content={item.title} style={styles.carouseTitle} />
+        <Text content={item.subtitle} style={styles.carouselSubTitle} />
       </View>
     );
   };
