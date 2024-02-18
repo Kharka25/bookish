@@ -5,12 +5,12 @@ import {
   ListRenderItem,
   StyleSheet,
   View,
-  Text,
+  // Text,
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/FontAwesome6';
 
-import {BackIcon, Header} from '@components';
+import {BackIcon, Header, Text} from '@components';
 import {MockFavoritesData} from '@constants/data';
 
 import {
@@ -26,7 +26,7 @@ const Favorites: React.FC = () => {
   const renderEmptyList: React.FC = () => {
     return (
       <View>
-        <Text>You haven't added any book to you wishlist</Text>
+        <Text content="You haven't added any book to you wishlist" />
       </View>
     );
   };
@@ -44,8 +44,16 @@ const Favorites: React.FC = () => {
           <View style={styles.renderItemInnerFlex}>
             <Image source={item.img} style={styles.bookImg} />
             <View>
-              <Text style={styles.bookTitle}>{item.title}</Text>
-              <Text style={styles.bookPrice}>{item.price}</Text>
+              <Text
+                content={item.title}
+                fontSize={fontScale(17)}
+                fontWeight="500"
+              />
+              <Text
+                content={item.price}
+                fontSize={fontScale(15)}
+                fontWeight="500"
+              />
             </View>
           </View>
           <Icon name="heart" size={16} color={Colors.PRIMARY} solid />

@@ -1,21 +1,13 @@
 import React from 'react';
-import {
-  FlatList,
-  Image,
-  ListRenderItem,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import {FlatList, Image, ListRenderItem, StyleSheet, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
-import {BackIcon, Header} from '@components';
+import {BackIcon, Header, Text} from '@components';
 import {MockOrderHistoryData} from '@constants/data';
 import {OrderHistoryBooksI} from '@models/books';
 
 import {fontScale, globalStyles, verticalScale} from '@utils/responsiveDesign';
 import {Colors} from '@constants/colors';
-
 import {styles as styles2} from './favorites';
 
 const OrderHistory: React.FC = () => {
@@ -28,6 +20,10 @@ const OrderHistory: React.FC = () => {
         : item.deliveryStatus === 'Pending'
         ? Colors.YELLOW_10
         : Colors.BLACK;
+    const quantity = `${item.quantity} item${
+      Number(item.quantity) > 1 ? 's' : ''
+    }`;
+
     return (
       <View>
         <View
@@ -35,17 +31,20 @@ const OrderHistory: React.FC = () => {
           style={[styles2.renderItemInnerFlex, globalStyles.mbSm]}>
           <Image source={item.img} style={styles2.bookImg} />
           <View>
-            <Text style={[styles2.bookTitle, globalStyles.mbSm]}>
-              {item.title}
-            </Text>
+            <Text
+              content={item.title}
+              fontSize={fontScale(17)}
+              fontWeight="500"
+            />
             <View
               style={[styles2.renderItemInnerFlex, {gap: verticalScale(15)}]}>
-              <Text style={[{color: color}, styles.deliveryStatusTxt]}>
-                {item.deliveryStatus}
-              </Text>
-              <Text style={styles.itemQuantityText}>
-                {item.quantity} item{Number(item.quantity) > 1 ? 's' : ''}
-              </Text>
+              <Text
+                color={color}
+                content={item.deliveryStatus}
+                fontSize={fontScale(14)}
+                fontWeight="500"
+              />
+              <Text content={quantity} color={Colors.GRAY_90} />
             </View>
           </View>
         </View>
@@ -81,13 +80,6 @@ const styles = StyleSheet.create({
   container: {
     height: '100%',
     paddingTop: verticalScale(24),
-  },
-  deliveryStatusTxt: {
-    fontSize: fontScale(14),
-    fontWeight: '500',
-  },
-  itemQuantityText: {
-    color: Colors.GRAY_90,
   },
 });
 
