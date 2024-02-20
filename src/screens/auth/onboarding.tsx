@@ -1,6 +1,5 @@
 import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
-// import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
 import {Button, Carousel} from '@components';
@@ -12,8 +11,6 @@ import {
 } from '@utils/responsiveDesign';
 import {Colors} from '@constants/colors';
 import {useAppNavigation} from '@models/navigation';
-
-// type ScreenProp = NativeStackScreenProps<AuthStackParamList, 'Onboarding'>;
 
 const Onboarding: React.FC = () => {
   const navigation = useAppNavigation();

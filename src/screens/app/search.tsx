@@ -16,7 +16,7 @@ const Search: React.FC = () => {
           title="Search"
         />
         <TextInput
-          leftIcon={<SearchIcon color={Colors.GRAY_40} size={18} />}
+          leftIcon={<SearchIcon color={Colors.GRAY_40} size={20} />}
           placeholder="Search"
         />
       </View>

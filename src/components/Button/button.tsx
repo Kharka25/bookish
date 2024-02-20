@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  // Text,
   TextStyle,
   TouchableOpacity,
   View,
@@ -13,6 +12,7 @@ import {
 
 import {LoadingIndicator, Text} from '@components';
 import {Colors} from '@constants/colors';
+import {fontScale} from '@utils/responsiveDesign';
 
 import styles from './styles';
 
@@ -33,7 +33,6 @@ const Button: React.FC<Props> = props => {
     icon,
     iconStyle,
     label,
-    labelStyle,
     light,
     loading,
     onPress,
@@ -60,12 +59,10 @@ const Button: React.FC<Props> = props => {
           <View style={icon ? styles.labelFlex : {}}>
             {icon && <Image source={icon} style={iconStyle} />}
             <Text
+              color={!light ? Colors.WHITE : Colors.PRIMARY}
+              fontSize={fontScale(16)}
+              fontWeight={!light ? '400' : '500'}
               content={label}
-              style={[
-                styles.btnLabel,
-                light && styles.btnLabelLight,
-                labelStyle,
-              ]}
             />
           </View>
         )}

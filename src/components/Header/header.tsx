@@ -41,7 +41,7 @@ const Header: React.FC<HeaderProps> = props => {
       ) : (
         <View style={styles.iconStyle} />
       )}
-      <Text content={title} style={styles.title} />
+      <Text content={title} fontSize={fontScale(16)} fontWeight="500" />
       {rightIcon ? (
         <Pressable
           role="button"
@@ -62,11 +62,6 @@ const styles = StyleSheet.create({
     width: '5%',
     maxWidth: '5%',
   },
-  title: {
-    fontSize: fontScale(18),
-    fontWeight: '500',
-    alignSelf: 'center',
-  },
 });
 
-export default Header;
+export default React.memo(Header);

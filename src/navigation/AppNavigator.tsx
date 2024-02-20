@@ -21,8 +21,10 @@ import {
   Profile,
   Search,
   Status,
+  Vendors,
 } from '@screens';
 import GenerateNavigator, {ScreenType} from '@config/generateNavigation';
+
 import {Colors} from '@constants/colors';
 import {fontScale} from '@utils/responsiveDesign';
 
@@ -129,6 +131,10 @@ const stacks: ScreenType[] = [
   {
     name: 'Support',
     component: HelpCenter,
+  },
+  {
+    name: 'Vendors',
+    component: Vendors,
   },
 ];
 

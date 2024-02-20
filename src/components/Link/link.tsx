@@ -18,7 +18,7 @@ type Props = {
   onPress?: () => void;
   testID?: string;
   title: string;
-  titleStyle?: StyleProp<TextStyle>;
+  titleStyle?: TextStyle;
 } & ViewProps;
 
 const link: React.FC<Props> = props => {
@@ -37,7 +37,14 @@ const link: React.FC<Props> = props => {
       onPress={active ? onPress : null}
       style={[active ? styles.active : styles.inActive, containerStyle]}
       testID={testID}>
-      <Text content={title} role="link" style={[styles.title, titleStyle]} />
+      <Text
+        color={titleStyle?.color}
+        fontSize={titleStyle?.fontSize}
+        fontWeight={titleStyle?.fontWeight}
+        content={title}
+        role="link"
+        style={[styles.title, titleStyle]}
+      />
     </Pressable>
   );
 };

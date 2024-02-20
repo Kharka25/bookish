@@ -19,7 +19,6 @@ import {
 import {useAppNavigation} from '@models/navigation';
 import {CategoryListData, MockBooksListData} from '@constants/data';
 import {Colors} from '@constants/colors';
-// import {BookItemI} from 'src/components/BookCard/bookcard';
 
 const Category: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>(
@@ -63,7 +62,10 @@ const Category: React.FC = () => {
             <BookCard
               img={item.img}
               price={item.price}
-              style={index % 2 === 0 ? {marginRight: '8%'} : {}}
+              style={[
+                index % 2 === 0 ? {marginRight: '8%'} : {},
+                {height: verticalScale(220), width: '46%'},
+              ]}
               title={item.title}
               key={index + item.id}
             />

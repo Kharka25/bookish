@@ -20,3 +20,4 @@ export {default as Status} from './Status/status';
 export {default as Text} from './Text/text';
 export {default as TextInput} from './TextInput/textinput';
 export {default as UserProfile} from './UserProfile/userprofile';
+export {default as VendorCard} from './VendorCard/vendorcard';

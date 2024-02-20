@@ -50,6 +50,7 @@ const Favorites: React.FC = () => {
                 fontWeight="500"
               />
               <Text
+                color={Colors.PRIMARY}
                 content={item.price}
                 fontSize={fontScale(15)}
                 fontWeight="500"

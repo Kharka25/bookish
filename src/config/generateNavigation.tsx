@@ -3,13 +3,13 @@ import {
   createBottomTabNavigator,
   BottomTabNavigationOptions,
 } from '@react-navigation/bottom-tabs';
-import {createStackNavigator} from '@react-navigation/stack';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import {AppStackParamList} from '@models/navigation';
 import {Colors} from '@constants/colors';
 import {verticalScale} from '@utils/responsiveDesign';
 
-const Stack = createStackNavigator<AppStackParamList>();
+const Stack = createNativeStackNavigator<AppStackParamList>();
 const Tab = createBottomTabNavigator<AppStackParamList>();
 
 export type ScreenType = {
@@ -35,7 +35,11 @@ const GenerateNavigator: React.FC<GenerateNavigatorI> = props => {
             key={i}
             component={data.component}
             name={data.name}
-            options={() => ({headerShown: false})}
+            options={() => ({
+              headerShown: false,
+              animation:
+                data.name === 'Search' ? 'slide_from_bottom' : 'default',
+            })}
           />
         ))}
       </Stack.Navigator>

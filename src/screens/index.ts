@@ -19,4 +19,5 @@ export {default as Search} from './app/search';
 export {default as SignIn} from './auth/signin';
 export {default as SignUp} from './auth/signup';
 export {default as Status} from './app/status';
+export {default as Vendors} from './app/Home/vendors';
 export {default as Verification} from './auth/PasswordReset/verification';

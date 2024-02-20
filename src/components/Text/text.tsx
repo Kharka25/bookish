@@ -1,11 +1,11 @@
 import React from 'react';
-import {Text as Txt, TextProps, TextStyle} from 'react-native';
+import {Text as Txt, TextProps, TextStyle, ColorValue} from 'react-native';
 
 import {fontScale} from '@utils/responsiveDesign';
 import {Colors} from '@constants/colors';
 
 type TxtProps = {
-  color?: string;
+  color?: string | ColorValue;
   content: string | number | undefined;
   fontFamily?: TextStyle['fontFamily'];
   fontSize?: TextStyle['fontSize'];
@@ -19,8 +19,16 @@ const Text: React.FC<TxtProps> = props => {
     fontFamily = 'Poppins',
     fontSize = fontScale(14),
     fontWeight = '400',
+    numberOfLines,
+    style,
   } = props;
-  return <Txt style={{color, fontFamily, fontSize, fontWeight}}>{content}</Txt>;
+  return (
+    <Txt
+      numberOfLines={numberOfLines}
+      style={[style, {color: color, fontFamily, fontSize, fontWeight}]}>
+      {content}
+    </Txt>
+  );
 };
 
 export default React.memo(Text);

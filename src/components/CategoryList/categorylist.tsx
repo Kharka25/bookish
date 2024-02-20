@@ -48,6 +48,12 @@ const CategoryList: React.FC<Props> = props => {
           ]}>
           <Text
             content={item.title}
+            fontSize={fontScale(15)}
+            color={
+              selectedCategory === index
+                ? styles.selectedCategoryText.color
+                : styles.categoryText.color
+            }
             style={[
               styles.categoryText,
               selectedCategory === index ? styles.selectedCategoryText : {},
@@ -74,7 +80,6 @@ const styles = StyleSheet.create({
   container: {},
   categoryText: {
     color: Colors.GRAY_40,
-    fontSize: fontScale(16),
     lineHeight: fontScale(25),
   },
   selectedCategoryText: {

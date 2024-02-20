@@ -192,3 +192,67 @@ export const MockBooksListData = [
     title: 'Bright Young Women',
   },
 ];
+
+export const MockTopVendorsData = [
+  {
+    id: 1,
+    img: require('@assets/images/vendor1.png'),
+    name: 'Warehouse',
+  },
+  {
+    id: 2,
+    img: require('@assets/images/vendor2.png'),
+    name: 'Kuromi',
+  },
+  {
+    id: 3,
+    img: require('@assets/images/vendor3.png'),
+    name: 'GooDay',
+  },
+  {
+    id: 4,
+    img: require('@assets/images/vendor4.png'),
+    name: 'Crane & Co.',
+  },
+  {
+    id: 5,
+    img: require('@assets/images/vendor5.png'),
+    name: 'Jstor',
+  },
+  {
+    id: 6,
+    img: require('@assets/images/vendor6.png'),
+    name: 'Peloton',
+  },
+  {
+    id: 7,
+    img: require('@assets/images/vendor7.png'),
+    name: 'Haymarket',
+  },
+  {
+    id: 8,
+    img: require('@assets/images/vendor8.png'),
+    name: 'Wattpad',
+  },
+];
+
+export const MockTopOfTheWeekData = [
+  {
+    id: 1,
+    img: require('@assets/images/book7.png'),
+    price: '£14.99',
+    title: 'The Kite Runner',
+  },
+  {
+    id: 2,
+    img: require('@assets/images/book8.png'),
+    price: '£20.99',
+    title: 'The Subtle Art Of Not Giving A Fuck',
+  },
+  {
+    id: 3,
+    img: require('@assets/images/book9.png'),
+    price: '£10.99',
+    title: 'Little Prince',
+  },
+];
