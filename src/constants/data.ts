@@ -153,6 +153,54 @@ export const CategoryListData = [
     title: 'Religion',
   },
 ];
+export const VendorCategoryListData = [
+  {
+    id: 1,
+    title: 'All',
+  },
+  {
+    id: 2,
+    title: 'Books',
+  },
+  {
+    id: 3,
+    title: 'Poems',
+  },
+  {
+    id: 4,
+    title: 'Special for you',
+  },
+  {
+    id: 5,
+    title: 'Stationary',
+  },
+];
+export const AuthorsCategoryListData = [
+  {
+    id: 1,
+    title: 'All',
+  },
+  {
+    id: 2,
+    title: 'Poets',
+  },
+  {
+    id: 3,
+    title: 'Playwrights',
+  },
+  {
+    id: 4,
+    title: 'Novelists',
+  },
+  {
+    id: 5,
+    title: 'Journalist',
+  },
+  {
+    id: 6,
+    title: 'Writer',
+  },
+];
 
 export const MockBooksListData = [
   {

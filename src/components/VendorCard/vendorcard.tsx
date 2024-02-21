@@ -31,14 +31,16 @@ const vendorcard: React.FC<VendorCardProps> = props => {
       <View style={[styles.container, style]}>
         <Image style={styles.img} source={img} resizeMode="center" />
       </View>
-      {name && (
-        <Text
-          content={name}
-          fontWeight="500"
-          fontSize={fontScale(16)}
-          style={styles.nameText}
-        />
-      )}
+      <View style={styles.innerContainer}>
+        {name && (
+          <Text
+            content={name}
+            fontWeight="500"
+            fontSize={fontScale(14)}
+            style={styles.nameText}
+          />
+        )}
+      </View>
     </View>
   );
 };
@@ -50,11 +52,14 @@ const styles = StyleSheet.create({
     borderRadius: horizontalScale(12),
     height: verticalScale(100),
     justifyContent: 'center',
-    marginBottom: verticalScale(8),
+    marginBottom: verticalScale(6),
     width: horizontalScale(100),
   },
   img: {
     width: '100%',
+  },
+  innerContainer: {
+    paddingLeft: horizontalScale(5),
   },
   nameText: {
     marginVertical: verticalScale(5),

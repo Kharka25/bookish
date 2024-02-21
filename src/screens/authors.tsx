@@ -10,44 +10,43 @@ import {
 import {SafeAreaView} from 'react-native-safe-area-context';
 
 import {
+  AuthorProfile,
   BackIcon,
   CategoryList,
   Header,
   SearchIcon,
   Text,
-  VendorCard,
 } from '@components';
+import {AuthorsCategoryListData, MockAuthorsData} from '@constants/data';
 import {useAppNavigation} from '@models/navigation';
-import {VendorCategoryListData, MockTopVendorsData} from '@constants/data';
-import {VendorCardProps} from 'src/components/VendorCard/vendorcard';
+import {AuthorProfileI} from '@models/auth';
 
+import {Colors} from '@constants/colors';
 import {
   fontScale,
   globalStyles,
   horizontalScale,
   verticalScale,
 } from '@utils/responsiveDesign';
-import {Colors} from '@constants/colors';
 
-const Vendors: React.FC = () => {
+const Author: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>(
-    VendorCategoryListData[0].title,
+    AuthorsCategoryListData[0].title,
   );
-
   const navigation = useAppNavigation();
 
-  const renderItems: ListRenderItem<VendorCardProps> = ({item, index}) => {
+  const renderAuthors: ListRenderItem<AuthorProfileI> = ({item, index}) => {
     return (
-      <Pressable
-        style={[
-          index % 3 === 0 + 1 ? {marginHorizontal: horizontalScale(12)} : {},
-        ]}>
-        <VendorCard
-          style={[{height: verticalScale(120), width: horizontalScale(120)}]}
-          img={item.img}
+      <Pressable>
+        <AuthorProfile
           key={index}
-          id={item.id}
+          flex
           name={item.name}
+          nameStyle={{maxWidth: '100%'}}
+          img={item.img}
+          imgStyle={styles.imgStyle}
+          type={item.type}
+          wrap
         />
       </Pressable>
     );
@@ -61,7 +60,7 @@ const Vendors: React.FC = () => {
             <SearchIcon handleSearch={() => navigation.navigate('Search')} />
           }
           containerStyle={[globalStyles.headerStyle, globalStyles.mbSm]}
-          title="Vendors"
+          title="Authors"
         />
         <Text
           content={selectedCategory}
@@ -71,7 +70,7 @@ const Vendors: React.FC = () => {
           style={[globalStyles.mbSm]}
         />
         <CategoryList
-          categories={VendorCategoryListData}
+          categories={AuthorsCategoryListData}
           onSelect={setSelectedCategory}
           style={{paddingBottom: verticalScale(10)}}
         />
@@ -83,9 +82,8 @@ const Vendors: React.FC = () => {
             marginBottom: verticalScale(5),
             marginTop: verticalScale(15),
           }}
-          data={MockTopVendorsData}
-          numColumns={3}
-          renderItem={renderItems}
+          data={MockAuthorsData}
+          renderItem={renderAuthors}
         />
       </View>
     </SafeAreaView>
@@ -94,6 +92,10 @@ const Vendors: React.FC = () => {
 
 const styles = StyleSheet.create({
   container: {},
+  imgStyle: {
+    height: verticalScale(62),
+    width: horizontalScale(64),
+  },
 });
 
-export default Vendors;
+export default Author;

@@ -11,7 +11,7 @@ const Search: React.FC = () => {
     <SafeAreaView>
       <View style={globalStyles.phSm}>
         <Header
-          leftIcon={<BackIcon size={18} />}
+          leftIcon={<BackIcon />}
           containerStyle={[globalStyles.headerStyle, globalStyles.mbMD]}
           title="Search"
         />

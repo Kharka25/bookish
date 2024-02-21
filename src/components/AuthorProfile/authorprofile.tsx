@@ -5,6 +5,7 @@ import {
   ImageSourcePropType,
   ImageStyle,
   StyleSheet,
+  TextStyle,
   View,
 } from 'react-native';
 
@@ -18,37 +19,32 @@ import {
 import {Colors} from '@constants/colors';
 
 interface Props {
-  bio?: string;
+  flex?: boolean;
   img: ImageSourcePropType;
   imgStyle?: ImageStyle;
   name: string;
+  nameStyle?: TextStyle;
   type?: string;
+  wrap?: boolean;
 }
 
 const AuthorProfile: React.FC<Props> = props => {
-  const {bio, img, imgStyle, name, type} = props;
+  const {flex, img, imgStyle, name, nameStyle, type, wrap} = props;
   return (
-    <View
-      style={[
-        styles.container,
-        bio && styles.flex,
-        // {flexDirection: bio ? 'row' : 'column'},
-      ]}>
-      <Image
-        resizeMode="cover"
-        source={img}
+    <View style={[styles.container, flex && styles.flex]}>
+      <View
         style={[
-          {marginRight: bio ? horizontalScale(4) : 0},
-          styles.img,
-          imgStyle,
-        ]}
-      />
+          wrap && styles.imgContainer,
+          wrap && {marginRight: flex ? horizontalScale(4) : 0},
+        ]}>
+        <Image resizeMode="cover" source={img} style={[styles.img, imgStyle]} />
+      </View>
       <View style={{paddingLeft: horizontalScale(5), width: '200%'}}>
         <Text
           content={name}
           fontSize={fontScale(13)}
           fontWeight="500"
-          style={styles.nameText}
+          style={[styles.nameText, nameStyle]}
           numberOfLines={1}
         />
         {type && (
@@ -58,9 +54,9 @@ const AuthorProfile: React.FC<Props> = props => {
             fontSize={fontScale(12)}
           />
         )}
-        {bio && (
+        {/* {flex && (
           <Text content={bio} fontSize={fontScale(12)} fontWeight="300" />
-        )}
+        )} */}
       </View>
     </View>
   );
@@ -73,10 +69,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   img: {
-    // backgroundColor: 'yellow',
     height: verticalScale(100),
-    marginBottom: verticalScale(10),
     width: horizontalScale(103),
+  },
+  imgContainer: {
+    borderColor: Colors.PRIMARY,
+    borderRadius: horizontalScale(50),
+    borderWidth: 0.9,
+    marginBottom: verticalScale(10),
+    padding: horizontalScale(3),
+    height: 'auto',
+    width: 'auto',
   },
   nameText: {
     marginBottom: verticalScale(3),

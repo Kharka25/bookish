@@ -20,7 +20,7 @@ const BackIcon: React.FC<Props> = props => {
 
   const {
     color = Colors.BLACK,
-    size = 24,
+    size = 18,
     handleBack = goBack,
     style,
     ...otherProps
