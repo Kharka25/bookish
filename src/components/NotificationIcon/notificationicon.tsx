@@ -22,7 +22,13 @@ const NotificationIcon: React.FC<Props> = props => {
       <View style={styles.hasNotificationContainer}>
         <View style={styles.hasNotication} />
       </View>
-      <Icon name="bell" color={color} size={size} onPress={handleSearch} />
+      <Icon
+        name="bell"
+        color={color}
+        size={size}
+        onPress={handleSearch}
+        suppressHighlighting
+      />
     </View>
   );
 };

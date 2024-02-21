@@ -256,3 +256,65 @@ export const MockTopOfTheWeekData = [
     title: 'Little Prince',
   },
 ];
+
+export const MockPromoData = [
+  {
+    id: 1,
+    ctaText: 'Order Now',
+    img: require('@assets/images/waiting.png'),
+    mainText: 'Special Offer',
+    subText: 'Discount 25%',
+  },
+];
+
+export const MockAuthorsData = [
+  {
+    id: 1,
+    img: require('@assets/images/author1.png'),
+    name: 'John Freeman',
+    rating: 3.5,
+    type: 'Writer',
+  },
+  {
+    id: 2,
+    img: require('@assets/images/author2.png'),
+    name: 'Tess Gunty',
+    type: 'Novelist',
+    rating: 4.5,
+  },
+  {
+    id: 3,
+    img: require('@assets/images/author3.png'),
+    name: 'Richard Peterson',
+    type: 'Journalist',
+    rating: 3,
+  },
+  {
+    id: 4,
+    img: require('@assets/images/author4.png'),
+    name: 'Adam Dalva',
+    type: 'Writer',
+    rating: 2.5,
+  },
+  {
+    id: 5,
+    img: require('@assets/images/author5.png'),
+    name: 'Abraham Verghese',
+    type: 'Writer',
+    rating: 3.5,
+  },
+  {
+    id: 6,
+    img: require('@assets/images/author6.png'),
+    name: 'Ann Napolitano',
+    type: 'Poet',
+    rating: 3,
+  },
+  {
+    id: 7,
+    img: require('@assets/images/author7.png'),
+    name: 'Hernan Diaz',
+    type: 'Writer',
+    rating: 4.5,
+  },
+];

@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: Colors.PRIMARY,
     borderRadius: horizontalScale(12),
-    paddingVertical: verticalScale(22),
+    paddingVertical: verticalScale(18),
   },
   btnDisabled: {
     backgroundColor: Colors.GRAY_90,

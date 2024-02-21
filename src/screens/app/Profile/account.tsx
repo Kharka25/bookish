@@ -141,6 +141,7 @@ const styles = StyleSheet.create({
     marginTop: -30,
   },
   changePasswordTxt: {
+    color: Colors.PRIMARY,
     fontSize: fontScale(14),
     fontWeight: '400',
     textAlign: 'right',

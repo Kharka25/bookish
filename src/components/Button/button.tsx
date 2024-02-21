@@ -12,7 +12,6 @@ import {
 
 import {LoadingIndicator, Text} from '@components';
 import {Colors} from '@constants/colors';
-import {fontScale} from '@utils/responsiveDesign';
 
 import styles from './styles';
 
@@ -21,7 +20,7 @@ interface Props extends ViewProps {
   icon?: ImageSourcePropType;
   iconStyle?: StyleProp<ImageStyle>;
   label: string;
-  labelStyle?: StyleProp<TextStyle>;
+  labelStyle?: TextStyle;
   loading?: boolean;
   onPress?: () => void;
   light?: boolean;
@@ -33,6 +32,7 @@ const Button: React.FC<Props> = props => {
     icon,
     iconStyle,
     label,
+    labelStyle,
     light,
     loading,
     onPress,
@@ -60,8 +60,8 @@ const Button: React.FC<Props> = props => {
             {icon && <Image source={icon} style={iconStyle} />}
             <Text
               color={!light ? Colors.WHITE : Colors.PRIMARY}
-              fontSize={fontScale(16)}
-              fontWeight={!light ? '400' : '500'}
+              fontSize={labelStyle?.fontSize}
+              fontWeight={labelStyle?.fontWeight}
               content={label}
             />
           </View>

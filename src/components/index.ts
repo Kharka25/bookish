@@ -1,5 +1,6 @@
 export {default as AppContainer} from './AppContainer/appcontainer';
 export {default as AuthInput} from './AuthInput/authinput';
+export {default as AuthorProfile} from './AuthorProfile/authorprofile';
 export {default as BackIcon} from './BackIcon/backicon';
 export {default as BookCard} from './BookCard/bookcard';
 export {default as Button} from './Button/button';
@@ -15,6 +16,7 @@ export {default as OtpField} from './OtpField/otpfield';
 export {default as Paginator} from './Paginator/paginator';
 export {default as PasswordConditionCheck} from './PasswordConditionCheck/passwordconditioncheck';
 export {default as PasswordVisibilityIcon} from './PasswordVisibilityIcon/passwordvisibilityicon';
+export {default as PromoCard} from './PromoCard/promocard';
 export {default as SearchIcon} from './SearchIcon/searchicon';
 export {default as Status} from './Status/status';
 export {default as Text} from './Text/text';

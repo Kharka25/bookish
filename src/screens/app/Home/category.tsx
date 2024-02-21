@@ -63,8 +63,8 @@ const Category: React.FC = () => {
               img={item.img}
               price={item.price}
               style={[
-                index % 2 === 0 ? {marginRight: '8%'} : {},
-                {height: verticalScale(220), width: '46%'},
+                index % 2 === 0 ? {marginRight: '2%'} : {},
+                {height: verticalScale(220), width: '49%'},
               ]}
               title={item.title}
               key={index + item.id}
