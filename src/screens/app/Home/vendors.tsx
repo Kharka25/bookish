@@ -52,6 +52,7 @@ const Vendors: React.FC = () => {
       </Pressable>
     );
   };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={globalStyles.phSm}>

@@ -22,9 +22,10 @@ interface StatusI {
 }
 
 export type AuthStackParamList = {
+  AppNavigator: undefined;
   Onboarding: undefined;
   ForgotPassword: undefined;
-  NewPassword: undefined;
+  NewPassword: {prevScreen: keyof AppStackParamList};
   ResetPassword: {mode: ResetMode; prevScreen: AuthScreenList};
   SignUp: undefined;
   SignIn: undefined;
@@ -48,6 +49,7 @@ export type AppStackParamList = {
   AppNavigator: undefined;
   Account: undefined;
   Address: undefined;
+  Author: undefined;
   Authors: undefined;
   Favorites: undefined;
   Location: undefined;

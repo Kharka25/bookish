@@ -1,6 +1,7 @@
 export {default as Account} from './app/Profile/account';
 export {default as Address} from './address';
-export {default as Author} from './authors';
+export {default as Author} from './app/Home/author';
+export {default as Authors} from './app/Home/authors';
 export {default as Cart} from './app/Home/cart';
 export {default as Category} from './app/Home/category';
 export {default as Favorites} from './app/Profile/favorites';

@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Text, StyleSheet, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import {AuthInput, BackIcon, Button, PasswordVisibilityIcon} from '@components';
 import {
@@ -9,13 +10,15 @@ import {
   verticalScale,
 } from '@utils/responsiveDesign';
 import authStyles from '../authStyles';
-import {useAppNavigation} from '@models/navigation';
+import {AppStackParamList, useAppNavigation} from '@models/navigation';
 
-interface Props {}
+type ScreenProps = NativeStackScreenProps<AppStackParamList, 'NewPassword'>;
 
-const NewPassword: React.FC<Props> = props => {
-  const {} = props;
+const NewPassword: React.FC<ScreenProps> = props => {
+  const {route} = props;
   const [secureTextEntry, setSecureTextEntry] = useState(true);
+
+  const {prevScreen} = route.params;
 
   const navigation = useAppNavigation();
 
@@ -26,10 +29,11 @@ const NewPassword: React.FC<Props> = props => {
   function handleResetPassword() {
     navigation.navigate('Status', {
       statusProps: {
-        btnText: 'Login',
+        btnText:
+          prevScreen === 'Account' ? 'Go to Profile' : 'Password Changed!',
         message: 'You have successfully updated your password.',
-        route: 'SignIn',
-        title: 'Password Changed!',
+        route: prevScreen === 'Account' ? 'Profile' : 'SignIn',
+        title: 'Password changed!',
       },
     });
   }

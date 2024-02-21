@@ -21,5 +21,6 @@ export interface AuthorProfileI {
   id?: number;
   img: ImageSourcePropType;
   name: string;
+  rating?: number;
   type: string;
 }

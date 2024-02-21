@@ -8,6 +8,7 @@ import {
   Account,
   Address,
   Author,
+  Authors,
   Cart,
   Category,
   Favorites,
@@ -20,6 +21,7 @@ import {
   OrderHistory,
   Profile,
   Search,
+  SignIn,
   Status,
   Vendors,
 } from '@screens';
@@ -93,8 +95,12 @@ const stacks: ScreenType[] = [
     component: Account,
   },
   {
-    name: 'Authors',
+    name: 'Author',
     component: Author,
+  },
+  {
+    name: 'Authors',
+    component: Authors,
   },
   {
     name: 'Favorites',
@@ -123,6 +129,10 @@ const stacks: ScreenType[] = [
   {
     name: 'Search',
     component: Search,
+  },
+  {
+    name: 'SignIn',
+    component: SignIn,
   },
   {
     name: 'Status',

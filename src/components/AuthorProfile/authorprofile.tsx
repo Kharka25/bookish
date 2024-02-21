@@ -40,13 +40,15 @@ const AuthorProfile: React.FC<Props> = props => {
         <Image resizeMode="cover" source={img} style={[styles.img, imgStyle]} />
       </View>
       <View style={{paddingLeft: horizontalScale(5), width: '200%'}}>
-        <Text
-          content={name}
-          fontSize={fontScale(13)}
-          fontWeight="500"
-          style={[styles.nameText, nameStyle]}
-          numberOfLines={1}
-        />
+        {name && (
+          <Text
+            content={name}
+            fontSize={fontScale(13)}
+            fontWeight="500"
+            style={[styles.nameText, nameStyle]}
+            numberOfLines={1}
+          />
+        )}
         {type && (
           <Text
             content={type}

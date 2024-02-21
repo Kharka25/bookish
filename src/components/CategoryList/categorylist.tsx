@@ -80,19 +80,19 @@ const styles = StyleSheet.create({
   container: {},
   categoryText: {
     color: Colors.GRAY_40,
-    lineHeight: fontScale(25),
+    lineHeight: fontScale(30),
   },
   selectedCategoryText: {
     color: Colors.BLACK,
   },
   categoryContainer: {
     alignItems: 'center',
-    paddingVertical: verticalScale(4),
   },
   selectedCategoryContainer: {
     alignItems: 'center',
     backgroundColor: Colors.GRAY_20,
     borderRadius: horizontalScale(12),
+    paddingBottom: verticalScale(4),
     paddingHorizontal: horizontalScale(10),
   },
 });

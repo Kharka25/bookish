@@ -27,6 +27,8 @@ interface GenerateNavigatorI {
 const GenerateNavigator: React.FC<GenerateNavigatorI> = props => {
   const {initialRouteName, navType, paths} = props;
 
+  let nonGestureScreens = 'Status' || 'Verification';
+
   if (navType === 'stack') {
     return (
       <Stack.Navigator initialRouteName={initialRouteName}>
@@ -37,6 +39,7 @@ const GenerateNavigator: React.FC<GenerateNavigatorI> = props => {
             name={data.name}
             options={() => ({
               headerShown: false,
+              gestureEnabled: data.name !== nonGestureScreens ? true : false,
               animation:
                 data.name === 'Search' ? 'slide_from_bottom' : 'default',
             })}

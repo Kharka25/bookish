@@ -35,9 +35,13 @@ const Author: React.FC = () => {
   );
   const navigation = useAppNavigation();
 
+  function handleViewAuthorProfile() {
+    return navigation.navigate('Author');
+  }
+
   const renderAuthors: ListRenderItem<AuthorProfileI> = ({item, index}) => {
     return (
-      <Pressable>
+      <Pressable onPress={handleViewAuthorProfile}>
         <AuthorProfile
           key={index}
           flex

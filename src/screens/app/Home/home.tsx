@@ -6,6 +6,7 @@ import {
   View,
   ListRenderItem,
   ScrollView,
+  Pressable,
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
@@ -52,12 +53,14 @@ const Home: React.FC<ScreenProps> = () => {
 
   const renderAuthors: ListRenderItem<AuthorProfileI> = ({item, index}) => {
     return (
-      <AuthorProfile
-        key={index}
-        name={item.name}
-        img={item.img}
-        type={item.type}
-      />
+      <Pressable onPress={() => navigation.navigate('Author')}>
+        <AuthorProfile
+          key={index}
+          name={item.name}
+          img={item.img}
+          type={item.type}
+        />
+      </Pressable>
     );
   };
 

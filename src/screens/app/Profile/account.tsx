@@ -47,7 +47,7 @@ const Account: React.FC = () => {
   }
 
   function changePassword() {
-    navigation.navigate('NewPassword');
+    navigation.navigate('NewPassword', {prevScreen: 'Account'});
   }
 
   function renderPhoneIcon() {
