@@ -42,6 +42,7 @@ const SignUp: React.FC = () => {
           Create an account and start your Bookish adventure!
         </Text>
         <AuthInput
+          accessibilityLabel="name"
           autoCorrect={false}
           autoComplete="off"
           autoFocus={true}
@@ -50,6 +51,7 @@ const SignUp: React.FC = () => {
           placeholder="Your name"
         />
         <AuthInput
+          accessibilityLabel="email"
           autoCorrect={false}
           autoComplete="off"
           containerStyle={styles.inputContainer}
@@ -57,6 +59,7 @@ const SignUp: React.FC = () => {
           placeholder="Your email"
         />
         <AuthInput
+          accessibilityLabel="password"
           autoCorrect={false}
           autoComplete="off"
           containerStyle={[styles.inputContainer, globalStyles.mbLg]}

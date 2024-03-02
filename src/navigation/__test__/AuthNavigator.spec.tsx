@@ -41,7 +41,7 @@ describe('Auth Screens Navigation', () => {
       return null;
     });
 
-    (SignUp as jest.Mock).mockReturnValueOnce(
+    (SignUp as unknown as jest.Mock).mockReturnValueOnce(
       <SafeAreaView testID="mock-signup-screen" />,
     );
 
@@ -70,7 +70,7 @@ describe('Auth Screens Navigation', () => {
       return null;
     });
 
-    (SignIn as jest.Mock).mockReturnValueOnce(
+    (SignIn as unknown as jest.Mock).mockReturnValueOnce(
       <SafeAreaView testID="mock-signin-screen" />,
     );
 

@@ -14,6 +14,7 @@ import {fontScale, verticalScale} from '@utils/responsiveDesign';
 import {Colors} from '@constants/colors';
 
 interface Props extends TextInputProps {
+  accessibilityLabel?: TextInputProps['accessibilityLabel'];
   autoCapitalize?: TextInputProps['autoCapitalize'];
   autoCorrect?: boolean;
   autoFocus?: boolean;
@@ -28,6 +29,7 @@ interface Props extends TextInputProps {
 
 const AuthInput: React.FC<Props> = props => {
   const {
+    accessibilityLabel,
     autoCapitalize,
     autoCorrect,
     autoFocus,
@@ -49,6 +51,7 @@ const AuthInput: React.FC<Props> = props => {
           autoFocus={autoFocus}
           keyboardType={keyboardType}
           placeholder={placeholder}
+          accessibilityLabel={accessibilityLabel}
           secureTextEntry={secureTextEntry}
         />
         {rightIcon ? (

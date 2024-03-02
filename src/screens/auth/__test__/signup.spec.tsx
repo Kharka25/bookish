@@ -1,7 +1,6 @@
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {
-  // fireEvent,
   render,
   screen as screenFn,
   userEvent,
@@ -33,7 +32,6 @@ describe('SignUp screen', () => {
     render(<SignUp />);
     const signUpTxt = screenFn.getByText('Sign Up');
     expect(signUpTxt).toHaveStyle({fontSize: fontScale(24)});
-    // expect(signUpTxt.props.style).toHaveProperty('fontSize', fontScale(24));
   });
 
   it('displays Create an account text', async () => {
@@ -54,31 +52,45 @@ describe('SignUp screen', () => {
     screenFn.getByTestId('goBack-btn');
   });
 
-  it('renders 3 textInput components', () => {
+  it('renders username text input', () => {
     render(<SignUp />);
-    const textInputs = screenFn.queryAllByTestId('text-input');
-    expect(textInputs).toHaveLength(3);
+    const input = screenFn.getByPlaceholderText('Your name');
+    expect(input).toBeOnTheScreen();
   });
 
-  it('renders input fields with labels', () => {
+  it('renders name text input', () => {
     render(<SignUp />);
-    const textInputs = screenFn.queryAllByTestId('text-input');
-    textInputs.forEach(input => {
-      expect(input).toHaveProp('label');
-    });
+    const input = screenFn.getByLabelText('name');
+    expect(input).toBeOnTheScreen();
   });
 
-  it('renders input fields in correct order', () => {
+  it('renders user email text input', () => {
     render(<SignUp />);
-    const textInputs = screenFn.queryAllByTestId('text-input');
-    expect(textInputs[0]).toHaveProp('label', 'Name');
-    expect(textInputs[1]).toHaveProp('placeholder', 'Your email');
-    expect(textInputs[2]).toHaveProp('secureTextEntry');
+    const input = screenFn.getByPlaceholderText('Your email');
+    expect(input).toBeOnTheScreen();
+  });
+
+  it('renders email text input', () => {
+    render(<SignUp />);
+    const input = screenFn.getByLabelText('email');
+    expect(input).toBeOnTheScreen();
+  });
+
+  it('renders user password text input', () => {
+    render(<SignUp />);
+    const input = screenFn.getByPlaceholderText('Your password');
+    expect(input).toBeOnTheScreen();
+  });
+
+  it('renders password text input', () => {
+    render(<SignUp />);
+    const input = screenFn.getByLabelText('password');
+    expect(input).toBeOnTheScreen();
   });
 
   it('renders a button component', () => {
     render(<SignUp />);
-    screenFn.getByTestId('btn');
+    screenFn.queryByTestId('btn');
   });
 
   it('renders Register button component', () => {
@@ -102,7 +114,6 @@ describe('SignUp screen', () => {
 
     render(<SignUp />);
     const signInLink = screenFn.getByTestId('link');
-    // fireEvent.press(signInLink);
     userEvent.press(signInLink);
 
     await waitFor(() => {

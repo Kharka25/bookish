@@ -26,7 +26,7 @@ interface ContactModeI {
 
 interface Props<T> {
   data?: ContactModeI[];
-  onSelect: Dispatch<SetStateAction<ResetMode> | any>;
+  onSelect?: Dispatch<SetStateAction<ResetMode> | any>;
   renderItem?: (item: T) => JSX.Element;
 }
 
