@@ -7,6 +7,8 @@ import {
   StyleSheet,
   TextStyle,
   View,
+  ViewProps,
+  ViewStyle,
 } from 'react-native';
 
 import {Text} from '@components';
@@ -18,20 +20,23 @@ import {
 } from '@utils/responsiveDesign';
 import {Colors} from '@constants/colors';
 
-interface Props {
+type Props = {
   flex?: boolean;
   img: ImageSourcePropType;
   imgStyle?: ImageStyle;
-  name: string;
+  infoStyle?: ViewStyle;
+  name?: string;
   nameStyle?: TextStyle;
   type?: string;
   wrap?: boolean;
-}
+} & ViewProps;
 
 const AuthorProfile: React.FC<Props> = props => {
-  const {flex, img, imgStyle, name, nameStyle, type, wrap} = props;
+  const {flex, img, imgStyle, infoStyle, name, nameStyle, style, type, wrap} =
+    props;
+
   return (
-    <View style={[styles.container, flex && styles.flex]}>
+    <View style={[styles.container, style, flex && styles.flex]}>
       <View
         style={[
           wrap && styles.imgContainer,
@@ -39,7 +44,8 @@ const AuthorProfile: React.FC<Props> = props => {
         ]}>
         <Image resizeMode="cover" source={img} style={[styles.img, imgStyle]} />
       </View>
-      <View style={{paddingLeft: horizontalScale(5), width: '200%'}}>
+      <View
+        style={[{paddingLeft: horizontalScale(5), width: '200%'}, infoStyle]}>
         {name && (
           <Text
             content={name}
@@ -56,9 +62,6 @@ const AuthorProfile: React.FC<Props> = props => {
             fontSize={fontScale(12)}
           />
         )}
-        {/* {flex && (
-          <Text content={bio} fontSize={fontScale(12)} fontWeight="300" />
-        )} */}
       </View>
     </View>
   );

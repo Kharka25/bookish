@@ -2,6 +2,7 @@ import type {NavigationProp} from '@react-navigation/native';
 import {useNavigation} from '@react-navigation/native';
 
 import {NewUserResponseI} from '@customTypes/response.types';
+import {AuthorProfileI} from './auth';
 
 export type ResetMode = 'Email' | 'Phone';
 
@@ -49,7 +50,7 @@ export type AppStackParamList = {
   AppNavigator: undefined;
   Account: undefined;
   Address: undefined;
-  Author: undefined;
+  Author: {authorInfo: AuthorProfileI};
   Authors: undefined;
   Favorites: undefined;
   Location: undefined;

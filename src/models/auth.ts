@@ -19,6 +19,7 @@ export interface AuthStateI {
 
 export interface AuthorProfileI {
   id?: number;
+  bio?: string;
   img: ImageSourcePropType;
   name: string;
   rating?: number;

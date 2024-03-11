@@ -53,7 +53,8 @@ const Home: React.FC<ScreenProps> = () => {
 
   const renderAuthors: ListRenderItem<AuthorProfileI> = ({item, index}) => {
     return (
-      <Pressable onPress={() => navigation.navigate('Author')}>
+      <Pressable
+        onPress={() => navigation.navigate('Author', {authorInfo: item})}>
         <AuthorProfile
           key={index}
           name={item.name}
@@ -182,7 +183,7 @@ const Home: React.FC<ScreenProps> = () => {
               marginBottom: verticalScale(5),
               marginTop: verticalScale(10),
             }}
-            data={MockAuthorsData}
+            data={MockAuthorsData.slice(0, 5)}
             horizontal
             renderItem={renderAuthors}
           />

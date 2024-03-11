@@ -1,7 +1,7 @@
 import React from 'react';
 import {render, screen} from '@testing-library/react-native';
 import {PasswordConditionCheck} from '@components';
-import {testValidData} from '@utils/test/helpers.spec';
+import {testValidData} from '@utils/__test__/helpers.spec';
 
 describe('Password Condition Check', () => {
   it('renders correctly', () => {

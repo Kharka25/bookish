@@ -64,7 +64,7 @@ const SignIn: React.FC = () => {
       updateIsLoggedIn(true);
       updateCredentials(token);
       updateUserProfile(profile);
-      navigation.navigate('AppNavigator');
+      navigation.navigate('TabNavigator');
     } catch (error) {
       console.log('Sign in error: ', error);
     }

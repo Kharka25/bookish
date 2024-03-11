@@ -325,6 +325,7 @@ export const MockAuthorsData = [
   },
   {
     id: 2,
+    bio: 'Gunty was born and raised in South Bend, Indiana.She graduated from the University of Notre Dame with a Bachelor of Arts in English and from New York University.',
     img: require('@assets/images/author2.png'),
     name: 'Tess Gunty',
     type: 'Novelist',
