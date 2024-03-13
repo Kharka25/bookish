@@ -48,6 +48,7 @@ const TextInput: React.FC<Props> = props => {
           cursorColor={Colors.PRIMARY}
           defaultValue={defaultValue}
           onEndEditing={() => setFocused(false)}
+          // onBlur={}
           onFocus={() => setFocused(true)}
           placeholderTextColor={
             placeholderTextColor ? placeholderTextColor : Colors.GRAY_40

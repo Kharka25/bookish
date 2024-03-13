@@ -26,8 +26,8 @@ const UserProfile: React.FC<Props> = props => {
         )}
       </View>
       <View>
-        <Text content={username} style={styles.usernameText} />
-        <Text content={email} style={styles.emailText} />
+        <Text content={username} fontSize={fontScale(16)} fontWeight="500" />
+        <Text content={email} color={Colors.GRAY_50} fontWeight="400" />
       </View>
     </View>
   );
@@ -38,19 +38,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
   },
-  emailText: {
-    color: Colors.GRAY_50,
-    fontWeight: '300',
-  },
   profileImage: {
     height: verticalScale(56),
     marginRight: verticalScale(12),
     resizeMode: 'contain',
     width: horizontalScale(56),
-  },
-  usernameText: {
-    fontSize: fontScale(16),
-    fontWeight: '600',
   },
 });
 

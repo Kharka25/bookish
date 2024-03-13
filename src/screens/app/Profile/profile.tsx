@@ -1,10 +1,10 @@
 import React from 'react';
-import {Pressable, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {Pressable, ScrollView, StyleSheet, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/FontAwesome6';
 import {useNavigation} from '@react-navigation/native';
 
-import {Header, UserProfile} from '@components';
+import {Header, Text, UserProfile} from '@components';
 import {ProfileScreensOptionsData} from '@constants/data';
 import useAuth from '@store/auth/hooks';
 
@@ -40,7 +40,12 @@ const Profile: React.FC = () => {
               username={profile!.username}
               email={profile!.email}
             />
-            <Text style={styles.logoutBtn}>Logout</Text>
+            <Text
+              content="Logout"
+              color={Colors.RED}
+              fontSize={fontScale(14)}
+              fontWeight="500"
+            />
           </View>
         </View>
         <View style={[globalStyles.phSm, globalStyles.mtSm]}>
@@ -59,7 +64,11 @@ const Profile: React.FC = () => {
                 </View>
                 <Pressable
                   onPress={() => navigation.navigate(item.screen as never)}>
-                  <Text style={styles.screenTitleText}>{item.title}</Text>
+                  <Text
+                    content={item.title}
+                    fontWeight="500"
+                    fontSize={fontScale(16)}
+                  />
                 </Pressable>
               </View>
               <Pressable
@@ -104,11 +113,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  logoutBtn: {
-    color: Colors.RED,
-    fontSize: fontScale(14),
-    fontWeight: '600',
-  },
   profileContainer: {
     alignItems: 'center',
     backgroundColor: Colors.WHITE,
@@ -121,10 +125,6 @@ const styles = StyleSheet.create({
     marginTop: verticalScale(24),
     paddingHorizontal: horizontalScale(20),
     paddingVertical: verticalScale(16),
-  },
-  screenTitleText: {
-    fontSize: fontScale(16),
-    fontWeight: '500',
   },
 });
 

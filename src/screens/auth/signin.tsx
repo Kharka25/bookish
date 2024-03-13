@@ -60,11 +60,12 @@ const SignIn: React.FC = () => {
     setLoading(true);
     try {
       const {profile, token} = await signIn({...signinData});
+      console.log(profile, token);
       saveToAsyncStorage(Keys.AUTH_TOKEN, token);
       updateIsLoggedIn(true);
       updateCredentials(token);
       updateUserProfile(profile);
-      navigation.navigate('TabNavigator');
+      navigation.navigate('AppNavigator');
     } catch (error) {
       console.log('Sign in error: ', error);
     }
