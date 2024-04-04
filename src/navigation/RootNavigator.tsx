@@ -38,11 +38,11 @@ const RootNavigator = () => {
 
   return (
     <NavigationContainer theme={AppTheme}>
-      {authState.access_token?.length! > 0 &&
+      {authState.access_token?.length > 0 &&
       authState.access_token?.trim() !== '' ? (
-        <AppNavigator />
-      ) : (
         <AuthNavigator />
+      ) : (
+        <AppNavigator />
       )}
     </NavigationContainer>
   );

@@ -44,7 +44,7 @@ const CategoryList: React.FC<Props> = props => {
           onPress={() => handleCategorySelect(item, index)}
           style={[
             styles.categoryContainer,
-            selectedCategory === index ? styles.selectedCategoryContainer : {},
+            selectedCategory === index && styles.selectedCategoryContainer,
           ]}>
           <Text
             content={item.title}
@@ -56,7 +56,7 @@ const CategoryList: React.FC<Props> = props => {
             }
             style={[
               styles.categoryText,
-              selectedCategory === index ? styles.selectedCategoryText : {},
+              selectedCategory === index && styles.selectedCategoryText,
             ]}
           />
         </Pressable>

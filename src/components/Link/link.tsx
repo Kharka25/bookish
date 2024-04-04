@@ -21,7 +21,7 @@ type Props = {
   titleStyle?: TextStyle;
 } & ViewProps;
 
-const link: React.FC<Props> = props => {
+const Link: React.FC<Props> = props => {
   const {
     active = true,
     containerStyle,
@@ -38,7 +38,7 @@ const link: React.FC<Props> = props => {
       style={[active ? styles.active : styles.inActive, containerStyle]}
       testID={testID}>
       <Text
-        color={titleStyle?.color}
+        color={titleStyle?.color ? titleStyle.color : Colors.PRIMARY}
         fontSize={titleStyle?.fontSize}
         fontWeight={titleStyle?.fontWeight}
         content={title}
@@ -62,4 +62,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default link;
+export default React.memo(Link);

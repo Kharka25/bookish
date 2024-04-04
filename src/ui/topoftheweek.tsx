@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {FlatList, ListRenderItem} from 'react-native';
 
 import {BookCard} from '@components';
@@ -13,8 +13,8 @@ interface Props {
 const TopOfTheWeek: React.FC<Props> = props => {
   const {data} = props;
 
-  const renderTopOfTheWeek: ListRenderItem<BookItemI> = ({item, index}) => {
-    return (
+  const renderTopOfTheWeek: ListRenderItem<BookItemI> = useCallback(
+    ({item, index}) => (
       <BookCard
         key={index + item.id!}
         img={item.img}
@@ -26,8 +26,9 @@ const TopOfTheWeek: React.FC<Props> = props => {
           width: horizontalScale(150),
         }}
       />
-    );
-  };
+    ),
+    [],
+  );
 
   return (
     <FlatList

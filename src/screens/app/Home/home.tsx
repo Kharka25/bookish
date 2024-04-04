@@ -2,11 +2,10 @@
 import React from 'react';
 import {StyleSheet, View, ScrollView} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import {Header, Link, NotificationIcon, SearchIcon, Text} from '@components';
 import {AdsList, AuthorList, TopOfTheWeek, TopVendors} from '@ui';
-import {AppStackParamList, useAppNavigation} from '@models/navigation';
+import {useAppNavigation} from '@models/navigation';
 import {
   MockPromoData,
   MockTopOfTheWeekData,
@@ -17,9 +16,7 @@ import {
 import {fontScale, globalStyles, verticalScale} from '@utils/responsiveDesign';
 import {Colors} from '@constants/colors';
 
-type ScreenProps = NativeStackScreenProps<AppStackParamList, 'Home'>;
-
-const Home: React.FC<ScreenProps> = () => {
+const Home: React.FC = () => {
   const navigation = useAppNavigation();
 
   function rowHeading(

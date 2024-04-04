@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, ViewProps} from 'react-native';
+import {StyleSheet, TextStyle, View, ViewProps} from 'react-native';
 
 import {Text} from '@components';
 
@@ -8,14 +8,23 @@ import {fontScale, horizontalScale} from '@utils/responsiveDesign';
 
 type Props = {
   label?: string;
+  labelStyle?: TextStyle;
 } & ViewProps;
 
 const LineBreak: React.FC<Props> = props => {
-  const {label, style} = props;
+  const {label, labelStyle, style} = props;
   return (
     <View testID="separator" style={[styles.container, style]}>
       <View style={[styles.innerLine, !label && styles.innerLineNoLabel]} />
-      {label && <Text content={label} style={styles.innerText} />}
+      {label && (
+        <Text
+          content={label}
+          color={labelStyle?.color ? labelStyle.color : styles.innerText.color}
+          fontSize={labelStyle?.fontSize}
+          fontWeight={labelStyle?.fontWeight}
+          style={styles.innerText}
+        />
+      )}
       <View style={[styles.innerLine, !label && styles.innerLineNoLabel]} />
     </View>
   );
@@ -29,7 +38,6 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   innerLine: {
-    backgroundColor: 'red',
     borderColor: Colors.GRAY_20,
     borderWidth: StyleSheet.hairlineWidth,
     height: StyleSheet.hairlineWidth,

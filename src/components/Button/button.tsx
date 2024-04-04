@@ -59,7 +59,7 @@ const Button: React.FC<Props> = props => {
           <View style={icon ? styles.labelFlex : {}}>
             {icon && <Image source={icon} style={iconStyle} />}
             <Text
-              color={!light ? Colors.WHITE : Colors.PRIMARY}
+              color={!light ? Colors.WHITE : Colors.BLACK}
               fontSize={labelStyle?.fontSize}
               fontWeight={labelStyle?.fontWeight}
               content={label}

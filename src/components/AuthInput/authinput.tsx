@@ -1,6 +1,5 @@
 import React, {ReactNode} from 'react';
 import {
-  // Text,
   TextInputProps,
   View,
   ViewStyle,
@@ -49,8 +48,15 @@ const AuthInput: React.FC<Props> = props => {
     value,
   } = props;
   return (
-    <View style={[styles.container, containerStyle]} testID="auth-input">
-      {label && <Text content={label} style={styles.label} />}
+    <View style={containerStyle} testID="auth-input">
+      {label && (
+        <Text
+          content={label}
+          fontSize={fontScale(14)}
+          fontWeight="500"
+          style={styles.label}
+        />
+      )}
       <View>
         {leftIcon && <View style={styles.leftIcon}>{leftIcon}</View>}
         <TextInput
@@ -80,10 +86,7 @@ const AuthInput: React.FC<Props> = props => {
 };
 
 const styles = StyleSheet.create({
-  container: {},
   label: {
-    fontSize: fontScale(14),
-    fontWeight: '500',
     lineHeight: fontScale(19),
     marginBottom: verticalScale(6),
   },

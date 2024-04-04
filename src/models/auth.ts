@@ -10,7 +10,7 @@ export interface UserProfileI {
   verified: boolean;
 }
 export interface AuthStateI {
-  access_token?: string | null;
+  access_token: string;
   isAuth: boolean;
   isLoading: boolean;
   loggedIn: boolean;
