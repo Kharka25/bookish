@@ -24,6 +24,7 @@ const Text: React.FC<TxtProps> = props => {
   } = props;
   return (
     <Txt
+      {...props}
       numberOfLines={numberOfLines}
       style={[style, {color: color, fontFamily, fontSize, fontWeight}]}>
       {content}

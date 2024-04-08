@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Pressable, ScrollView, StyleSheet, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/FontAwesome6';
@@ -7,6 +7,7 @@ import {useNavigation} from '@react-navigation/native';
 import {Header, Text, UserProfile} from '@components';
 import {ProfileScreensOptionsData} from '@constants/data';
 import useAuth from '@store/auth/hooks';
+import {logOut} from '@services/auth';
 
 import {Colors} from '@constants/colors';
 import {
@@ -18,11 +19,25 @@ import {
 } from '@utils/responsiveDesign';
 
 const Profile: React.FC = () => {
+  const [loading, setLoading] = useState(false);
   const navigation = useNavigation();
-  const {authState} = useAuth();
+  const {authState, logOutUser} = useAuth();
   const {profile} = authState;
 
   const scrollEnabled = SCREEN_HEIGHT <= 300;
+
+  async function handleLogout() {
+    setLoading(true);
+    try {
+      await logOut();
+      navigation.navigate('SignIn' as never);
+      logOutUser();
+      console.log(authState, 'AUTH_STATE');
+    } catch (error) {
+      throw new Error(error as string);
+    }
+    setLoading(false);
+  }
 
   return (
     <SafeAreaView>
@@ -45,6 +60,7 @@ const Profile: React.FC = () => {
               color={Colors.RED}
               fontSize={fontScale(14)}
               fontWeight="500"
+              onPress={handleLogout}
             />
           </View>
         </View>
