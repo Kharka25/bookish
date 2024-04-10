@@ -40,7 +40,6 @@ export async function request<T>(requestData: RequestConfig<T>) {
         res = await ApiIntegration.delete(requestData.endPoint);
     }
   } catch (error) {
-    // console.log(error?.response?.data, 'HERE!!!');
-    return error;
+    throw new Error(error as string);
   }
 }

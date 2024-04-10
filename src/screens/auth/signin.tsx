@@ -32,7 +32,7 @@ const SignIn: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [signinData, setSigninData] = useState<SigninDataI>({
     email: '',
-    username: '',
+    password: '',
   });
 
   const {updateCredentials, updateIsLoggedIn, updateUserProfile} = useAuth();
@@ -43,6 +43,10 @@ const SignIn: React.FC = () => {
     setSigninData(currentInput => {
       return {...currentInput, [inputIdentifier]: enteredValue};
     });
+  }
+
+  function btnDisabled() {
+    return signinData.email.trim() === '' || signinData.password.trim() === '';
   }
 
   function togglePasswordVisbility() {
@@ -88,7 +92,7 @@ const SignIn: React.FC = () => {
         <Text
           content="Sign in to your account"
           color={Colors.GRAY_50}
-          fontSize={fontScale(16)}
+          fontSize={fontScale(13)}
           style={[authStyles.subHeading, globalStyles.mbMD]}
         />
         <AuthInput
@@ -118,6 +122,7 @@ const SignIn: React.FC = () => {
           titleStyle={styles.linkTxt}
         />
         <Button
+          disable={btnDisabled()}
           label="Login"
           loading={loading}
           onPress={handleSignIn}
@@ -128,7 +133,6 @@ const SignIn: React.FC = () => {
           <Text
             content="Don't have an account?"
             color={Colors.GRAY_50}
-            fontSize={fontScale(15)}
             fontWeight="500"
           />
           <Link title="Sign Up" onPress={signUp} titleStyle={styles.linkTxt} />
@@ -195,7 +199,6 @@ const styles = StyleSheet.create({
     marginBottom: verticalScale(16),
   },
   linkTxt: {
-    fontSize: fontScale(15),
     fontWeight: '500',
     marginLeft: horizontalScale(5),
   },

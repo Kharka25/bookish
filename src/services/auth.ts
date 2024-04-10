@@ -7,8 +7,8 @@ import {
   SigninDataI,
   VerifyEmailDataI,
 } from '@customTypes/request.types';
-import {removeFromAsyncStorage} from '@utils/cache';
-import {Keys} from '@customTypes/keys.types';
+// import {removeFromAsyncStorage} from '@utils/cache';
+// import {Keys} from '@customTypes/keys.types';
 
 async function signUp(authData: SignupDataI) {
   try {
@@ -54,7 +54,7 @@ async function logOut() {
       endPoint: END_POINTS.LOGOUT,
       methodType: RequestMethodEnum.POST,
     });
-    removeFromAsyncStorage(Keys.AUTH_TOKEN);
+    // removeFromAsyncStorage(Keys.AUTH_TOKEN);
     return data;
   } catch (error) {
     console.log('Sign out error: ', error);

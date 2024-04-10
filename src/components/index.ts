@@ -3,7 +3,7 @@ export {default as AuthInput} from './AuthInput/authinput';
 export {default as AuthorProfile} from './AuthorProfile/authorprofile';
 export {default as BackIcon} from './BackIcon/backicon';
 export {default as BookCard} from './BookCard/bookcard';
-export {default as ButtomSheet} from './ButtomSheet/buttomsheet';
+export {default as BottomSheet} from './BottomSheet/bottomsheet';
 export {default as Button} from './Button/button';
 export {default as CategoryList} from './CategoryList/categorylist';
 export {default as ContactModeSelector} from './ContactModeSelector/contactModeSelector';

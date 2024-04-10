@@ -12,6 +12,8 @@ import {
 
 import {Paginator, Text} from '@components';
 import styles from './styles';
+import {fontScale} from '@utils/responsiveDesign';
+import {Colors} from '@constants/colors';
 
 interface CarouseDataI {
   id?: number;
@@ -38,8 +40,20 @@ const Carousel: React.FC<Props> = ({data}) => {
         style={styles.carouselContainer}
         testID="scroll-component">
         <Image source={item.img} style={styles.carouseImg} />
-        <Text content={item.title} style={styles.carouseTitle} />
-        <Text content={item.subtitle} style={styles.carouselSubTitle} />
+        <Text
+          color={Colors.GRAY_100}
+          content={item.title}
+          fontSize={fontScale(26)}
+          fontWeight="700"
+          style={styles.carouseTitle}
+        />
+        <Text
+          content={item.subtitle}
+          color={Colors.GRAY_50}
+          fontSize={fontScale(16)}
+          fontWeight="400"
+          style={styles.carouselSubTitle}
+        />
       </View>
     );
   };

@@ -4,7 +4,8 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/FontAwesome6';
 import {useNavigation} from '@react-navigation/native';
 
-import {Header, Text, UserProfile} from '@components';
+import {BottomSheet, Header, Text, UserProfile} from '@components';
+import {Logout} from '@ui';
 import {ProfileScreensOptionsData} from '@constants/data';
 import useAuth from '@store/auth/hooks';
 import {logOut} from '@services/auth';
@@ -17,6 +18,7 @@ import {
   verticalScale,
   SCREEN_HEIGHT,
 } from '@utils/responsiveDesign';
+import {bottomSheetRef} from '../../../components/BottomSheet/bottomsheet';
 
 const Profile: React.FC = () => {
   const [loading, setLoading] = useState(false);
@@ -30,9 +32,9 @@ const Profile: React.FC = () => {
     setLoading(true);
     try {
       await logOut();
+      bottomSheetRef.current?.hide();
       navigation.navigate('SignIn' as never);
       logOutUser();
-      console.log(authState, 'AUTH_STATE');
     } catch (error) {
       throw new Error(error as string);
     }
@@ -41,6 +43,16 @@ const Profile: React.FC = () => {
 
   return (
     <SafeAreaView>
+      <BottomSheet
+        ref={bottomSheetRef}
+        children={
+          <Logout
+            cancelLogout={() => bottomSheetRef.current?.hide()}
+            loading={loading}
+            handleLogout={handleLogout}
+          />
+        }
+      />
       <Header containerStyle={styles.headerStyle} title="Profile" />
       <ScrollView
         style={styles.container}
@@ -60,7 +72,8 @@ const Profile: React.FC = () => {
               color={Colors.RED}
               fontSize={fontScale(14)}
               fontWeight="500"
-              onPress={handleLogout}
+              onPress={() => bottomSheetRef.current?.show()}
+              suppressHighlighting
             />
           </View>
         </View>
