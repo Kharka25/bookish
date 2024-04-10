@@ -52,6 +52,7 @@ const Profile: React.FC = () => {
             handleLogout={handleLogout}
           />
         }
+        scrollable={false}
       />
       <Header containerStyle={styles.headerStyle} title="Profile" />
       <ScrollView

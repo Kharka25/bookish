@@ -1,3 +1,4 @@
+/* eslint-disable curly */
 import React, {
   ReactNode,
   createRef,
@@ -24,6 +25,7 @@ const {height: SCREEN_HEIGHT} = Dimensions.get('window');
 
 interface Props {
   children?: ReactNode;
+  scrollable?: boolean;
 }
 
 export type BottomSheetRefProps = {
@@ -35,10 +37,10 @@ export type BottomSheetRefProps = {
 export const bottomSheetRef = createRef<BottomSheetRefProps>();
 
 const BottomSheet = forwardRef<BottomSheetRefProps, Props>(
-  ({children}, ref) => {
+  ({children, scrollable = true}, ref) => {
     const [openSheet, setOpenSheet] = useState(false);
     const MAX_SHEET_HEIGHT = -SCREEN_HEIGHT + 100;
-    let sheetHeight = useSharedValue(0);
+    const sheetHeight = useSharedValue(0);
 
     const sheetContext = useSharedValue({y: 0});
 
@@ -55,11 +57,13 @@ const BottomSheet = forwardRef<BottomSheetRefProps, Props>(
         sheetContext.value = {y: sheetHeight.value};
       })
       .onUpdate(event => {
+        if (!scrollable) return;
+
         sheetHeight.value = event.translationY + sheetContext.value.y;
         sheetHeight.value = Math.max(sheetHeight.value, MAX_SHEET_HEIGHT); // sets the max height for the sheet;
       })
       .onEnd(() => {
-        if (sheetHeight.value > -SCREEN_HEIGHT / 3) {
+        if (sheetHeight.value > -SCREEN_HEIGHT / 3 && scrollable) {
           scrollTo(0);
           runOnJS(setOpenSheet)(false);
         } else if (sheetHeight.value < -SCREEN_HEIGHT / 1.5) {
