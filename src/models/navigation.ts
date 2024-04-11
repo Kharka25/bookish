@@ -2,6 +2,7 @@ import type {NavigationProp} from '@react-navigation/native';
 import {useNavigation} from '@react-navigation/native';
 
 import {NewUserResponseI} from '@customTypes/response.types';
+import {AuthorProfileI} from './auth';
 
 export type ResetMode = 'Email' | 'Phone';
 
@@ -22,9 +23,10 @@ interface StatusI {
 }
 
 export type AuthStackParamList = {
+  AppNavigator: undefined;
   Onboarding: undefined;
   ForgotPassword: undefined;
-  NewPassword: undefined;
+  NewPassword: {prevScreen: keyof AppStackParamList};
   ResetPassword: {mode: ResetMode; prevScreen: AuthScreenList};
   SignUp: undefined;
   SignIn: undefined;
@@ -46,16 +48,19 @@ export type AppTabParamList = {
 
 export type AppStackParamList = {
   AppNavigator: undefined;
+  Account: undefined;
   Address: undefined;
+  Author: {authorInfo: AuthorProfileI};
   Authors: undefined;
   Favorites: undefined;
-  HelpCenter: undefined;
   Location: undefined;
   Location2: undefined;
   MyAccount: undefined;
   Notification: undefined;
+  Offers: undefined;
   OrderHistory: undefined;
   Search: undefined;
+  Support: undefined;
   Vendors: undefined;
   TabNavigator: undefined;
 } & AuthStackParamList &

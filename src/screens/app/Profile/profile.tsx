@@ -1,29 +1,161 @@
-import React from 'react';
-import {Text, StyleSheet} from 'react-native';
+import React, {useState} from 'react';
+import {Pressable, ScrollView, StyleSheet, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import Icon from 'react-native-vector-icons/FontAwesome6';
+import {useNavigation} from '@react-navigation/native';
 
-import {useAppNavigation} from '@models/navigation';
+import {BottomSheet, Header, Text, UserProfile} from '@components';
+import {Logout} from '@ui';
+import {ProfileScreensOptionsData} from '@constants/data';
 import useAuth from '@store/auth/hooks';
+import {logOut} from '@services/auth';
 
-interface Props {}
+import {Colors} from '@constants/colors';
+import {
+  fontScale,
+  globalStyles,
+  horizontalScale,
+  verticalScale,
+  SCREEN_HEIGHT,
+} from '@utils/responsiveDesign';
+import {bottomSheetRef} from '../../../components/BottomSheet/bottomsheet';
 
-const Profile: React.FC<Props> = props => {
-  const {} = props;
-  const navigation = useAppNavigation();
-  const {authState} = useAuth();
+const Profile: React.FC = () => {
+  const [loading, setLoading] = useState(false);
+  const navigation = useNavigation();
+  const {authState, logOutUser} = useAuth();
   const {profile} = authState;
 
+  const scrollEnabled = SCREEN_HEIGHT <= 300;
+
+  async function handleLogout() {
+    setLoading(true);
+    try {
+      await logOut();
+      bottomSheetRef.current?.hide();
+      navigation.navigate('SignIn' as never);
+      logOutUser();
+    } catch (error) {
+      throw new Error(error as string);
+    }
+    setLoading(false);
+  }
+
   return (
-    <SafeAreaView style={styles.container}>
-      <Text onPress={() => navigation.navigate('Address')}>
-        {profile?.username}
-      </Text>
+    <SafeAreaView>
+      <BottomSheet
+        ref={bottomSheetRef}
+        children={
+          <Logout
+            cancelLogout={() => bottomSheetRef.current?.hide()}
+            loading={loading}
+            handleLogout={handleLogout}
+          />
+        }
+        scrollable={false}
+      />
+      <Header containerStyle={styles.headerStyle} title="Profile" />
+      <ScrollView
+        style={styles.container}
+        scrollEnabled={scrollEnabled}
+        stickyHeaderIndices={[0]}>
+        <View style={{backgroundColor: Colors.WHITE}}>
+          <View style={styles.profileContainer}>
+            <UserProfile
+              profileImage={
+                profile?.profileImage || require('@assets/images/user.png')
+              }
+              username={profile!.username}
+              email={profile!.email}
+            />
+            <Text
+              content="Logout"
+              color={Colors.RED}
+              fontSize={fontScale(14)}
+              fontWeight="500"
+              onPress={() => bottomSheetRef.current?.show()}
+              suppressHighlighting
+            />
+          </View>
+        </View>
+        <View style={[globalStyles.phSm, globalStyles.mtSm]}>
+          {ProfileScreensOptionsData.map((item, idx) => (
+            <View
+              key={item.id + idx}
+              style={[styles.innerContainer, globalStyles.mbMD]}>
+              <View style={styles.innerContainer}>
+                <View style={styles.iconContainer}>
+                  <Icon
+                    name={item.icon}
+                    size={16}
+                    color={Colors.PRIMARY}
+                    solid
+                  />
+                </View>
+                <Pressable
+                  onPress={() => navigation.navigate(item.screen as never)}>
+                  <Text
+                    content={item.title}
+                    fontWeight="500"
+                    fontSize={fontScale(16)}
+                  />
+                </Pressable>
+              </View>
+              <Pressable
+                onPress={() => navigation.navigate(item.screen as never)}>
+                <Icon
+                  name="chevron-right"
+                  color={Colors.GRAY_40}
+                  light
+                  size={14}
+                />
+              </Pressable>
+            </View>
+          ))}
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    height: '100%',
+  },
+  headerStyle: {
+    alignItems: 'center',
+    backgroundColor: Colors.WHITE,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
+  },
+  iconContainer: {
+    alignItems: 'center',
+    backgroundColor: Colors.WHITE_10,
+    borderRadius: horizontalScale(50),
+    height: 'auto',
+    justifyContent: 'center',
+    marginRight: horizontalScale(14),
+    padding: horizontalScale(10),
+  },
+  innerContainer: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  profileContainer: {
+    alignItems: 'center',
+    backgroundColor: Colors.WHITE,
+    borderBottomColor: Colors.GRAY_20,
+    borderTopColor: Colors.GRAY_20,
+    borderBottomWidth: 1,
+    borderTopWidth: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: verticalScale(24),
+    paddingHorizontal: horizontalScale(20),
+    paddingVertical: verticalScale(16),
+  },
 });
 
 export default Profile;

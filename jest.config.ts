@@ -26,7 +26,7 @@ const config: Config.InitialOptions = {
     'jest-watch-typeahead/testname',
   ],
   testEnvironment: 'node',
-  testRegex: '/test/.*spec\\.(jsx?|tsx?)$',
+  testRegex: '/__test__/.*spec\\.(jsx?|tsx?)$',
   transform: {
     '^.+\\.jsx$': 'babel-jest',
     '^.+\\.tsx?$': [

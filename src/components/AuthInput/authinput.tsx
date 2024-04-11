@@ -1,6 +1,5 @@
 import React, {ReactNode} from 'react';
 import {
-  Text,
   TextInputProps,
   View,
   ViewStyle,
@@ -9,23 +8,25 @@ import {
   StyleProp,
 } from 'react-native';
 
-import {TextInput} from '@components';
+import {Text, TextInput} from '@components';
 import {fontScale, verticalScale} from '@utils/responsiveDesign';
-import {Colors} from '@constants/colors';
 
 interface Props extends TextInputProps {
   autoCapitalize?: TextInputProps['autoCapitalize'];
   autoCorrect?: boolean;
   autoFocus?: boolean;
   containerStyle?: StyleProp<ViewStyle>;
+  defaultValue?: TextInputProps['defaultValue'];
   keyboardType?: TextInputProps['keyboardType'];
   label?: string;
   onChangeText?: TextInputProps['onChangeText'];
   onRightIconPress?: () => void;
   placeholder?: string;
+  placeholderTextColor?: TextInputProps['placeholderTextColor'];
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
   secureTextEntry?: TextInputProps['secureTextEntry'];
+  value?: TextInputProps['value'];
 }
 
 const AuthInput: React.FC<Props> = props => {
@@ -34,18 +35,28 @@ const AuthInput: React.FC<Props> = props => {
     autoCorrect,
     autoFocus,
     containerStyle,
+    defaultValue,
     keyboardType,
     label,
     onChangeText,
     onRightIconPress,
     placeholder,
+    placeholderTextColor,
     leftIcon,
     rightIcon,
     secureTextEntry,
+    value,
   } = props;
   return (
-    <View style={[styles.container, containerStyle]} testID="auth-input">
-      <Text style={styles.label}>{label}</Text>
+    <View style={containerStyle} testID="auth-input">
+      {label && (
+        <Text
+          content={label}
+          fontSize={fontScale(14)}
+          fontWeight="500"
+          style={styles.label}
+        />
+      )}
       <View>
         {leftIcon && <View style={styles.leftIcon}>{leftIcon}</View>}
         <TextInput
@@ -53,10 +64,13 @@ const AuthInput: React.FC<Props> = props => {
           autoCapitalize={autoCapitalize}
           autoCorrect={autoCorrect}
           autoFocus={autoFocus}
+          defaultValue={defaultValue}
           keyboardType={keyboardType}
           onChangeText={onChangeText}
           placeholder={placeholder}
+          placeholderTextColor={placeholderTextColor}
           secureTextEntry={secureTextEntry}
+          value={value}
         />
         {rightIcon ? (
           <Pressable
@@ -72,11 +86,7 @@ const AuthInput: React.FC<Props> = props => {
 };
 
 const styles = StyleSheet.create({
-  container: {},
   label: {
-    color: Colors.BLACK,
-    fontSize: fontScale(14),
-    fontWeight: '500',
     lineHeight: fontScale(19),
     marginBottom: verticalScale(6),
   },

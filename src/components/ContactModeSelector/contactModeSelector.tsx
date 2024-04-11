@@ -1,12 +1,13 @@
 import React, {useState, Dispatch, SetStateAction} from 'react';
 import {
-  Text,
-  View,
-  StyleSheet,
+  Image,
   ImageSourcePropType,
   Pressable,
-  Image,
+  StyleSheet,
+  View,
 } from 'react-native';
+
+import {Text} from '@components';
 
 import {
   fontScale,
@@ -65,8 +66,8 @@ const ContactModeSelector = <T extends any>({data, onSelect}: Props<T>) => {
                   style={styles.icon}
                 />
               </View>
-              <Text style={styles.modeText}>{item.title}</Text>
-              <Text style={styles.modeSubtext}>{item.subText}</Text>
+              <Text content={item.title} style={styles.modeText} />
+              <Text content={item.subText} style={styles.modeSubtext} />
             </View>
           </Pressable>
         );
@@ -109,13 +110,10 @@ const styles = StyleSheet.create({
   },
   modeSubtext: {
     color: Colors.GRAY_50,
-    fontSize: fontScale(14),
     fontWeight: '500',
     lineHeight: fontScale(19),
   },
   modeText: {
-    color: Colors.BLACK,
-    fontSize: fontScale(14),
     fontWeight: '600',
     lineHeight: fontScale(19),
   },

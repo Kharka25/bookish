@@ -2,7 +2,6 @@ import React, {useEffect, useRef, useState} from 'react';
 import {
   Dimensions,
   FlatList,
-  Text,
   View,
   Image,
   ImageSourcePropType,
@@ -11,8 +10,10 @@ import {
   NativeScrollEvent,
 } from 'react-native';
 
-import {Paginator} from '@components';
+import {Paginator, Text} from '@components';
 import styles from './styles';
+import {fontScale} from '@utils/responsiveDesign';
+import {Colors} from '@constants/colors';
 
 interface CarouseDataI {
   id?: number;
@@ -39,8 +40,20 @@ const Carousel: React.FC<Props> = ({data}) => {
         style={styles.carouselContainer}
         testID="scroll-component">
         <Image source={item.img} style={styles.carouseImg} />
-        <Text style={styles.carouseTitle}>{item.title}</Text>
-        <Text style={styles.carouselSubTitle}>{item.subtitle}</Text>
+        <Text
+          color={Colors.GRAY_100}
+          content={item.title}
+          fontSize={fontScale(26)}
+          fontWeight="700"
+          style={styles.carouseTitle}
+        />
+        <Text
+          content={item.subtitle}
+          color={Colors.GRAY_50}
+          fontSize={fontScale(16)}
+          fontWeight="400"
+          style={styles.carouselSubTitle}
+        />
       </View>
     );
   };
@@ -119,7 +132,7 @@ const Carousel: React.FC<Props> = ({data}) => {
         data={data}
         getItemLayout={getItemLayout}
         horizontal
-        keyExtractor={(item: any) => item.id}
+        keyExtractor={(item, index) => String(item.id) + index}
         onScroll={handleScroll}
         pagingEnabled
         ref={carouselRef}

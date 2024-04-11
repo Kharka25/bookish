@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {SafeAreaView, Text, StyleSheet, View} from 'react-native';
+import {SafeAreaView, StyleSheet, View} from 'react-native';
 
 import {
   AuthInput,
@@ -8,6 +8,7 @@ import {
   LineBreak,
   Link,
   PasswordVisibilityIcon,
+  Text,
 } from '@components';
 import {
   fontScale,
@@ -23,15 +24,15 @@ import {saveToAsyncStorage} from '@utils/cache';
 import {Keys} from '@customTypes/keys.types';
 import {signIn} from '@services/auth';
 
-import authStyles from './authStyles';
 import {Colors} from '@constants/colors';
+import authStyles from './authStyles';
 
 const SignIn: React.FC = () => {
   const [secureTextEntry, setSecureTextEntry] = useState(true);
   const [loading, setLoading] = useState(false);
   const [signinData, setSigninData] = useState<SigninDataI>({
     email: '',
-    username: '',
+    password: '',
   });
 
   const {updateCredentials, updateIsLoggedIn, updateUserProfile} = useAuth();
@@ -42,6 +43,10 @@ const SignIn: React.FC = () => {
     setSigninData(currentInput => {
       return {...currentInput, [inputIdentifier]: enteredValue};
     });
+  }
+
+  function btnDisabled() {
+    return signinData.email.trim() === '' || signinData.password.trim() === '';
   }
 
   function togglePasswordVisbility() {
@@ -64,7 +69,7 @@ const SignIn: React.FC = () => {
       updateIsLoggedIn(true);
       updateCredentials(token);
       updateUserProfile(profile);
-      navigation.navigate('AppNavigator');
+      navigation.navigate('TabNavigator');
     } catch (error) {
       console.log('Sign in error: ', error);
     }
@@ -73,15 +78,23 @@ const SignIn: React.FC = () => {
 
   return (
     <SafeAreaView testID="signin-screen">
-      <BackIcon />
-      <View style={[globalStyles.screenContainer, styles.container]}>
-        <View style={styles.headingContainer}>
-          <Text style={authStyles.heading}>Welcome Back</Text>
-          <Text style={styles.icon}>👋</Text>
+      <View style={globalStyles.phSm}>
+        <BackIcon />
+        <View style={[styles.headingContainer, globalStyles.mtSm]}>
+          <Text
+            content="Welcome Back"
+            fontSize={fontScale(24)}
+            fontWeight="600"
+            style={authStyles.heading}
+          />
+          <Text content="👋" fontSize={fontScale(24)} style={styles.icon} />
         </View>
-        <Text style={[authStyles.subHeading, globalStyles.mbMD]}>
-          Sign in to your account
-        </Text>
+        <Text
+          content="Sign in to your account"
+          color={Colors.GRAY_50}
+          fontSize={fontScale(13)}
+          style={[authStyles.subHeading, globalStyles.mbMD]}
+        />
         <AuthInput
           autoCorrect={false}
           autoComplete="off"
@@ -106,32 +119,41 @@ const SignIn: React.FC = () => {
           containerStyle={globalStyles.mbMD}
           onPress={forgotPassword}
           title="Forgot Password?"
+          titleStyle={styles.linkTxt}
         />
         <Button
+          disable={btnDisabled()}
           label="Login"
           loading={loading}
           onPress={handleSignIn}
           style={[styles.btn, globalStyles.mtSm]}
+          labelStyle={styles.btlLabel}
         />
-        <Text style={[authStyles.linkContainer, globalStyles.mbMD]}>
-          Don't have an account?
-          <Link title="Sign Up" onPress={signUp} style={styles.signInTxt} />
-        </Text>
+        <View style={authStyles.linkContainer}>
+          <Text
+            content="Don't have an account?"
+            color={Colors.GRAY_50}
+            fontWeight="500"
+          />
+          <Link title="Sign Up" onPress={signUp} titleStyle={styles.linkTxt} />
+        </View>
       </View>
-      <LineBreak label="Or with" style={globalStyles.mbMD} />
-      <View style={[globalStyles.screenContainer, styles.container]}>
+      <LineBreak label="Or with" style={[globalStyles.mbMD]} />
+      <View style={[globalStyles.phSm, styles.container]}>
         <Button
           icon={require('@assets/icons/google.png')}
           iconStyle={styles.btnIcon}
           label="Sign in with Google"
           labelStyle={styles.externalBtnLabel}
-          style={[styles.btn, styles.externalBtn]}
+          light
+          style={[styles.btn, globalStyles.mbSm, styles.externalBtn]}
         />
         <Button
           icon={require('@assets/icons/apple.png')}
           iconStyle={styles.btnIcon}
           label="Sign in with Apple"
           labelStyle={styles.externalBtnLabel}
+          light
           style={[styles.btn, globalStyles.mtSm, styles.externalBtn]}
         />
       </View>
@@ -152,32 +174,32 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     width: horizontalScale(18),
   },
+  btlLabel: {
+    fontSize: fontScale(15),
+    fontWeight: '600',
+  },
   externalBtn: {
     backgroundColor: 'transparent',
     borderColor: Colors.GRAY_20,
     borderWidth: 1,
   },
   externalBtnLabel: {
-    color: Colors.BLACK,
     fontSize: fontScale(14),
     fontWeight: '400',
-  },
-  footerLink: {
-    alignSelf: 'center',
-    marginTop: verticalScale(4),
   },
   headingContainer: {
     alignItems: 'center',
     flexDirection: 'row',
   },
   icon: {
-    bottom: verticalScale(1),
-    fontSize: fontScale(24),
+    bottom: verticalScale(3),
+    marginLeft: horizontalScale(5),
   },
   inputContainer: {
     marginBottom: verticalScale(16),
   },
-  signInTxt: {
+  linkTxt: {
+    fontWeight: '500',
     marginLeft: horizontalScale(5),
   },
 });

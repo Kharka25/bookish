@@ -4,6 +4,7 @@ import {AuthStateI, UserProfileI} from '@models/auth';
 import {RootState} from '../store';
 
 const initialState: AuthStateI = {
+  access_token: '',
   isAuth: false,
   isLoading: true,
   loggedIn: false,
@@ -18,7 +19,7 @@ const authSlice = createSlice({
       authState.isAuth = false;
       authState.profile = null;
       authState.loggedIn = false;
-      authState.access_token = null;
+      authState.access_token = '';
     },
     setCredentials(authState, {payload}: PayloadAction<string>) {
       authState.access_token = payload;

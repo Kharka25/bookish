@@ -4,8 +4,29 @@ import CategoryIcon from 'react-native-vector-icons/FontAwesome6';
 import HomeIcon from 'react-native-vector-icons/Octicons';
 import ProfileIcon from 'react-native-vector-icons/FontAwesome6';
 
-import {Address, Author, Cart, Category, Home, Profile, Status} from '@screens';
+import {
+  Account,
+  Address,
+  Author,
+  Authors,
+  Cart,
+  Category,
+  Favorites,
+  HelpCenter,
+  Home,
+  Location,
+  NewPassword,
+  Notification,
+  Offers,
+  OrderHistory,
+  Profile,
+  Search,
+  SignIn,
+  Status,
+  Vendors,
+} from '@screens';
 import GenerateNavigator, {ScreenType} from '@config/generateNavigation';
+
 import {Colors} from '@constants/colors';
 import {fontScale} from '@utils/responsiveDesign';
 
@@ -70,12 +91,60 @@ const stacks: ScreenType[] = [
     component: Address,
   },
   {
-    name: 'Authors',
+    name: 'Account',
+    component: Account,
+  },
+  {
+    name: 'Author',
     component: Author,
+  },
+  {
+    name: 'Authors',
+    component: Authors,
+  },
+  {
+    name: 'Favorites',
+    component: Favorites,
+  },
+  {
+    name: 'Location',
+    component: Location,
+  },
+  {
+    name: 'NewPassword',
+    component: NewPassword,
+  },
+  {
+    name: 'Notification',
+    component: Notification,
+  },
+  {
+    name: 'Offers',
+    component: Offers,
+  },
+  {
+    name: 'OrderHistory',
+    component: OrderHistory,
+  },
+  {
+    name: 'Search',
+    component: Search,
+  },
+  {
+    name: 'SignIn',
+    component: SignIn,
   },
   {
     name: 'Status',
     component: Status,
+  },
+  {
+    name: 'Support',
+    component: HelpCenter,
+  },
+  {
+    name: 'Vendors',
+    component: Vendors,
   },
 ];
 

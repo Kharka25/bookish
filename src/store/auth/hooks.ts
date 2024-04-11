@@ -32,7 +32,7 @@ const useAuth = () => {
     dispatch(setIsLoggedIn(value));
   }
 
-  function updateUserProfile(value: UserProfileI) {
+  function updateUserProfile(value: UserProfileI | null) {
     dispatch(setUserProfile(value));
   }
 

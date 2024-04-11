@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {SafeAreaView, Text, StyleSheet, View} from 'react-native';
+import {SafeAreaView, StyleSheet, View} from 'react-native';
 
 import {
   AuthInput,
@@ -8,8 +8,10 @@ import {
   Link,
   PasswordConditionCheck,
   PasswordVisibilityIcon,
+  Text,
 } from '@components';
 import {
+  fontScale,
   globalStyles,
   horizontalScale,
   verticalScale,
@@ -25,6 +27,7 @@ import {SignupDataI} from '@customTypes/request.types';
 import {signUp} from '@services/auth';
 
 import authStyles from './authStyles';
+import {Colors} from '@constants/colors';
 
 const SignUp: React.FC = () => {
   const [secureTextEntry, setSecureTextEntry] = useState(true);
@@ -94,13 +97,23 @@ const SignUp: React.FC = () => {
   }
 
   return (
-    <SafeAreaView style={[styles.container]} testID="signup-screen">
-      <BackIcon />
-      <View style={[globalStyles.screenContainer, styles.container]}>
-        <Text style={authStyles.heading}>Sign Up</Text>
-        <Text style={[authStyles.subHeading, globalStyles.mbMD]}>
-          Create an account and start your Bookish adventure!
-        </Text>
+    <SafeAreaView testID="signup-screen">
+      <View style={[globalStyles.phSm]}>
+        <BackIcon />
+        <View style={globalStyles.mtSm}>
+          <Text
+            content="Sign Up"
+            fontSize={fontScale(24)}
+            fontWeight="600"
+            style={authStyles.heading}
+          />
+          <Text
+            content="Create an account and start your Bookish adventure!"
+            color={Colors.GRAY_50}
+            fontSize={fontScale(13)}
+            style={[authStyles.subHeading, globalStyles.mbMD]}
+          />
+        </View>
         <AuthInput
           autoCorrect={false}
           autoComplete="off"
@@ -144,18 +157,28 @@ const SignUp: React.FC = () => {
           style={styles.btn}
           loading={loading}
         />
-        <Text style={[authStyles.linkContainer, globalStyles.mbMD]}>
-          Have an account?
-          <Link title="Sign In" onPress={signIn} style={styles.signInTxt} />
-        </Text>
-        <Text style={[authStyles.linkContainer, globalStyles.mtLg]}>
-          By Clicking Register, you agree to our
-        </Text>
-        <Link
-          style={styles.footerLink}
-          title="Terms and Data Policy."
-          testID="terms-and-data-link"
-        />
+        <View style={[globalStyles.mbMD, authStyles.linkContainer]}>
+          <Text
+            content="Have an account?"
+            color={Colors.GRAY_50}
+            fontWeight="500"
+          />
+          <Link title="Sign In" onPress={signIn} titleStyle={styles.linkTxt} />
+        </View>
+        <View style={[authStyles.linkContainer, globalStyles.mtLg]}>
+          <Text
+            content="By Clicking Register, you agree to our"
+            color={Colors.GRAY_50}
+            fontSize={fontScale(12)}
+            fontWeight="500"
+          />
+          <Link
+            style={styles.footerLink}
+            title="Terms and Data Policy"
+            titleStyle={styles.linkTxt}
+            testID="terms-and-data-link"
+          />
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -174,6 +197,11 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     marginBottom: verticalScale(16),
+  },
+  linkTxt: {
+    fontSize: fontScale(14),
+    fontWeight: '500',
+    marginLeft: horizontalScale(5),
   },
   signInTxt: {
     marginLeft: horizontalScale(5),

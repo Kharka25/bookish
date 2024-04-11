@@ -10,9 +10,6 @@ import {Colors} from '@constants/colors';
 const {width} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
-  // container: {
-  //   marginBottom: 20,
-  // },
   carouselContainer: {
     alignSelf: 'center',
     marginBottom: verticalScale(10),
@@ -45,22 +42,14 @@ const styles = StyleSheet.create({
   },
   carouselSubTitle: {
     alignSelf: 'center',
-    color: Colors.GRAY_50,
-    fontFamily: 'Poppins',
-    fontSize: fontScale(16),
-    fontWeight: '400',
     letterSpacing: 0.2,
-    lineHeight: fontScale(24),
+    lineHeight: fontScale(22),
     marginTop: verticalScale(12),
     maxWidth: verticalScale(320),
     textAlign: 'center',
   },
   carouseTitle: {
     alignSelf: 'center',
-    color: Colors.GRAY_100,
-    fontFamily: 'Poppins',
-    fontSize: fontScale(26),
-    fontWeight: '700',
     maxWidth: horizontalScale(310),
     textAlign: 'center',
   },
