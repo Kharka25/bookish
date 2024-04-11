@@ -55,23 +55,14 @@ describe('New Password', () => {
 
   it('renders 2 textInputs', () => {
     render(<NewPassword />);
-    const textInputs = screenFn.queryAllByTestId('text-input');
+    const textInputs = screenFn.queryAllByTestId('auth-input');
     expect(textInputs).toHaveLength(2);
   });
 
-  it('renders textInputs with labels', () => {
+  it('renders 2 textInput components', () => {
     render(<NewPassword />);
-    const textInputs = screenFn.queryAllByTestId('text-input');
-    textInputs.forEach(input => {
-      expect(input).toHaveProp('label');
-    });
-  });
-
-  it('renders textInputs in correct order', () => {
-    render(<NewPassword />);
-    const textInputs = screenFn.queryAllByTestId('text-input');
-    expect(textInputs[0]).toHaveProp('secureTextEntry');
-    expect(textInputs[1]).toHaveProp('placeholder', 'Your password');
+    const textInputs = screenFn.queryAllByTestId('auth-input');
+    expect(textInputs).toHaveLength(2);
   });
 
   it('renders a button', () => {

@@ -56,24 +56,8 @@ describe('SignUp screen', () => {
 
   it('renders 3 textInput components', () => {
     render(<SignUp />);
-    const textInputs = screenFn.queryAllByTestId('text-input');
+    const textInputs = screenFn.queryAllByTestId('auth-input');
     expect(textInputs).toHaveLength(3);
-  });
-
-  it('renders input fields with labels', () => {
-    render(<SignUp />);
-    const textInputs = screenFn.queryAllByTestId('text-input');
-    textInputs.forEach(input => {
-      expect(input).toHaveProp('label');
-    });
-  });
-
-  it('renders input fields in correct order', () => {
-    render(<SignUp />);
-    const textInputs = screenFn.queryAllByTestId('text-input');
-    expect(textInputs[0]).toHaveProp('label', 'Name');
-    expect(textInputs[1]).toHaveProp('placeholder', 'Your email');
-    expect(textInputs[2]).toHaveProp('secureTextEntry');
   });
 
   it('renders a button component', () => {

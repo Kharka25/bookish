@@ -1,17 +1,14 @@
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
+
 import {
-  // fireEvent,
-  render,
+  renderWithProviders,
   screen as screenFn,
   userEvent,
   waitFor,
-} from '@testing-library/react-native';
-
+} from '@utils/test-utils';
 import {SignIn} from '@screens';
 import {fontScale} from '@utils/responsiveDesign';
-
-// jest.mock('../signup/signup', () => jest.fn());
 
 jest.mock('@react-navigation/native', () => {
   return {
@@ -22,45 +19,45 @@ jest.mock('@react-navigation/native', () => {
 
 describe('Sign In screen', () => {
   it('renders correctly', () => {
-    render(<SignIn />);
+    renderWithProviders(<SignIn />);
     screenFn.getByTestId('signin-screen');
   });
 
   it('displays Welcome text', () => {
-    render(<SignIn />);
+    renderWithProviders(<SignIn />);
     screenFn.getByText('Welcome Back');
   });
 
   it('renders Welcome text with correct style', () => {
-    render(<SignIn />);
+    renderWithProviders(<SignIn />);
     const signUpTxt = screenFn.getByText('Welcome Back');
     expect(signUpTxt).toHaveStyle({fontSize: fontScale(24)});
   });
 
   it('displays Sign in to your account', async () => {
-    render(<SignIn />);
+    renderWithProviders(<SignIn />);
     screenFn.getByText('Sign in to your account');
   });
 
   it('displays subheading text with correct style', () => {
-    render(<SignIn />);
+    renderWithProviders(<SignIn />);
     const subHeadingTxt = screenFn.getByText('Sign in to your account');
     expect(subHeadingTxt).toHaveStyle({fontWeight: '400'});
   });
 
   it('renders goBack btn', () => {
-    render(<SignIn />);
+    renderWithProviders(<SignIn />);
     screenFn.getByTestId('goBack-btn');
   });
 
   it('renders 2 textInput components', () => {
-    render(<SignIn />);
+    renderWithProviders(<SignIn />);
     const textInputs = screenFn.queryAllByTestId('auth-input');
     expect(textInputs).toHaveLength(2);
   });
 
   it('renders "Forgot Password?" link', () => {
-    render(<SignIn />);
+    renderWithProviders(<SignIn />);
     const links = screenFn.queryAllByTestId('link');
     expect(links[0]).toHaveTextContent('Forgot Password?', {exact: false});
   });
@@ -69,7 +66,7 @@ describe('Sign In screen', () => {
     const mockNavigate = jest.fn();
     (useNavigation as jest.Mock).mockReturnValueOnce({navigate: mockNavigate});
 
-    render(<SignIn />);
+    renderWithProviders(<SignIn />);
     const links = screenFn.queryAllByTestId('link');
     const forgotPasswordLink = links[0];
     userEvent.press(forgotPasswordLink);
@@ -80,17 +77,17 @@ describe('Sign In screen', () => {
   });
 
   it('renders a button component', () => {
-    render(<SignIn />);
+    renderWithProviders(<SignIn />);
     expect(screenFn.queryAllByTestId('btn')).toBeDefined();
   });
 
   it('renders Login button component', () => {
-    render(<SignIn />);
+    renderWithProviders(<SignIn />);
     screenFn.getByText('Login');
   });
 
   it('displays sign up text as link', () => {
-    render(<SignIn />);
+    renderWithProviders(<SignIn />);
     const links = screenFn.queryAllByTestId('link');
     expect(links[1]).toHaveTextContent('Sign Up', {exact: false});
   });
@@ -99,7 +96,7 @@ describe('Sign In screen', () => {
     const mockNavigate = jest.fn();
     (useNavigation as jest.Mock).mockReturnValueOnce({navigate: mockNavigate});
 
-    render(<SignIn />);
+    renderWithProviders(<SignIn />);
 
     const links = screenFn.queryAllByTestId('link');
     const signUpLink = links[1];
@@ -111,17 +108,17 @@ describe('Sign In screen', () => {
   });
 
   it('display lineBreak component', () => {
-    render(<SignIn />);
+    renderWithProviders(<SignIn />);
     screenFn.getByTestId('separator');
   });
 
   it('displays Google signin button', () => {
-    render(<SignIn />);
+    renderWithProviders(<SignIn />);
     screenFn.getByText('Sign in with Google');
   });
 
   it('displays Apple signin button', () => {
-    render(<SignIn />);
+    renderWithProviders(<SignIn />);
     screenFn.getByText('Sign in with Apple');
   });
 });

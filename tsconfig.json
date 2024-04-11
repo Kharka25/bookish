@@ -4,10 +4,8 @@
     "target": "esnext",
     "module": "commonJS",
     "types": ["react-native", "@testing-library/jest-native", "jest"],
-    "lib": [
-      "es2019"
-    ],
-    "jsx": "react-jsx",
+    "lib": ["es2019"],
+    "jsx": "react-native",
     "allowJs": true,
     "noEmit": true,
     "isolatedModules": true,
@@ -24,13 +22,14 @@
       "@components": ["src/components"],
       "@constants/*": ["src/constants/*"],
       "@config/*": ["src/config/*"],
+      "@customTypes/*": ["src/customTypes/*"],
       "@models/*": ["src/models/*"],
       "@navigation": ["src/navigation"],
       "@screens": ["src/screens"],
-      "@utils/*": ["src/utils/*"],
+      "@services/*": ["src/services/*"],
+      "@store/*": ["src/store/*"],
       "@ui": ["src/ui"],
-    },
-    "rootDir": ".",
-  },
-  // "include": ["./jest-setup.ts"]
+      "@utils/*": ["src/utils/*"]
+    }
+  }
 }

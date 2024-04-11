@@ -1,5 +1,9 @@
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
+iOS: [![Build status](https://build.appcenter.ms/v0.1/apps/a4dd1794-c555-441a-96b3-af68881ac8f1/branches/dev/badge)](https://appcenter.ms)
+
+Android: [![Build status](https://build.appcenter.ms/v0.1/apps/22d5a089-8208-41bc-af1a-8571e137b189/branches/dev/badge)](https://appcenter.ms)
+
 # Getting Started
 
 > **Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.

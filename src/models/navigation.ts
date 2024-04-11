@@ -1,11 +1,8 @@
 import type {NavigationProp} from '@react-navigation/native';
 import {useNavigation} from '@react-navigation/native';
 
-// declare global {
-//   namespace ReactNavigation {
-//     interface RootParamList extends
-//   }
-// }
+import {NewUserResponseI} from '@customTypes/response.types';
+import {AuthorProfileI} from './auth';
 
 export type ResetMode = 'Email' | 'Phone';
 
@@ -16,18 +13,59 @@ type AuthScreenList =
   | 'Verification'
   | 'SignIn';
 
+type AppScreenList = 'Home' | 'Status' | 'Cart' | 'Category' | 'Profile';
+
+interface StatusI {
+  btnText: string;
+  message: string;
+  route: AuthScreenList | AppScreenList;
+  title: string;
+}
+
 export type AuthStackParamList = {
+  AppNavigator: undefined;
   Onboarding: undefined;
   ForgotPassword: undefined;
-  NewPassword: undefined;
+  NewPassword: {prevScreen: keyof AppStackParamList};
   ResetPassword: {mode: ResetMode; prevScreen: AuthScreenList};
   SignUp: undefined;
   SignIn: undefined;
-  Status: undefined;
-  Verification: {mode: ResetMode; prevScreen: AuthScreenList};
+  Status: {statusProps: StatusI};
+  Verification: {
+    mode: ResetMode;
+    prevScreen: AuthScreenList;
+    userInfo?: NewUserResponseI;
+  };
 };
 
-export function useAuthNavigation() {
-  const authNav = useNavigation<NavigationProp<AuthStackParamList>>();
-  return authNav;
+export type AppTabParamList = {
+  Cart: undefined;
+  Category: undefined;
+  Home: undefined;
+  Profile: undefined;
+  TabNavigator: undefined;
+};
+
+export type AppStackParamList = {
+  AppNavigator: undefined;
+  Account: undefined;
+  Address: undefined;
+  Author: {authorInfo: AuthorProfileI};
+  Authors: undefined;
+  Favorites: undefined;
+  Location: undefined;
+  Location2: undefined;
+  MyAccount: undefined;
+  Notification: undefined;
+  Offers: undefined;
+  OrderHistory: undefined;
+  Search: undefined;
+  Support: undefined;
+  Vendors: undefined;
+  TabNavigator: undefined;
+} & AuthStackParamList &
+  AppTabParamList;
+
+export function useAppNavigation() {
+  return useNavigation<NavigationProp<AppStackParamList>>();
 }
