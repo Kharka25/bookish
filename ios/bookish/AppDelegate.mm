@@ -1,4 +1,5 @@
 #import "AppDelegate.h"
+#import "Firebase.h"
 
 #import <React/RCTBundleURLProvider.h>
 
@@ -20,6 +21,7 @@
   [AppCenterReactNative register];
   [AppCenterReactNativeCrashes registerWithAutomaticProcessing];
   [AppCenterReactNativeAnalytics registerWithInitiallyEnabled:true];
+  [FIRApp configure];
 
   return [super application:application didFinishLaunchingWithOptions:launchOptions];
 }
