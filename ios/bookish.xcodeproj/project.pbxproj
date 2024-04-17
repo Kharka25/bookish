@@ -28,7 +28,7 @@
 		886D656C41BE4652B33B6BA7 /* Poppins-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F09B44F11CDD4129A672D309 /* Poppins-BlackItalic.ttf */; };
 		C14F0D856A7B4D89B5BAF4A3 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 087778CFA9024771AE178BAF /* Poppins-Regular.ttf */; };
 		C21759422B51B8FB00B08224 /* AppCenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = C21759412B51B8FB00B08224 /* AppCenter-Config.plist */; };
-		C2B3852A2BC9243A00CAD62D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C2B385292BC9243A00CAD62D /* GoogleService-Info.plist */; };
+		C23E82E02BCF43F6001F223E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C23E82DF2BCF43F6001F223E /* GoogleService-Info.plist */; };
 		DA163CDF4EF04A81B3184962 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 64AEA4163F344A1FA5491D8E /* Poppins-SemiBold.ttf */; };
 		DCF0314B3E7647C6B781F4FE /* Poppins-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6AC8A508139A45CF83726E0C /* Poppins-ExtraBoldItalic.ttf */; };
 		E8FD0CE4513C4CDD82A8D2EA /* Poppins-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E1DF0C45CDA443BABA2EB8A2 /* Poppins-LightItalic.ttf */; };
@@ -80,8 +80,8 @@
 		B3D47F7647F64383A17C108D /* Poppins-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Thin.ttf"; path = "../src/assets/fonts/Poppins-Thin.ttf"; sourceTree = "<group>"; };
 		B44C436319314892A33BA32F /* Poppins-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-SemiBoldItalic.ttf"; path = "../src/assets/fonts/Poppins-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		C21759412B51B8FB00B08224 /* AppCenter-Config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AppCenter-Config.plist"; sourceTree = "<group>"; };
+		C23E82DF2BCF43F6001F223E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C2B385282BC85D9300CAD62D /* bookish.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = bookish.entitlements; path = bookish/bookish.entitlements; sourceTree = "<group>"; };
-		C2B385292BC9243A00CAD62D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E1DF0C45CDA443BABA2EB8A2 /* Poppins-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-LightItalic.ttf"; path = "../src/assets/fonts/Poppins-LightItalic.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F09B44F11CDD4129A672D309 /* Poppins-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-BlackItalic.ttf"; path = "../src/assets/fonts/Poppins-BlackItalic.ttf"; sourceTree = "<group>"; };
@@ -158,7 +158,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				C2B385292BC9243A00CAD62D /* GoogleService-Info.plist */,
+				C23E82DF2BCF43F6001F223E /* GoogleService-Info.plist */,
 				C21759412B51B8FB00B08224 /* AppCenter-Config.plist */,
 				13B07FAE1A68108700A75B9A /* bookish */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -331,7 +331,7 @@
 				C14F0D856A7B4D89B5BAF4A3 /* Poppins-Regular.ttf in Resources */,
 				DA163CDF4EF04A81B3184962 /* Poppins-SemiBold.ttf in Resources */,
 				3C838B92C02C4CAD8FB684ED /* Poppins-SemiBoldItalic.ttf in Resources */,
-				C2B3852A2BC9243A00CAD62D /* GoogleService-Info.plist in Resources */,
+				C23E82E02BCF43F6001F223E /* GoogleService-Info.plist in Resources */,
 				145BF560D1ED4B4EABDBAA94 /* Poppins-Thin.ttf in Resources */,
 				0AAFD238F0404601983BD5A4 /* Poppins-ThinItalic.ttf in Resources */,
 			);

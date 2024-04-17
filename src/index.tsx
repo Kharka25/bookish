@@ -1,6 +1,7 @@
 /* eslint-disable curly */
 /* eslint-disable react-native/no-inline-styles */
 import React, {useEffect} from 'react';
+import {PermissionsAndroid, Platform} from 'react-native';
 import {Provider} from 'react-redux';
 import {persistStore} from 'redux-persist';
 import {PersistGate} from 'redux-persist/integration/react';
@@ -19,10 +20,23 @@ const persistor = persistStore(store);
 
 const App: React.FC = () => {
   (async function requestUserPermission() {
-    const authStatus = await messaging().requestPermission();
+    let authStatus;
+
+    const isIOS = Platform.OS === 'ios';
+
+    if (isIOS) {
+      return (authStatus = await messaging().requestPermission());
+    }
+
+    if (!isIOS) {
+      return (authStatus = PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS,
+      ));
+    }
     const enabled =
       authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
-      authStatus === messaging.AuthorizationStatus.PROVISIONAL;
+      authStatus === messaging.AuthorizationStatus.PROVISIONAL ||
+      authStatus === PermissionsAndroid.RESULTS.GRANTED;
 
     if (enabled) await registerDeviceNotification();
   })();
