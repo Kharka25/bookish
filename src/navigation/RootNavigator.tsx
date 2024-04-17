@@ -5,6 +5,7 @@ import {DefaultTheme, NavigationContainer} from '@react-navigation/native';
 import {AppNavigator, AuthNavigator} from '@navigation';
 import {fetchAuthInfo} from '@services/auth';
 import useAuth from '@store/auth/hooks';
+import {unsubscribe} from '@utils/notificationUtils';
 
 import {Colors} from '@constants/colors';
 
@@ -34,6 +35,10 @@ const RootNavigator = () => {
 
   useEffect(() => {
     getAuthInfo();
+
+    return () => {
+      unsubscribe();
+    };
   }, []);
 
   return (
