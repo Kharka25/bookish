@@ -5,7 +5,7 @@ export interface UserProfileI {
   email: string;
   favorites?: [];
   phoneNumber?: string;
-  profileImage?: ImageSourcePropType;
+  profileImage?: string;
   username: string;
   verified: boolean;
 }

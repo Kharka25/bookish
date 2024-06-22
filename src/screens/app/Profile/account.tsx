@@ -21,19 +21,23 @@ import {
   horizontalScale,
   verticalScale,
 } from '@utils/responsiveDesign';
+import {ImageSource, selectImage} from '@utils/image-upload';
+import {UserProfileI} from '@models/auth';
 
 const Account: React.FC = () => {
   const [secureTextEntry, setSecureTextEntry] = useState(true);
+  const [uploadSource, _setUploadSource] = useState<ImageSource>('CAMERA'); // TODO - Finish up image upload flow
 
   const navigation = useAppNavigation();
 
-  const {authState} = useAuth();
+  const {authState, updateUserProfile} = useAuth();
   const {profile} = authState;
 
-  const [userInfo, setUserInfo] = useState({
+  const [userInfo, setUserInfo] = useState<UserProfileI>({
     username: profile?.username || '',
     email: profile?.email || '',
     phoneNumber: profile?.phoneNumber || '',
+    profileImage: profile?.profileImage || '',
     id: profile?.id || '',
     verified: profile?.verified || false,
   });
@@ -61,6 +65,17 @@ const Account: React.FC = () => {
     );
   }
 
+  async function handleImageUpload() {
+    const selectedImage = await selectImage(uploadSource);
+    const uri = selectedImage?.assets![0].uri!;
+    updateUserProfile({...userInfo, profileImage: uri});
+  }
+
+  // async function takePhoto() {
+  //   setUploadSource('CAMERA');
+  //   // await
+  // }
+
   return (
     <SafeAreaView>
       <Header
@@ -75,12 +90,19 @@ const Account: React.FC = () => {
       <View style={[styles.profileImageBackground, globalStyles.mbMD]} />
       <View style={[styles.profileImageContainer]}>
         <Image
-          source={
-            profile?.profileImage
-              ? profile?.profileImage
-              : require('@assets/images/user.png')
-          }
+          source={{
+            uri: profile?.profileImage
+              ? userInfo?.profileImage || profile.profileImage
+              : require('@assets/images/user.png'),
+          }}
           style={styles.profileImage}
+        />
+        <Icon
+          name="camera"
+          color={Colors.GRAY_40}
+          size={20}
+          style={styles.camaraIcon}
+          onPress={handleImageUpload}
         />
       </View>
       <View style={[globalStyles.phSm, styles.container]}>
@@ -110,7 +132,7 @@ const Account: React.FC = () => {
           label="Phone"
           onChangeText={value => onChangeText(value, 'phoneNumber')}
           leftIcon={renderPhoneIcon()}
-          containerStyle={[styles.inputContainer]}
+          containerStyle={styles.inputContainer}
           value={userInfo.phoneNumber}
         />
         <AuthInput
@@ -140,6 +162,11 @@ const styles = StyleSheet.create({
   container: {
     marginTop: -30,
   },
+  camaraIcon: {
+    bottom: '-8%',
+    position: 'absolute',
+    right: '-0.6%',
+  },
   changePasswordTxt: {
     color: Colors.PRIMARY,
     fontSize: fontScale(14),
@@ -150,9 +177,10 @@ const styles = StyleSheet.create({
     marginBottom: verticalScale(16),
   },
   profileImage: {
-    height: verticalScale(72),
-    resizeMode: 'contain',
-    width: horizontalScale(72),
+    borderRadius: horizontalScale(50),
+    height: verticalScale(98),
+    resizeMode: 'cover',
+    width: horizontalScale(100),
   },
   profileImageBackground: {
     backgroundColor: Colors.WHITE_10,
@@ -162,10 +190,10 @@ const styles = StyleSheet.create({
   profileImageContainer: {
     alignSelf: 'center',
     borderColor: Colors.PRIMARY,
-    borderRadius: horizontalScale(50),
+    borderRadius: horizontalScale(55),
     borderWidth: 0.9,
     bottom: verticalScale(60),
-    padding: horizontalScale(3),
+    padding: '0.5%',
   },
 });
 

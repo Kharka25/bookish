@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, ImageSourcePropType, StyleSheet, View} from 'react-native';
+import {Image, StyleSheet, View} from 'react-native';
 
 import {Text} from '@components';
 
@@ -12,7 +12,7 @@ import {Colors} from '@constants/colors';
 
 interface Props {
   email: string;
-  profileImage?: ImageSourcePropType;
+  profileImage?: string;
   username: string;
 }
 
@@ -22,7 +22,7 @@ const UserProfile: React.FC<Props> = props => {
     <View style={styles.container}>
       <View>
         {profileImage && (
-          <Image source={profileImage} style={styles.profileImage} />
+          <Image source={{uri: profileImage}} style={styles.profileImage} />
         )}
       </View>
       <View>
@@ -39,10 +39,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   profileImage: {
-    height: verticalScale(56),
+    borderRadius: horizontalScale(50),
+    height: verticalScale(65),
     marginRight: verticalScale(12),
-    resizeMode: 'contain',
-    width: horizontalScale(56),
+    resizeMode: 'cover',
+    width: horizontalScale(65),
   },
 });
 

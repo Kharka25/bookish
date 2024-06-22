@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {createRef, useState} from 'react';
 import {Pressable, ScrollView, StyleSheet, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/FontAwesome6';
@@ -18,7 +18,9 @@ import {
   verticalScale,
   SCREEN_HEIGHT,
 } from '@utils/responsiveDesign';
-import {bottomSheetRef} from '../../../components/BottomSheet/bottomsheet';
+import {BottomSheetRefProps} from '../../../components/BottomSheet/bottomsheet';
+
+const logoutBottomSheetRef = createRef<BottomSheetRefProps>();
 
 const Profile: React.FC = () => {
   const [loading, setLoading] = useState(false);
@@ -32,7 +34,7 @@ const Profile: React.FC = () => {
     setLoading(true);
     try {
       await logOut();
-      bottomSheetRef.current?.hide();
+      logoutBottomSheetRef.current?.hide();
       navigation.navigate('SignIn' as never);
       logOutUser();
     } catch (error) {
@@ -44,10 +46,10 @@ const Profile: React.FC = () => {
   return (
     <SafeAreaView>
       <BottomSheet
-        ref={bottomSheetRef}
+        ref={logoutBottomSheetRef}
         children={
           <Logout
-            cancelLogout={() => bottomSheetRef.current?.hide()}
+            cancelLogout={() => logoutBottomSheetRef.current?.hide()}
             loading={loading}
             handleLogout={handleLogout}
           />
@@ -73,7 +75,7 @@ const Profile: React.FC = () => {
               color={Colors.RED}
               fontSize={fontScale(14)}
               fontWeight="500"
-              onPress={() => bottomSheetRef.current?.show()}
+              onPress={() => logoutBottomSheetRef.current?.show()}
               suppressHighlighting
             />
           </View>
