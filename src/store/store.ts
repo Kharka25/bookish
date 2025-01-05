@@ -3,9 +3,13 @@ import {persistReducer} from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import authReducer from './auth/auth';
+import cartReducer from './cart/cart';
+import notifcationReducer from './notification/notification';
 
 const rootReducer = combineReducers({
   auth: authReducer,
+  cart: cartReducer,
+  notification: notifcationReducer,
 });
 
 const persistConfig = {

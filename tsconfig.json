@@ -2,7 +2,7 @@
   "extends": "@react-native/typescript-config/tsconfig.json",
   "compilerOptions": {
     "target": "esnext",
-    "module": "commonJS",
+    "module": "es2015",
     "types": ["react-native", "@testing-library/jest-native", "jest"],
     "lib": ["es2019"],
     "jsx": "react-native",
@@ -10,7 +10,7 @@
     "noEmit": true,
     "isolatedModules": true,
     "strict": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": false,

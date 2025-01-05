@@ -7,6 +7,7 @@ import {persistStore} from 'redux-persist';
 import {PersistGate} from 'redux-persist/integration/react';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import messaging from '@react-native-firebase/messaging';
+import {QueryClient,  QueryClientProvider } from '@tanstack/react-query';
 
 import {AppContainer} from '@components';
 import {RootNavigator} from '@navigation';
@@ -17,6 +18,7 @@ import {notificationListener} from '@utils/notificationUtils';
 
 const store = setupStore();
 const persistor = persistStore(store);
+const queryClient = new QueryClient();
 
 const App: React.FC = () => {
   (async function requestUserPermission() {
@@ -48,11 +50,13 @@ const App: React.FC = () => {
   return (
     <GestureHandlerRootView style={{flex: 1}}>
       <Provider store={store}>
-        <PersistGate persistor={persistor} loading={null}>
-          <AppContainer>
-            <RootNavigator />
-          </AppContainer>
-        </PersistGate>
+        <QueryClientProvider client={queryClient}>
+          <PersistGate persistor={persistor} loading={null}>
+            <AppContainer>
+              <RootNavigator />
+            </AppContainer>
+          </PersistGate>
+        </QueryClientProvider>
       </Provider>
     </GestureHandlerRootView>
   );

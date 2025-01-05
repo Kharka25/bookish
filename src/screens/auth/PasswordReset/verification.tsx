@@ -32,8 +32,7 @@ const Verification: React.FC<ScreenProps> = ({route}) => {
   const otpRef = useRef<TextInput>(null);
   const navigation = useAppNavigation();
 
-  const {authState} = useAuth();
-  const {profile} = authState;
+  const {profile} = useAuth().authState;
 
   const modeText =
     mode === 'Email'
@@ -67,12 +66,12 @@ const Verification: React.FC<ScreenProps> = ({route}) => {
   }
 
   async function handleVerification() {
+    if (!isValidOtp) return;
+
     if (prevScreen === 'ResetPassword') {
-      navigation.navigate('NewPassword');
+      navigation.navigate('NewPassword', {prevScreen: 'Verification'});
       return;
     }
-
-    if (!isValidOtp) return;
 
     setLoading(true);
     try {

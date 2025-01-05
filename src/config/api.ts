@@ -1,4 +1,8 @@
-import Axios, {CreateAxiosDefaults} from 'axios';
+import Axios, {
+  CreateAxiosDefaults,
+  AxiosProgressEvent,
+  isAxiosError,
+} from 'axios';
 
 import {RequestConfig, RequestMethodEnum} from '@customTypes/request.types';
 import {getFromAsyncStorage} from '@utils/cache';
@@ -19,7 +23,13 @@ const requestClient = async (headers?: headers) => {
     ...headers,
   };
 
-  return Axios.create({baseURL: BASE_LOCAL_URL, headers: defaultHeaders});
+  return Axios.create({
+    baseURL: BASE_LOCAL_URL,
+    headers: defaultHeaders,
+    onDownloadProgress(progressEvent) {
+      progressEvent.loaded;
+    },
+  });
 };
 
 export async function request<T>(requestData: RequestConfig<T>) {
@@ -42,4 +52,16 @@ export async function request<T>(requestData: RequestConfig<T>) {
   } catch (error) {
     throw new Error(error as string);
   }
+}
+
+export async function catchAsyncError(error: any) {
+  let errorMessage = error.message;
+
+  if (isAxiosError(error)) {
+    const errorResponse = error.response?.data;
+
+    if (errorResponse) errorMessage = errorResponse.error;
+  }
+
+  return errorMessage;
 }

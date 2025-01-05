@@ -3,8 +3,6 @@ import {Dimensions, PixelRatio, Platform, StyleSheet} from 'react-native';
 export const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} =
   Dimensions.get('window');
 
-type BaseT = 'HEIGHT' | 'WIDTH';
-
 enum BaseEnum {
   HEIGHT = 'HEIGHT',
   WIDTH = 'WIDTH',
@@ -16,9 +14,9 @@ const screenWidth = 424;
 const baseHeightScale = SCREEN_HEIGHT / screenHeight;
 const baseWidthScale = SCREEN_WIDTH / screenWidth;
 
-function scaleValue(size: number, based: BaseT) {
+function scaleValue(size: number, based: BaseEnum) {
   const newSize =
-    based === 'HEIGHT' ? size * baseHeightScale : size * baseWidthScale;
+    based === BaseEnum.HEIGHT ? size * baseHeightScale : size * baseWidthScale;
   return Math.round(PixelRatio.roundToNearestPixel(newSize));
 }
 

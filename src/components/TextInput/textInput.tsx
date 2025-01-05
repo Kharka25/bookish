@@ -6,6 +6,8 @@ import {
   TextInputProps,
   StyleProp,
   ViewStyle,
+  NativeSyntheticEvent,
+  TextInputSubmitEditingEventData,
 } from 'react-native';
 
 import {Text} from '@components';
@@ -37,6 +39,11 @@ const TextInput: React.FC<Props> = props => {
     value,
   } = props;
   const [focused, setFocused] = useState(false);
+
+  function handleOnSubmitEdit(e: NativeSyntheticEvent<TextInputSubmitEditingEventData>) {
+    console.log(e.nativeEvent.text);
+  }
+
   return (
     <View style={styles.container}>
       {label && <Text content={label} style={styles.label} />}
@@ -48,6 +55,7 @@ const TextInput: React.FC<Props> = props => {
           cursorColor={Colors.PRIMARY}
           defaultValue={defaultValue}
           onEndEditing={() => setFocused(false)}
+          onSubmitEditing={handleOnSubmitEdit}
           // onBlur={}
           onFocus={() => setFocused(true)}
           placeholderTextColor={
